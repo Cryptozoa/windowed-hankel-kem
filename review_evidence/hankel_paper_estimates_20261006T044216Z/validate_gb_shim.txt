@@ -1,0 +1,7 @@
+gb_cost(128, [(2, 256)])  expect rop 2^144.6, dreg 17 :: rop 2^144.6 dreg 17
+base m=2^50                expect 2^307.1 dreg 99 :: rop 2^307.1 dreg 99
+m=2^120                    expect 2^282.6 dreg 83 :: rop 2^282.6 dreg 83
+Xe=UniformMod(7)           expect 2^60.6 dreg 7 :: rop 2^60.6 dreg 7
+Xe=CBD(8)                  expect 2^122.3 dreg 19 :: rop 2^122.3 dreg 19
+Xs=U(5) Xe=CBD(4) m=1024   expect 2^227.2 dreg 54 :: rop 2^227.2 dreg 54
+Xs=U(3) Xe=CBD(4) m=1024   expect 2^189.9 dreg 39 :: rop 2^189.9 dreg 39

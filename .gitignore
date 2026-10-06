@@ -25,3 +25,6 @@ paper/*.synctex.gz
 .DS_Store
 test_hankel_native
 bench_hankel_native
+
+# Third-party papers used while writing (not redistributed)
+paper/literature/

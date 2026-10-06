@@ -1,0 +1,50 @@
+/var/folders/j7/f_2xp41n7g71km4tb1h7twr80000gn/T/sage_q6udnctb/crosscheck_native_sageqi1kxtth.sage.py:25: DeprecationWarning: Use sage.version.version instead.
+See https://github.com/sagemath/sage/issues/39015 for details.
+  print("Sage", version())
+Sage SageMath version 10.9, Release Date: 2026-05-04
+WH640 usvp CoreSVP :: rop 2^142.5 beta 488
+WH640 usvp MATZOV :: rop 2^166.8 beta 488
+WH640 bdd CoreSVP :: rop 2^143.2 beta 488
+WH640 bdd MATZOV :: rop 2^163.1 beta 471
+WH640 dual CoreSVP :: rop 2^148.0 beta 507 m 618
+WH640 dual MATZOV :: rop 2^173.7 beta 509 m 620
+WH640 dual_hybrid CoreSVP :: rop 2^137.1 beta 468 m 640 t 40
+WH640 dual_hybrid MATZOV :: rop 2^160.3 beta 459 m 640 t 40
+WH640 coded-bkw :: rop 2^207.3 m 5.021681392883287e+58
+Kyber512 usvp CoreSVP :: rop 2^118.6 beta 406
+Kyber512 usvp MATZOV :: rop 2^143.8 beta 406
+Kyber512 bdd CoreSVP :: rop 2^119.4 beta 406
+Kyber512 bdd MATZOV :: rop 2^140.2 beta 389
+Kyber512 dual CoreSVP :: rop 2^123.8 beta 424 m 512
+Kyber512 dual MATZOV :: rop 2^149.9 beta 424 m 512
+Kyber512 dual_hybrid CoreSVP :: rop 2^115.5 beta 395 m 512 t 40
+Kyber512 dual_hybrid MATZOV :: rop 2^139.7 beta 387 m 512 t 50
+Kyber512 coded-bkw :: rop 2^178.8 m 1.6424530413707464e+50
+WH640 bdd_hybrid CoreSVP :: rop 2^143.2 beta 488
+WH640 bdd_mitm_hybrid CoreSVP :: rop 2^283.4 beta 489
+WH640 dual_mitm_hybrid CoreSVP :: rop 2^748.0 beta 159 m 161
+WH640 bdd_hybrid MATZOV :: rop 2^163.1 beta 471
+WH640 bdd_mitm_hybrid MATZOV :: rop 2^283.4 beta 489
+WH640 dual_mitm_hybrid MATZOV :: rop 2^748.0 beta 143 m 125
+n=512 q=4096 eta=2 usvp CoreSVP :: rop 2^108.3 beta 371
+n=512 q=4096 eta=2 dual_hybrid CoreSVP :: rop 2^105.4 beta 361 m 512 t 40
+n=512 q=4096 eta=2 usvp MATZOV :: rop 2^134.1 beta 371
+n=512 q=4096 eta=2 dual_hybrid MATZOV :: rop 2^129.6 beta 351 m 512 t 40
+n=576 q=4096 eta=2 usvp CoreSVP :: rop 2^125.3 beta 429
+n=576 q=4096 eta=2 dual_hybrid CoreSVP :: rop 2^121.2 beta 414 m 576 t 50
+n=576 q=4096 eta=2 usvp MATZOV :: rop 2^150.3 beta 429
+n=576 q=4096 eta=2 dual_hybrid MATZOV :: rop 2^145.1 beta 405 m 576 t 50
+n=704 q=4096 eta=2 usvp CoreSVP :: rop 2^159.7 beta 547
+n=704 q=4096 eta=2 dual_hybrid CoreSVP :: rop 2^153.3 beta 525 m 704 t 50
+n=704 q=4096 eta=2 usvp MATZOV :: rop 2^183.4 beta 547
+n=704 q=4096 eta=2 dual_hybrid MATZOV :: rop 2^176.1 beta 517 m 704 t 50
+n=640 q=2048 eta=1 usvp CoreSVP :: rop 2^141.6 beta 485
+n=640 q=2048 eta=1 dual_hybrid CoreSVP :: rop 2^134.3 beta 459 m 640 t 60
+n=640 q=2048 eta=1 usvp MATZOV :: rop 2^165.9 beta 485
+n=640 q=2048 eta=1 dual_hybrid MATZOV :: rop 2^157.7 beta 451 m 640 t 60
+n=640 q=8192 eta=3 usvp CoreSVP :: rop 2^136.9 beta 469
+n=640 q=8192 eta=3 dual_hybrid CoreSVP :: rop 2^133.7 beta 457 m 640 t 40
+n=640 q=8192 eta=3 usvp MATZOV :: rop 2^161.7 beta 469
+n=640 q=8192 eta=3 dual_hybrid MATZOV :: rop 2^157.4 beta 449 m 640 t 40
+n=640 q=4096 eta=2 arora-gb :: rop 2^2100.7 dreg 442 m 768 t 2
+n=640 q=2048 eta=1 arora-gb :: rop 2^1204.5 dreg 173 m 768 t 1

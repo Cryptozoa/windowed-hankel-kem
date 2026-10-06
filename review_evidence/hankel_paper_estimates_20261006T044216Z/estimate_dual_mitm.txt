@@ -1,0 +1,6 @@
+n=640 q=4096 eta=2 CoreSVP dual_mitm_hybrid  rop 2^748.0  beta 159
+n=640 q=4096 eta=2 MATZOV  dual_mitm_hybrid  rop 2^748.0  beta 143
+n=640 q=2048 eta=1 CoreSVP dual_mitm_hybrid  failed: β = 135 > d = 94
+n=640 q=2048 eta=1 MATZOV  dual_mitm_hybrid  rop 2^518.0  beta 151
+n=704 q=2048 eta=1 CoreSVP dual_mitm_hybrid  failed: β = 127 > d = 92
+n=704 q=2048 eta=1 MATZOV  dual_mitm_hybrid  failed: β = 103 > d = 87

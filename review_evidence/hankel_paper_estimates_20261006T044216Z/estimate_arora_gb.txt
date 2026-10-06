@@ -1,0 +1,2 @@
+n=640 q=4096 eta=2 arora-gb :: rop 2^2100.7 dreg 442 m 768 t 2
+n=640 q=2048 eta=1 arora-gb :: rop 2^1204.5 dreg 173 m 768 t 1

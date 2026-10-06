@@ -1,0 +1,7 @@
+n=512 q=2^12 eta=2 | coreSVP usvp 108.3 dualhyb 105.4 (beta 361) | MATZOV usvp 134.1 dualhyb 129.6 | pk 1004 ct 1164 total 2168
+n=576 q=2^12 eta=2 | coreSVP usvp 125.3 dualhyb 121.2 (beta 414) | MATZOV usvp 150.3 dualhyb 145.1 | pk 1100 ct 1260 total 2360
+n=640 q=2^12 eta=2 | coreSVP usvp 142.5 dualhyb 137.1 (beta 468) | MATZOV usvp 166.8 dualhyb 160.3 | pk 1196 ct 1356 total 2552
+n=704 q=2^12 eta=2 | coreSVP usvp 159.7 dualhyb 153.3 (beta 525) | MATZOV usvp 183.4 dualhyb 176.1 | pk 1292 ct 1452 total 2744
+n=640 q=2^11 eta=1 | coreSVP usvp 141.6 dualhyb 134.3 (beta 459) | MATZOV usvp 165.9 dualhyb 157.7 | pk 1100 ct 1244 total 2344
+n=640 q=2^13 eta=3 | coreSVP usvp 136.9 dualhyb 133.7 (beta 457) | MATZOV usvp 161.7 dualhyb 157.4 | pk 1292 ct 1468 total 2760
+n=704 q=2^11 eta=1 | coreSVP usvp 158.8 dualhyb 150.1 (beta 513) | MATZOV usvp 182.4 dualhyb 172.4 | pk 1188 ct 1332 total 2520
