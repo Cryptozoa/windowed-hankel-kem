@@ -1,0 +1,10 @@
+[PASS] 1. Native API reproduces all 15 KAT vectors (pk, sk, ct, ss, decapsulation)
+[PASS] 2. Native output equals the Python reference: 54 key pairs over seed lengths (0, 1, 16, 32, 48, 63, 64, 65, 96), entropy lengths (0, 1, 32, 100), 11 malformed ciphertexts each
+[PASS] 3. Hankel product kernel matches exact integer dot products (40 trials, including arbitrary 16-bit inputs); all-zero-secret fix-up matches the reference
+[PASS] 4. Malformed public and secret keys raise ValueError in both implementations
+[PASS] 5. Static audit: 9 secret-handling functions (1274 instructions), 23 branches all on public values, no divisions, no calls
+[INFO] 6. keygen  : fixed   15.0 us, random   15.0 us, Welch |t| = 0.81
+[INFO] 6. encaps  : fixed   18.5 us, random   18.5 us, Welch |t| = 1.41
+[INFO] 6. decaps  : fixed   20.4 us, random   20.4 us, Welch |t| = 1.04
+[PASS] 6. No first-order timing dependence on secrets detected (|t| < 4.5); decapsulation takes the same time whether it accepts or rejects
+NATIVE KEM: ALL CHECKS PASSED

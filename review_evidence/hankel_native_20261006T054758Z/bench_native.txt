@@ -1,0 +1,21 @@
+Apple M3 Max
+Apple clang version 17.0.0 (clang-1700.6.4.2)
+
+keygen     median    14.1 us   p90    17.5 us
+encaps     median    17.2 us   p90    18.0 us
+decaps     median    20.1 us   p90    22.6 us
+handshake  median    51.5 us   p90    55.5 us
+(5000 iterations after 500 warm-up calls; all handshakes agreed)
+
+keygen     median    14.1 us   p90    16.5 us
+encaps     median    17.3 us   p90    19.2 us
+decaps     median    20.2 us   p90    21.7 us
+handshake  median    51.4 us   p90    54.7 us
+(5000 iterations after 500 warm-up calls; all handshakes agreed)
+
+keygen     median    14.0 us   p90    15.2 us
+encaps     median    17.0 us   p90    18.0 us
+decaps     median    20.2 us   p90    23.2 us
+handshake  median    51.4 us   p90    55.0 us
+(5000 iterations after 500 warm-up calls; all handshakes agreed)
+

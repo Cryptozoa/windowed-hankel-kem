@@ -308,7 +308,7 @@ void hankel_ct_select(
 
 #if defined(USE_NEON)
     uint8x16_t vmask = vdupq_n_u8(mask);
-    for (; i <= len - 16; i += 16) {
+    for (; i + 16 <= len; i += 16) {
         uint8x16_t va = vld1q_u8(a + i);
         uint8x16_t vb = vld1q_u8(b + i);
         uint8x16_t vres = vbslq_u8(vmask, va, vb);
@@ -332,7 +332,7 @@ int hankel_ct_compare(
 
 #if defined(USE_NEON)
     uint8x16_t vdiff = vdupq_n_u8(0);
-    for (; i <= len - 16; i += 16) {
+    for (; i + 16 <= len; i += 16) {
         uint8x16_t va = vld1q_u8(a + i);
         uint8x16_t vb = vld1q_u8(b + i);
         vdiff = vorrq_u8(vdiff, veorq_u8(va, vb));

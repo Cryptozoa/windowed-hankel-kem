@@ -2,7 +2,6 @@
 *.dylib
 *.so
 *.o
-test_hankel_neon_c
 
 # Python
 __pycache__/
@@ -24,3 +23,5 @@ paper/*.synctex.gz
 *.sage.py
 
 .DS_Store
+test_hankel_native
+bench_hankel_native

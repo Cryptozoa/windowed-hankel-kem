@@ -1,0 +1,1 @@
+[PASS] native KEM: hash KATs, 15/15 KAT vectors (pk, sk, ct, ss, decapsulation), implicit rejection, 200 random round trips
