@@ -1,0 +1,18 @@
+{
+  "original_live_sha256": {
+    "hankel_kem_neon.c": "cb1dca679899d210eefb8eeda01d884aa5cb6da3c0c0c7d249454b1253782c9d",
+    "hankel_kem_neon.h": "06f016cf42bd9225220e89311664627d0feb3767aeb64f6858345392568b8557",
+    "libhankel_kem_neon.dylib": "d20fdc18f5c9bce40772cc6b1536113d62a555c4392f4490589fe06a99cc2952"
+  },
+  "promoted_sha256": {
+    "hankel_kem_neon.c": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+    "hankel_kem_neon.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d",
+    "libhankel_kem_neon.dylib": "2c43e26743177b5504742aecffc0e6ee5572893976f1c345b564e75cabbbd92b"
+  },
+  "candidate_files": {
+    "hankel_kem_neon.c": "hankel_kem_neon.c",
+    "hankel_kem_neon.h": "hankel_kem_neon.h",
+    "libhankel_kem_neon.dylib": "libhankel_kem_neon_final.dylib"
+  },
+  "replacement": "Verified candidate copied to temporary sibling then replaced atomically; original artifacts retained in baseline/."
+}

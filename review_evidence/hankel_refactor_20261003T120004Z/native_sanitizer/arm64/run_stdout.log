@@ -1,0 +1,10 @@
+PASS n=1 exact-length forward/project allocations
+PASS n=7 exact-length forward/project allocations
+PASS n=8 exact-length forward/project allocations
+PASS n=9 exact-length forward/project allocations
+PASS n=17 exact-length forward/project allocations
+PASS n=31 exact-length forward/project allocations
+PASS n=32 exact-length forward/project allocations
+PASS n=33 exact-length forward/project allocations
+PASS n=640 exact-length forward/project allocations
+{"pass":true,"native_path":"ARM_NEON","forward_cases":162,"project_cases":81,"compared_coefficients":15846}

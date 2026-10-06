@@ -1,0 +1,11 @@
+{
+  "origin": "<workdir>/review_evidence/hankel_architecture_e2080e22fe2d/input_snapshot",
+  "note": "The before/ snapshot was taken after wrapper extraction finished; retain it as captured. This baseline/ is the original verified construction snapshot.",
+  "sha256": {
+    "hankel_kem_neon.h": "06f016cf42bd9225220e89311664627d0feb3767aeb64f6858345392568b8557",
+    "hankel_kem_wrapper.py": "4fbbcbc83b37b08408bb526a391b04691b1c28f7db140e5e44a2b1f4e2090d95",
+    "hankel_kem_core.py": "e2080e22fe2d23da7ce92eebd1b01860762cf77c948c65c6a511015529fb0f29",
+    "libhankel_kem_neon.dylib": "d20fdc18f5c9bce40772cc6b1536113d62a555c4392f4490589fe06a99cc2952",
+    "hankel_kem_neon.c": "cb1dca679899d210eefb8eeda01d884aa5cb6da3c0c0c7d249454b1253782c9d"
+  }
+}

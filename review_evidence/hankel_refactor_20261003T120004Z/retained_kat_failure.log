@@ -1,0 +1,71 @@
+Explicit backend: reference
+[*] Validating 15 NIST KAT vectors for Windowed-Hankel-LWE-640-Category-1...
+    [FAIL] Vector 0: Decapsulation shared secret mismatch!
+    [FAIL] Vector 1: Decapsulation shared secret mismatch!
+    [FAIL] Vector 2: Decapsulation shared secret mismatch!
+    [FAIL] Vector 3: Decapsulation shared secret mismatch!
+    [FAIL] Vector 4: Decapsulation shared secret mismatch!
+    [FAIL] Vector 5: Decapsulation shared secret mismatch!
+    [FAIL] Vector 6: Decapsulation shared secret mismatch!
+    [FAIL] Vector 7: Decapsulation shared secret mismatch!
+    [FAIL] Vector 8: Decapsulation shared secret mismatch!
+    [FAIL] Vector 9: Decapsulation shared secret mismatch!
+    [FAIL] Vector 10: Decapsulation shared secret mismatch!
+    [FAIL] Vector 11: Decapsulation shared secret mismatch!
+    [FAIL] Vector 12: Decapsulation shared secret mismatch!
+    [FAIL] Vector 13: Decapsulation shared secret mismatch!
+    [FAIL] Vector 14: Decapsulation shared secret mismatch!
+
+[FAIL] One or more NIST KAT vectors failed verification for Windowed-Hankel-LWE-640-Category-1!
+Explicit backend: convolution
+[*] Validating 15 NIST KAT vectors for Windowed-Hankel-LWE-640-Category-1...
+    [FAIL] Vector 0: Decapsulation shared secret mismatch!
+    [FAIL] Vector 1: Decapsulation shared secret mismatch!
+    [FAIL] Vector 2: Decapsulation shared secret mismatch!
+    [FAIL] Vector 3: Decapsulation shared secret mismatch!
+    [FAIL] Vector 4: Decapsulation shared secret mismatch!
+    [FAIL] Vector 5: Decapsulation shared secret mismatch!
+    [FAIL] Vector 6: Decapsulation shared secret mismatch!
+    [FAIL] Vector 7: Decapsulation shared secret mismatch!
+    [FAIL] Vector 8: Decapsulation shared secret mismatch!
+    [FAIL] Vector 9: Decapsulation shared secret mismatch!
+    [FAIL] Vector 10: Decapsulation shared secret mismatch!
+    [FAIL] Vector 11: Decapsulation shared secret mismatch!
+    [FAIL] Vector 12: Decapsulation shared secret mismatch!
+    [FAIL] Vector 13: Decapsulation shared secret mismatch!
+    [FAIL] Vector 14: Decapsulation shared secret mismatch!
+
+[FAIL] One or more NIST KAT vectors failed verification for Windowed-Hankel-LWE-640-Category-1!
+Explicit backend: neon
+[*] Validating 15 NIST KAT vectors for Windowed-Hankel-LWE-640-Category-1...
+    [FAIL] Vector 0: Decapsulation shared secret mismatch!
+    [FAIL] Vector 1: Decapsulation shared secret mismatch!
+    [FAIL] Vector 2: Decapsulation shared secret mismatch!
+    [FAIL] Vector 3: Decapsulation shared secret mismatch!
+    [FAIL] Vector 4: Decapsulation shared secret mismatch!
+    [FAIL] Vector 5: Decapsulation shared secret mismatch!
+    [FAIL] Vector 6: Decapsulation shared secret mismatch!
+    [FAIL] Vector 7: Decapsulation shared secret mismatch!
+    [FAIL] Vector 8: Decapsulation shared secret mismatch!
+    [FAIL] Vector 9: Decapsulation shared secret mismatch!
+    [FAIL] Vector 10: Decapsulation shared secret mismatch!
+    [FAIL] Vector 11: Decapsulation shared secret mismatch!
+    [FAIL] Vector 12: Decapsulation shared secret mismatch!
+    [FAIL] Vector 13: Decapsulation shared secret mismatch!
+    [FAIL] Vector 14: Decapsulation shared secret mismatch!
+
+[FAIL] One or more NIST KAT vectors failed verification for Windowed-Hankel-LWE-640-Category-1!
+================================================================================
+   WINDOWED HANKEL LWE KEM: NATIVE ARM64 NEON VERIFICATION & BENCHMARK
+================================================================================
+
+[+] PART 1: Bit-Exact Functional Equivalence (Python vs Native NEON)...
+    [PASS] hankel_neon_forward_mul (768 dot products of length 640): 100% bit-exact match.
+    [PASS] hankel_neon_window_project (128 sliding projections): 100% bit-exact match.
+    [PASS] 4-PAM Encode & Branchless Voronoi Decoder: 100% bit-exact match.
+    [PASS] 12-bit SIMD Packing and Unpacking: 100% bit-exact match.
+    [PASS] Native byte selection and comparison: functional outputs match.
+
+[+] PART 2: Validating native execution against retained local KAT vectors...
+    Loaded 15 local KAT vectors from WINDOWED_HANKEL_640_NIST1.rsp.
+Failure: {"type": "AssertionError", "message": "local KAT mismatch on vector 0!", "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 12, in <module>\n  File \"<workdir>/test_hankel_neon.py\", line 202, in run_native_checks\n    assert ss_dec == ss_expected, f\"local KAT mismatch on vector {count}!\"\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError: local KAT mismatch on vector 0!\n"}

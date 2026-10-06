@@ -1,0 +1,53 @@
+{
+  "sha256": {
+    "hankel_kem_neon.initial_candidate.c": "ee5d1b73dec8ec48cba15e27537e175287cbbe2300ae643e58bb53f946cde703",
+    "hankel_kem_neon.initial_candidate.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d",
+    "hankel_kem_neon.c": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+    "hankel_kem_neon.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d",
+    "libhankel_kem_neon.dylib": "bfe8fb90b3fe3587d9c2ffdfcf1feaeb1f79a71b23543e0bdeefe2497883c9f9",
+    "libhankel_kem_neon_final.dylib": "2c43e26743177b5504742aecffc0e6ee5572893976f1c345b564e75cabbbd92b",
+    "check_and_benchmark.py": "0b08dee1d6dbf225c287e3646301582922f1c7ff75a4b1495b02c2cf89434527",
+    "check_and_benchmark_unique.py": "8b83a76cc4837f04bb319dc143f1a3b2d8ef2c50648a338b1cfd5328ade5c34c",
+    "verification.json": "fb6848ee311a044b9a5c1ca16f4e6ea038c00397191ecf03bc4a28bde8c99769",
+    "verification_final.json": "b5d24f7765177560e58bd30b1974e0f1ec709a695f48e90db52070fb46278b18",
+    "benchmark.json": "3bbcbcfe372981021adab1e946953c63ab3410ce3f7b6ce5051beccf33a8d801",
+    "benchmark_unique.json": "29ba8c21ef9696fa7076d115248c06a00b102646de71e92e99ca72b7b8719420",
+    "benchmark_pool.npz": "a102202e40de9added2e22279c775b0c9ab4e88c651e2622f825b5f21dd15c3a",
+    "benchmark_unique_pool.npz": "99bdbced4a226a2411d4fbcfef206dac9233905364a6ef36c81dd3b760eb5d52"
+  },
+  "initial_compile": [
+    "clang",
+    "-O3",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-dynamiclib",
+    "-arch",
+    "arm64",
+    "hankel_kem_neon.c",
+    "-o",
+    "libhankel_kem_neon.dylib"
+  ],
+  "final_compile": [
+    "clang",
+    "-O3",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-dynamiclib",
+    "-arch",
+    "arm64",
+    "hankel_kem_neon.c",
+    "-o",
+    "libhankel_kem_neon_final.dylib"
+  ],
+  "initial_build_source": "hankel_kem_neon.initial_candidate.c",
+  "initial_build_header": "hankel_kem_neon.initial_candidate.h",
+  "final_build_source": "hankel_kem_neon.c",
+  "final_build_header": "hankel_kem_neon.h",
+  "benchmark_primary": "benchmark_unique.json",
+  "benchmark_diagnostic": "benchmark.json",
+  "compiler_version": "Homebrew clang version 21.1.8\nTarget: x86_64-apple-darwin25.3.0\nThread model: posix\nInstalledDir: /usr/local/Cellar/llvm/21.1.8_1/bin\nConfiguration file: /usr/local/etc/clang/x86_64-apple-darwin25.cfg\n",
+  "live_source_or_library_changed": false,
+  "final_change_is_comment_only": true
+}

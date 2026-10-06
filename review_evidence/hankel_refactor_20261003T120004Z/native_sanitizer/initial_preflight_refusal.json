@@ -1,0 +1,9 @@
+{
+  "exit_code": 1,
+  "phase": "source-hash preflight, before compiler invocation",
+  "exception": "AssertionError: ('Candidate source drift', 'hankel_kem_neon.c')",
+  "expected_candidate_source": "ee5d1b73dec8ec48cba15e27537e175287cbbe2300ae643e58bb53f946cde703",
+  "observed_candidate_source": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+  "initial_runner_sha256": "e13debdd4de889bd5b8f18b0c5c728ad1e2a49b2c8b0edeb28ba5e9eed890e99",
+  "resolution": "Retained the initial runner and refusal; updated the pin to the current candidate. The visible source change qualifies timing claims in comments. No compiler or native execution occurred in the refused invocation."
+}

@@ -1,0 +1,23 @@
+{
+  "expected_output_source": "Pinned pristine pre-refactor core/wrapper/native library",
+  "original_source_sha256": {
+    "hankel_kem_core.py": "e2080e22fe2d23da7ce92eebd1b01860762cf77c948c65c6a511015529fb0f29",
+    "hankel_kem_wrapper.py": "4fbbcbc83b37b08408bb526a391b04691b1c28f7db140e5e44a2b1f4e2090d95",
+    "hankel_kem_neon.c": "cb1dca679899d210eefb8eeda01d884aa5cb6da3c0c0c7d249454b1253782c9d",
+    "hankel_kem_neon.h": "06f016cf42bd9225220e89311664627d0feb3767aeb64f6858345392568b8557",
+    "libhankel_kem_neon.dylib": "d20fdc18f5c9bce40772cc6b1536113d62a555c4392f4490589fe06a99cc2952"
+  },
+  "writer_sha256": "0800e62750face3bb3fb0f4f7a0b43e2c8f809e46514a9e2336cde8c153a11a7",
+  "versioned_files_sha256": {
+    "WINDOWED_HANKEL_640_RESEARCH_v2.req": "b0c12f50f44b25ba5e02a57676124ab3f36baf40254f7f9df435ecd6cc1be3a2",
+    "WINDOWED_HANKEL_640_RESEARCH_v2.rsp": "cb0eaf98acf62cf422dd230d46f1b530538109c428f6c4fccd81984bc6258005"
+  },
+  "historical_files_sha256_unchanged": {
+    "WINDOWED_HANKEL_640_NIST1.req": "e64d14fa35ab0bf8ca136a71570d15fcafa57eb945586b0981f5f03e65fef558",
+    "WINDOWED_HANKEL_640_NIST1.rsp": "cd43bba8daeda606b73a566ff5fff96dc5035450850755fd70ad5fb790afe34f"
+  },
+  "current_generator_replay_byte_exact": true,
+  "overwrite_attempt_refused_before_writing": true,
+  "vectors": 15,
+  "scope": "Custom deterministic research compatibility fixtures including the existing e2 term; no official NIST compliance or security claim"
+}

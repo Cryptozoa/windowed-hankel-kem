@@ -1,0 +1,162 @@
+{
+  "completed_utc": "2026-10-03T12:20:18.405774+00:00",
+  "cwd": "<workdir>",
+  "git_head": "432720a618703cf657d034437ac0b97efe8e95fc",
+  "scope": "Behavior-preserving Hankel research implementation refactor and measured native optimization",
+  "changes": [
+    "Separated frozen parameters, sampling, codec, arithmetic backends, checked operators, CPA equations, wire format and FO composition",
+    "Preserved legacy entry points; added explicit reference/neon/exact-integer-convolution selection with no fallback after explicit failure",
+    "Shared 32-coefficient NEON dot helper with independent accumulators, exact vector/scalar tails and fused error",
+    "Checked native buffer/range/accumulator bounds, including fused-error overflow regression",
+    "Corrected the legacy Python-reference test dispatch and replaced repeated-input timing with fresh-input measurements",
+    "Retained historical pre-e2 vectors/failures; added versioned research fixtures derived from the pinned original and protected generator outputs from overwrite"
+  ],
+  "frozen_profile": {
+    "q": 4096,
+    "n": 640,
+    "window": 128,
+    "eta": 2,
+    "public_key_bytes": 1196,
+    "ciphertext_bytes": 1356,
+    "secret_key_bytes": 1868
+  },
+  "verification": {
+    "regressions_passed": 13,
+    "native_exact_comparisons": 270,
+    "arm64_neon_asan_ubsan_cases": 243,
+    "versioned_fixture_records_per_backend": 15,
+    "fixture_backends": [
+      "reference",
+      "convolution",
+      "neon"
+    ],
+    "original_refactor_full_byte_handshakes_equal": 334
+  },
+  "performance": {
+    "raw_kernel": {
+      "forward": {
+        "old": {
+          "mean_us": 31.5243625,
+          "median_us": 30.729187500000002,
+          "std_us": 2.0743161388530558,
+          "p99_us": 36.990458749999995,
+          "sample_count": 400
+        },
+        "candidate": {
+          "mean_us": 13.695598124999998,
+          "median_us": 13.302125,
+          "std_us": 1.0133319064922581,
+          "p99_us": 16.570959999999996,
+          "sample_count": 400
+        },
+        "median_speedup_old_over_candidate": 2.310096131257224
+      },
+      "forward_fused": {
+        "old": {
+          "mean_us": 31.777800625,
+          "median_us": 30.989562499999998,
+          "std_us": 2.0850345596130677,
+          "p99_us": 37.666728750000004,
+          "sample_count": 400
+        },
+        "candidate": {
+          "mean_us": 13.916509375,
+          "median_us": 13.572875,
+          "std_us": 0.9907377436582218,
+          "p99_us": 16.734894999999998,
+          "sample_count": 400
+        },
+        "median_speedup_old_over_candidate": 2.283198106517595
+      },
+      "projection": {
+        "old": {
+          "mean_us": 5.601649374999999,
+          "median_us": 5.395875,
+          "std_us": 0.42880380815733715,
+          "p99_us": 6.746521249999998,
+          "sample_count": 400
+        },
+        "candidate": {
+          "mean_us": 2.7989815624999994,
+          "median_us": 2.703125,
+          "std_us": 0.32657811710848156,
+          "p99_us": 3.548906249999998,
+          "sample_count": 400
+        },
+        "median_speedup_old_over_candidate": 1.9961618497109828
+      }
+    },
+    "original_vs_refactor_complete_handshake": {
+      "original": {
+        "median_us": 318.188,
+        "mean_us": 324.8880833333333,
+        "stddev_us": 21.92755329069773,
+        "p99_us": 397.17434,
+        "operations_per_second": 3077.983007994804
+      },
+      "refactor": {
+        "median_us": 303.375,
+        "mean_us": 313.75540333333333,
+        "stddev_us": 29.8204191658555,
+        "p99_us": 415.4134199999999,
+        "operations_per_second": 3187.1961068272067
+      }
+    },
+    "paired_summary": {
+      "median_original_over_refactor_ratio": 1.043604250195894,
+      "median_original_minus_refactor_us": 13.4995,
+      "pairs_refactor_faster": 275
+    },
+    "measured_pairs": 300,
+    "discarded_warmup_pairs": 34,
+    "complete_handshake_tail_latency_increased_in_this_run": true,
+    "primary_end_to_end_evidence": "original_vs_refactor_handshake.json",
+    "before_after_backend_evidence": [
+      "before_optimization_benchmark.json",
+      "after_optimization_benchmark.json"
+    ]
+  },
+  "historical_fixture_issue": {
+    "diagnosis": "All15 historical ciphertexts omit e2; the pinned original already includes e2",
+    "historical_files_unchanged": true,
+    "evidence": [
+      "retained_kat_failure.json",
+      "retained_kat_baseline_comparison.json",
+      "retained_kat_diagnosis.json",
+      "new_vector_provenance.json"
+    ]
+  },
+  "evidence_notes": [
+    "before/ overlapped wrapper extraction; baseline/ retains the pristine earlier verified implementation, with origin/hash metadata",
+    "Initial repeated-pool kernel timing is retained only as diagnostic; benchmark_unique.json is the primary raw comparison",
+    "Initial scalar sanitizer run and hash-preflight refusal are retained; the arm64 NEON run is separately verified"
+  ],
+  "limits": "Finite functional/sanitizer evidence and local descriptive timings with uncontrolled scheduling/frequency. No cryptographic security, NIST category, DFR, universal memory-safety, whole-KEM constant-time, or portable speed guarantee.",
+  "commit_or_push_performed": false,
+  "final_source_sha256": {
+    "hankel_kem_core.py": "e84023360777e6dc447f9535a509922531501bbb53e379004af60213db46041b",
+    "hankel_kem_wrapper.py": "a59f9c18c035f4b1cdb52cf29c34b36dd24ec3a86043a1e68d5d9bc486f97fbc",
+    "hankel_kem_neon.c": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+    "hankel_kem_neon.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d",
+    "libhankel_kem_neon.dylib": "2c43e26743177b5504742aecffc0e6ee5572893976f1c345b564e75cabbbd92b",
+    "test_hankel_neon.py": "273a12387398eafb21bd99269869faa2ef7bbedf2c19aa2bfd5bd74df009f1d2",
+    "test_hankel_refactor.py": "eebba0a10fa9e0250983322f0c3cd61c6cc79006762f8442ffff2e20613a5a7d",
+    "test_hankel_kem_edge_cases.py": "8f525e4bf12c4c0f85e4a0a40c2fdd10b1b09c53abe5dbea9e18b73f18ec3010",
+    "benchmark_hankel_backends.py": "dc5a862e2b63eba82217a4e89b23d356e346ab9f249308042373b8ade8e11701",
+    "nist_analysis_kit/kat/PQCgenKAT_hankel.py": "0800e62750face3bb3fb0f4f7a0b43e2c8f809e46514a9e2336cde8c153a11a7",
+    "nist_analysis_kit/kat/PQCvalidateKAT_hankel.py": "ab421cc5b3270ef0ebf79b7ba39b60f8c42868112c3fea8e3f0a1abc447bdb0a",
+    "hankel_kem/__init__.py": "087f3c263354ef400cd346390bd5727d6970527096469b3c943ad08ac1e047ba",
+    "hankel_kem/backends.py": "087a7c2e6b8d1dbbf11f8ec8953fa88f2dc41d92e222a5e8a01a93c4638e39d6",
+    "hankel_kem/codec.py": "505b8a232c3898082d03815749b90466ec48514506d72dcd39437d12e973262c",
+    "hankel_kem/cpa.py": "30af60baa5ba5b02787102a320a2fc883508ea1c3ae6ac845cf349576b7dec27",
+    "hankel_kem/fo.py": "18c4abb481f9db0b2e81cb5135ffcd18cce3555750a50e3589f5220a7b212edd",
+    "hankel_kem/operators.py": "86790860a8eab15bef1f98a2f572a110cbe8b8f7cdd4ce3f2aa444c7185c24df",
+    "hankel_kem/params.py": "86388b4941998747b4a1b87b6848b776bd79cc4cf9968e22910dd68bc94850a1",
+    "hankel_kem/sampling.py": "6efd398e7cd7b4e95c1103eda8c2ae9489c7f9eeb852486e92ae632b6eb880d0",
+    "hankel_kem/wire.py": "a06505dd01fc4607bbd2c5c183bb54902272ba30d60f24fc812b7cdd23512eb4",
+    "nist_analysis_kit/kat/test_vectors/WINDOWED_HANKEL_640_NIST1.req": "e64d14fa35ab0bf8ca136a71570d15fcafa57eb945586b0981f5f03e65fef558",
+    "nist_analysis_kit/kat/test_vectors/WINDOWED_HANKEL_640_NIST1.rsp": "cd43bba8daeda606b73a566ff5fff96dc5035450850755fd70ad5fb790afe34f",
+    "nist_analysis_kit/kat/test_vectors/WINDOWED_HANKEL_640_RESEARCH_v2.req": "b0c12f50f44b25ba5e02a57676124ab3f36baf40254f7f9df435ecd6cc1be3a2",
+    "nist_analysis_kit/kat/test_vectors/WINDOWED_HANKEL_640_RESEARCH_v2.rsp": "cb0eaf98acf62cf422dd230d46f1b530538109c428f6c4fccd81984bc6258005"
+  }
+}

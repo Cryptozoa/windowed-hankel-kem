@@ -1,0 +1,11 @@
+Kyber512 coded-bkw ::          rop: ≈2^178.8
+           m: ≈2^166.8
+         mem: ≈2^167.8
+           b:       14
+          t1:        0
+          t2:       16
+           ℓ:       13
+        #cod:      448
+        #top:        0
+       #test:       64
+         tag: coded-bkw

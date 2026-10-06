@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "path": "compile.log",
+      "bytes": 238,
+      "sha256": "c920c45cb180f22507d106c7764937ca3be83488def0a35f9999c675ff0c93e2"
+    },
+    {
+      "path": "compiler_version.log",
+      "bytes": 157,
+      "sha256": "f3c22cec765d26b1e28b19fd8e36966948eb800b25ab69ba65b91c8dfb6762a4"
+    },
+    {
+      "path": "input_snapshot/hankel_kem_neon.c",
+      "bytes": 10837,
+      "sha256": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de"
+    },
+    {
+      "path": "input_snapshot/hankel_kem_neon.h",
+      "bytes": 3187,
+      "sha256": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d"
+    },
+    {
+      "path": "results.json",
+      "bytes": 1895,
+      "sha256": "d8b9238001427fa16fb0eccfcb03be58aabc295d34367feed4702a819df6e514"
+    },
+    {
+      "path": "run_sanitizers.py",
+      "bytes": 4308,
+      "sha256": "503c8551af80878d05ddb7176d333b726b903bf91b7c60247505fe43c3a57561"
+    },
+    {
+      "path": "run_stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run_stdout.log",
+      "bytes": 564,
+      "sha256": "7c8d27428eee95cf64bcc0a958887c860794776a0a821be74da45fa2578f1d93"
+    },
+    {
+      "path": "tail_harness.c",
+      "bytes": 5108,
+      "sha256": "8d46762ebfc10f85db104fe3b1ecad18c19647c069a2573f3ebd8de9cb2d955c"
+    }
+  ]
+}

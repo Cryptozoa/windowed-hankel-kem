@@ -1,0 +1,26 @@
+# Build products (rebuild with `make`)
+*.dylib
+*.so
+*.o
+test_hankel_neon_c
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# LaTeX intermediates (the compiled paper PDF is tracked)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+
+# Sage
+*.sage.py
+
+.DS_Store

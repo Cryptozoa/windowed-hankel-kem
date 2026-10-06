@@ -1,0 +1,45 @@
+{
+  "scope": "ASan+UBSan on candidate C/header with exact malloc lengths, n=[1,7,8,9,17,31,32,33,640], null/fused error and scalar int64 modular oracle; no live source edits, installs, benchmark or cryptographic security assessment.",
+  "candidate_hashes_before": {
+    "hankel_kem_neon.c": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+    "hankel_kem_neon.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d"
+  },
+  "compiler": "/usr/local/opt/llvm/bin/clang",
+  "compiler_command": [
+    "/usr/local/opt/llvm/bin/clang",
+    "-std=c11",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer",
+    "-I",
+    "<workdir>/review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/input_snapshot",
+    "<workdir>/review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/tail_harness.c",
+    "<workdir>/review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/input_snapshot/hankel_kem_neon.c",
+    "-o",
+    "<workdir>/review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/tail_harness_asan_ubsan"
+  ],
+  "compile_returncode": 0,
+  "platform": "macOS-26.3.1-arm64-arm-64bit",
+  "run_returncode": 0,
+  "sanitizer_options": {
+    "ASAN_OPTIONS": "halt_on_error=1:abort_on_error=1:detect_leaks=0",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "harness_result": {
+    "pass": true,
+    "native_path": "scalar",
+    "forward_cases": 162,
+    "project_cases": 81,
+    "compared_coefficients": 15846
+  },
+  "sanitizer_stderr_empty": true,
+  "candidate_hashes_after": {
+    "hankel_kem_neon.c": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+    "hankel_kem_neon.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d"
+  },
+  "candidate_unchanged": true
+}

@@ -1,0 +1,4 @@
+<workdir>/review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/input_snapshot/hankel_kem_neon.c:144:9: warning: unused parameter 'w_len' [-Wunused-parameter]
+  144 |     int w_len
+      |         ^
+1 warning generated.

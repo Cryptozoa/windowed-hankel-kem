@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "versioned_research_vectors": 15,
+  "backends": {
+    "reference": true,
+    "convolution": true,
+    "neon": true
+  },
+  "native_functional_checks": "forward with fused error, projection, encoder/decoder, packing/unpacking, byte selection/comparison, versioned-vector decapsulation passed",
+  "vector_sha256_before_and_after": {
+    "WINDOWED_HANKEL_640_RESEARCH_v2.rsp": "cb0eaf98acf62cf422dd230d46f1b530538109c428f6c4fccd81984bc6258005",
+    "WINDOWED_HANKEL_640_NIST1.rsp": "cd43bba8daeda606b73a566ff5fff96dc5035450850755fd70ad5fb790afe34f"
+  },
+  "vectors_unchanged_during_validation": true,
+  "historical_vector_failure_retained": "retained_kat_failure.json",
+  "limit": "Local deterministic fixtures are implementation compatibility evidence, not NIST certification or security evidence."
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "Three existing edge tests plus one deterministic complete KEM and wire roundtrip per backend; no attacks, parameter change, rebuild, timing, or security assessment.",
+  "runtime": {
+    "python": "3.12.14",
+    "platform": "macOS-26.3.1-arm64-arm-64bit"
+  },
+  "source_hashes_before": {
+    "hankel_kem_core.py": "e2080e22fe2d23da7ce92eebd1b01860762cf77c948c65c6a511015529fb0f29",
+    "hankel_kem_wrapper.py": "4fbbcbc83b37b08408bb526a391b04691b1c28f7db140e5e44a2b1f4e2090d95",
+    "hankel_kem_neon.c": "cb1dca679899d210eefb8eeda01d884aa5cb6da3c0c0c7d249454b1253782c9d",
+    "hankel_kem_neon.h": "06f016cf42bd9225220e89311664627d0feb3767aeb64f6858345392568b8557",
+    "libhankel_kem_neon.dylib": "d20fdc18f5c9bce40772cc6b1536113d62a555c4392f4490589fe06a99cc2952",
+    "test_hankel_neon.py": "62a94e172fccdf232753aa3e8a952e07a5dd9059ed99d1270f98d006ce13f03d",
+    "test_hankel_kem_edge_cases.py": "8f525e4bf12c4c0f85e4a0a40c2fdd10b1b09c53abe5dbea9e18b73f18ec3010"
+  },
+  "source_hashes_after": {
+    "hankel_kem_core.py": "e2080e22fe2d23da7ce92eebd1b01860762cf77c948c65c6a511015529fb0f29",
+    "hankel_kem_wrapper.py": "4fbbcbc83b37b08408bb526a391b04691b1c28f7db140e5e44a2b1f4e2090d95",
+    "hankel_kem_neon.c": "cb1dca679899d210eefb8eeda01d884aa5cb6da3c0c0c7d249454b1253782c9d",
+    "hankel_kem_neon.h": "06f016cf42bd9225220e89311664627d0feb3767aeb64f6858345392568b8557",
+    "libhankel_kem_neon.dylib": "d20fdc18f5c9bce40772cc6b1536113d62a555c4392f4490589fe06a99cc2952",
+    "test_hankel_neon.py": "62a94e172fccdf232753aa3e8a952e07a5dd9059ed99d1270f98d006ce13f03d",
+    "test_hankel_kem_edge_cases.py": "8f525e4bf12c4c0f85e4a0a40c2fdd10b1b09c53abe5dbea9e18b73f18ec3010"
+  },
+  "sources_unchanged": true,
+  "native_available": true,
+  "existing_test_count": 3,
+  "existing_tests_pass": true,
+  "existing_tests_log": "test_asymmetric_voronoi_boundary (test_hankel_kem_edge_cases.TestHankelKEMEdgeCases.test_asymmetric_voronoi_boundary)\nVerifies the exact asymmetric boundary of the branchless Voronoi decoder. ... ok\ntest_ciphertext_underflow_rejection (test_hankel_kem_edge_cases.TestHankelKEMEdgeCases.test_ciphertext_underflow_rejection)\nVerifies that a heavily truncated ciphertext buffer does not crash the Python ... ok\ntest_zero_vector_mitigation (test_hankel_kem_edge_cases.TestHankelKEMEdgeCases.test_zero_vector_mitigation)\nSimulates a catastrophic OS RNG failure where CBD sampling yields pure zero vectors. ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n",
+  "deterministic_input": "Keygen seed bytes(range(64)); encapsulation entropy bytes(range(32)); generated locally and public checker labels only.",
+  "complete_roundtrips_pass": true,
+  "wire_roundtrips_pass": true,
+  "loaded_vs_forced_python_outputs_equal": true,
+  "output_lengths": {
+    "public_key": 1196,
+    "secret_key": 1868,
+    "ciphertext": 1356,
+    "sender_key": 32,
+    "receiver_key": 32
+  },
+  "output_sha256": {
+    "loaded_backend": [
+      "adfdce809d44f88c008eb4742c67865e3a42fbc2c4bc38f0978ff5c01e65b262",
+      "8742d45b51a96a48770a913eed6b058631ad87df3207a675a23ae126182e2848",
+      "bbcee91c1c019a35bcc885c858b4240eb9d320627870405da30b692e83d3b53c",
+      "acdbb43381e956f1d6456bfbcaee4af60c82107ca4c76ef207bb205d5ce869de",
+      "acdbb43381e956f1d6456bfbcaee4af60c82107ca4c76ef207bb205d5ce869de"
+    ],
+    "forced_python": [
+      "adfdce809d44f88c008eb4742c67865e3a42fbc2c4bc38f0978ff5c01e65b262",
+      "8742d45b51a96a48770a913eed6b058631ad87df3207a675a23ae126182e2848",
+      "bbcee91c1c019a35bcc885c858b4240eb9d320627870405da30b692e83d3b53c",
+      "acdbb43381e956f1d6456bfbcaee4af60c82107ca4c76ef207bb205d5ce869de",
+      "acdbb43381e956f1d6456bfbcaee4af60c82107ca4c76ef207bb205d5ce869de"
+    ]
+  },
+  "limits": "Existing tests use random local synthetic inputs. One deterministic canonical tuple establishes only this implementation baseline. The existing all-in-one native benchmark suite was not run; no throughput, DFR, parameter-strength or security conclusion."
+}

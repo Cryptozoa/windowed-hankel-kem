@@ -1,0 +1,4 @@
+hankel_kem_neon.c:143:9: warning: unused parameter 'w_len' [-Wunused-parameter]
+  143 |     int w_len
+      |         ^
+1 warning generated.

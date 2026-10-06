@@ -1,0 +1,8 @@
+WH640 usvp beta= 488 rop=2^142.5 red=2^142.5 0.265b=129.3
+WH640 bdd beta= 488 rop=2^143.2 red=2^142.5 0.265b=129.3
+WH640 dual beta= 507 rop=2^148.0  0.265b=134.4
+WH640 dual_hybrid beta= 468 rop=2^137.1 red=2^136.7 0.265b=124.0
+Kyber 512 usvp beta= 406 rop=2^118.6 red=2^118.6 0.265b=107.6
+Kyber 512 bdd beta= 406 rop=2^119.4 red=2^118.6 0.265b=107.6
+Kyber 512 dual beta= 424 rop=2^123.8  0.265b=112.4
+Kyber 512 dual_hybrid beta= 395 rop=2^115.5 red=2^115.3 0.265b=104.7

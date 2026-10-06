@@ -1,0 +1,5 @@
+Homebrew clang version 21.1.8
+Target: x86_64-apple-darwin25.3.0
+Thread model: posix
+InstalledDir: /usr/local/Cellar/llvm/21.1.8_1/bin
+Configuration file: /usr/local/etc/clang/x86_64-apple-darwin25.cfg

@@ -1,0 +1,21 @@
+test_backend_context_nesting_and_exception_restoration (test_hankel_refactor.TestHankelRefactor.test_backend_context_nesting_and_exception_restoration) ... ok
+test_explicit_backend_failures_are_not_hidden (test_hankel_refactor.TestHankelRefactor.test_explicit_backend_failures_are_not_hidden) ... ok
+test_frozen_wire_fixture_and_keyword_backends (test_hankel_refactor.TestHankelRefactor.test_frozen_wire_fixture_and_keyword_backends) ... ok
+test_fused_error_is_included_in_native_accumulator_guard (test_hankel_refactor.TestHankelRefactor.test_fused_error_is_included_in_native_accumulator_guard) ... ok
+test_guarded_bad_inputs_and_explicit_native_shape (test_hankel_refactor.TestHankelRefactor.test_guarded_bad_inputs_and_explicit_native_shape) ... ok
+test_implicit_rejection_binds_exact_received_bytes (test_hankel_refactor.TestHankelRefactor.test_implicit_rejection_binds_exact_received_bytes) ... ok
+test_invalid_buffers_do_not_reach_native_symbols (test_hankel_refactor.TestHankelRefactor.test_invalid_buffers_do_not_reach_native_symbols) ... ok
+test_pairing_identity_and_ciphertext_e2_are_preserved (test_hankel_refactor.TestHankelRefactor.test_pairing_identity_and_ciphertext_e2_are_preserved) ... ok
+test_primitive_arithmetic_including_non_multiple_of_eight (test_hankel_refactor.TestHankelRefactor.test_primitive_arithmetic_including_non_multiple_of_eight) ... ok
+test_several_deterministic_wire_fixtures_agree (test_hankel_refactor.TestHankelRefactor.test_several_deterministic_wire_fixtures_agree) ... ok
+test_asymmetric_voronoi_boundary (test_hankel_kem_edge_cases.TestHankelKEMEdgeCases.test_asymmetric_voronoi_boundary)
+Verifies the exact asymmetric boundary of the branchless Voronoi decoder. ... ok
+test_ciphertext_underflow_rejection (test_hankel_kem_edge_cases.TestHankelKEMEdgeCases.test_ciphertext_underflow_rejection)
+Verifies that a heavily truncated ciphertext buffer does not crash the Python ... ok
+test_zero_vector_mitigation (test_hankel_kem_edge_cases.TestHankelKEMEdgeCases.test_zero_vector_mitigation)
+Simulates a catastrophic OS RNG failure where CBD sampling yields pure zero vectors. ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.167s
+
+OK

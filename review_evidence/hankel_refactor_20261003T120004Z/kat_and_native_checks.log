@@ -1,0 +1,39 @@
+Explicit backend: reference
+[*] Validating 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2...
+    [+] Verified KAT vector 5/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 10/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 15/15 [Bit-Exact + Implicit Reject Verified]
+
+[PASS] All 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2 match!
+Explicit backend: convolution
+[*] Validating 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2...
+    [+] Verified KAT vector 5/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 10/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 15/15 [Bit-Exact + Implicit Reject Verified]
+
+[PASS] All 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2 match!
+Explicit backend: neon
+[*] Validating 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2...
+    [+] Verified KAT vector 5/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 10/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 15/15 [Bit-Exact + Implicit Reject Verified]
+
+[PASS] All 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2 match!
+================================================================================
+   WINDOWED HANKEL LWE KEM: NATIVE ARM64 NEON VERIFICATION & BENCHMARK
+================================================================================
+
+[+] PART 1: Bit-Exact Functional Equivalence (Python vs Native NEON)...
+    [PASS] hankel_neon_forward_mul (768 dot products of length 640): 100% bit-exact match.
+    [PASS] hankel_neon_window_project (128 sliding projections): 100% bit-exact match.
+    [PASS] 4-PAM Encode & Branchless Voronoi Decoder: 100% bit-exact match.
+    [PASS] 12-bit SIMD Packing and Unpacking: 100% bit-exact match.
+    [PASS] Native byte selection and comparison: functional outputs match.
+
+[+] PART 2: Validating native execution against retained local KAT vectors...
+    Loaded 15 local KAT vectors from WINDOWED_HANKEL_640_RESEARCH_v2.rsp.
+    [PASS] All 15 local KAT vectors verified bit-exact with 100% fidelity.
+
+================================================================================
+   NATIVE ARM64 NEON VERIFICATION COMPLETE: ALL CHECKS PASSED.
+================================================================================

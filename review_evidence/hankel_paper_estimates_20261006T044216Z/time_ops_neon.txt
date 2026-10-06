@@ -1,0 +1,6 @@
+backend=neon runs=2000 python=3.13.9 numpy=2.3.5 arm64
+keygen     median     70.7 us   p90     76.2 us
+encaps     median    113.7 us   p90    128.1 us
+decaps     median    153.6 us   p90    180.7 us
+handshake  median    339.7 us   p90    409.8 us
+Apple M3 Max

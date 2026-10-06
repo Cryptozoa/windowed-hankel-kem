@@ -1,0 +1,112 @@
+{
+  "diagnosis": "Historical fixture ciphertexts omit e2; the pinned pre-refactor implementation already includes e2.",
+  "cases": [
+    {
+      "count": 0,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 1,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 2,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 3,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 4,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 5,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 6,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 7,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 8,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 9,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 10,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 11,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 12,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 13,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    },
+    {
+      "count": 14,
+      "seed_sequence_matches": true,
+      "historical_ciphertext_exactly_equals_current_without_e2": true,
+      "historical_shared_secret_matches_that_ciphertext": true,
+      "current_roundtrip_passes": true
+    }
+  ],
+  "all_cases_confirmed": true,
+  "historical_vector_file_unchanged": true
+}

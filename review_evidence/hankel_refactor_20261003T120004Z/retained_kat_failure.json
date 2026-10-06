@@ -1,0 +1,15 @@
+{
+  "backends": {
+    "reference": false,
+    "convolution": false,
+    "neon": false
+  },
+  "native_check_failure": {
+    "type": "AssertionError",
+    "message": "local KAT mismatch on vector 0!",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 12, in <module>\n  File \"<workdir>/test_hankel_neon.py\", line 202, in run_native_checks\n    assert ss_dec == ss_expected, f\"local KAT mismatch on vector {count}!\"\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError: local KAT mismatch on vector 0!\n"
+  },
+  "retained_vector_count": 15,
+  "vector_sha256": "cd43bba8daeda606b73a566ff5fff96dc5035450850755fd70ad5fb790afe34f",
+  "vectors_regenerated_or_modified": false
+}

@@ -1,0 +1,8 @@
+{
+  "hankel_kem_core.py": "e2080e22fe2d23da7ce92eebd1b01860762cf77c948c65c6a511015529fb0f29",
+  "hankel_kem_wrapper.py": "a59f9c18c035f4b1cdb52cf29c34b36dd24ec3a86043a1e68d5d9bc486f97fbc",
+  "hankel_kem_neon.c": "cb1dca679899d210eefb8eeda01d884aa5cb6da3c0c0c7d249454b1253782c9d",
+  "hankel_kem_neon.h": "06f016cf42bd9225220e89311664627d0feb3767aeb64f6858345392568b8557",
+  "libhankel_kem_neon.dylib": "d20fdc18f5c9bce40772cc6b1536113d62a555c4392f4490589fe06a99cc2952",
+  "test_hankel_neon.py": "62a94e172fccdf232753aa3e8a952e07a5dd9059ed99d1270f98d006ce13f03d"
+}

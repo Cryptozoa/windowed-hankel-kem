@@ -1,0 +1,34 @@
+{
+  "scope": "Exact-allocation finite C tail checks; arm64 NEON and additional scalar path. No live edits or installations. ASan+UBSan results do not establish universal memory safety, timing or cryptographic security.",
+  "cases": {
+    "scalar": {
+      "path": "review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/results.json",
+      "harness_result": {
+        "pass": true,
+        "native_path": "scalar",
+        "forward_cases": 162,
+        "project_cases": 81,
+        "compared_coefficients": 15846
+      },
+      "sanitizer_stderr_empty": true,
+      "manifest_verified": true
+    },
+    "arm64_neon": {
+      "path": "review_evidence/hankel_refactor_20261003T120004Z/native_sanitizer/arm64/results.json",
+      "harness_result": {
+        "pass": true,
+        "native_path": "ARM_NEON",
+        "forward_cases": 162,
+        "project_cases": 81,
+        "compared_coefficients": 15846
+      },
+      "sanitizer_stderr_empty": true,
+      "manifest_verified": true
+    }
+  },
+  "candidate_hashes": {
+    "hankel_kem_neon.c": "f79933c1a0047fe4ec514fec32949e508b1f3d8298a103299ca00f36126575de",
+    "hankel_kem_neon.h": "17b5ee287ca9d651fe0354b158a8855da1418dfb58d1a3031032a49fb0ab863d"
+  },
+  "initial_preflight_refusal_retained": true
+}
