@@ -1,0 +1,88 @@
+Sage 10.9
+GF(4093), secret and noise CBD_1, 24 trials per kind and point
+
+n = 5, D = 4: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   6:  0/24   0/24   (66 x 126)
+  m =   9:  0/24   0/24   (84 x 126)
+  m =  12:  0/24   0/24   (102 x 126)
+  m =  15:  0/24   0/24   (120 x 126)
+  m =  18: 24/24  24/24   (138 x 126)
+  m =  21: 24/24  24/24   (156 x 126)
+  m =  24: 24/24  24/24   (174 x 126)
+  m =  27: 24/24  24/24   (192 x 126)
+  m =  30: 24/24  24/24   (210 x 126)
+  smallest m with success rate >= 1/2: Hankel 18, uniform 18
+
+n = 5, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   3:  0/24   0/24   (168 x 252)
+  m =   5:  0/24   0/24   (210 x 252)
+  m =   7: 24/24  24/24   (252 x 252)
+  m =   9: 24/24  24/24   (294 x 252)
+  m =  11: 24/24  24/24   (336 x 252)
+  m =  13: 24/24  24/24   (378 x 252)
+  m =  15: 24/24  24/24   (420 x 252)
+  m =  17: 24/24  24/24   (462 x 252)
+  smallest m with success rate >= 1/2: Hankel 7, uniform 7
+
+n = 6, D = 4: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   8:  0/24   0/24   (98 x 210)
+  m =  12:  0/24   0/24   (126 x 210)
+  m =  16:  0/24   0/24   (154 x 210)
+  m =  20:  0/24   0/24   (182 x 210)
+  m =  24: 24/24  24/24   (210 x 210)
+  m =  28: 24/24  24/24   (238 x 210)
+  m =  32: 24/24  24/24   (266 x 210)
+  m =  36: 24/24  24/24   (294 x 210)
+  m =  40: 24/24  24/24   (322 x 210)
+  m =  44: 24/24  24/24   (350 x 210)
+  smallest m with success rate >= 1/2: Hankel 24, uniform 24
+
+n = 6, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   4:  0/24   0/24   (280 x 462)
+  m =   6:  0/24   0/24   (336 x 462)
+  m =   8:  0/24   0/24   (392 x 462)
+  m =  10:  0/24   0/24   (448 x 462)
+  m =  12: 24/24  24/24   (504 x 462)
+  m =  14: 24/24  24/24   (560 x 462)
+  m =  16: 24/24  24/24   (616 x 462)
+  m =  18: 24/24  24/24   (672 x 462)
+  m =  20: 24/24  24/24   (728 x 462)
+  m =  22: 24/24  24/24   (784 x 462)
+  m =  24: 24/24  24/24   (840 x 462)
+  smallest m with success rate >= 1/2: Hankel 12, uniform 12
+
+n = 7, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   6:  0/24   0/24   (468 x 792)
+  m =   9:  0/24   0/24   (576 x 792)
+  m =  12:  0/24   0/24   (684 x 792)
+  m =  15: 24/24  24/24   (792 x 792)
+  m =  18: 24/24  24/24   (900 x 792)
+  m =  21: 24/24  24/24   (1008 x 792)
+  m =  24: 24/24  24/24   (1116 x 792)
+  m =  27: 24/24  24/24   (1224 x 792)
+  m =  30: 24/24  24/24   (1332 x 792)
+  smallest m with success rate >= 1/2: Hankel 15, uniform 15
+
+n = 8, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   8:  0/24   0/24   (720 x 1287)
+  m =  12:  0/24   0/24   (900 x 1287)
+  m =  16:  0/24   0/24   (1080 x 1287)
+  m =  20:  0/24   0/24   (1260 x 1287)
+  m =  24: 24/24  24/24   (1440 x 1287)
+  m =  28: 24/24  24/24   (1620 x 1287)
+  m =  32: 24/24  24/24   (1800 x 1287)
+  m =  36: 24/24  24/24   (1980 x 1287)
+  m =  40: 24/24  24/24   (2160 x 1287)
+  smallest m with success rate >= 1/2: Hankel 24, uniform 24
+
+n = 8, D = 6: success rate by m (Hankel / uniform), Macaulay matrix rows x columns
+  m =   4:  0/24   0/24   (1980 x 3003)
+  m =   6:  0/24   0/24   (2310 x 3003)
+  m =   8:  0/24   0/24   (2640 x 3003)
+  m =  10:  0/24   0/24   (2970 x 3003)
+  m =  12: 24/24  24/24   (3300 x 3003)
+  m =  14: 24/24  24/24   (3630 x 3003)
+  m =  16: 24/24  24/24   (3960 x 3003)
+  m =  18: 24/24  24/24   (4290 x 3003)
+  m =  20: 24/24  24/24   (4620 x 3003)
+  smallest m with success rate >= 1/2: Hankel 12, uniform 12

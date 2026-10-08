@@ -1,0 +1,77 @@
+Sage 10.9
+GF(4093), secret and noise CBD_1, 24 trials per kind and point
+
+n = 5, D = 4: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =  12:  0/24   0/24   (102 x 126)   kernel   24.00 /   24.00
+  m =  13:  0/24   0/24   (108 x 126)   kernel   18.00 /   18.00
+  m =  14:  0/24   0/24   (114 x 126)   kernel   12.00 /   12.00
+  m =  15:  0/24   0/24   (120 x 126)   kernel    6.00 /    6.00
+  m =  16: 24/24  24/24   (126 x 126)   kernel    1.00 /    1.00
+  m =  17: 24/24  24/24   (132 x 126)   kernel    1.00 /    1.00
+  m =  18: 24/24  24/24   (138 x 126)   kernel    1.00 /    1.00
+  m =  19: 24/24  24/24   (144 x 126)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 16, uniform 16
+
+n = 5, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =   3:  0/24   0/24   (168 x 252)   kernel   84.00 /   84.00
+  m =   4:  0/24   0/24   (189 x 252)   kernel   63.00 /   63.00
+  m =   5:  0/24   0/24   (210 x 252)   kernel   42.00 /   42.00
+  m =   6:  0/24   0/24   (231 x 252)   kernel   21.00 /   21.00
+  m =   7: 24/24  24/24   (252 x 252)   kernel    1.00 /    1.00
+  m =   8: 24/24  24/24   (273 x 252)   kernel    1.00 /    1.00
+  m =   9: 24/24  24/24   (294 x 252)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 7, uniform 7
+
+n = 6, D = 4: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =  18:  0/24   0/24   (168 x 210)   kernel   42.00 /   42.00
+  m =  19:  0/24   0/24   (175 x 210)   kernel   35.00 /   35.00
+  m =  20:  0/24   0/24   (182 x 210)   kernel   28.00 /   28.00
+  m =  21:  0/24   0/24   (189 x 210)   kernel   21.00 /   21.00
+  m =  22:  0/24   0/24   (196 x 210)   kernel   14.00 /   14.00
+  m =  23:  0/24   0/24   (203 x 210)   kernel    7.00 /    7.00
+  m =  24: 24/24  24/24   (210 x 210)   kernel    1.00 /    1.00
+  m =  25: 24/24  24/24   (217 x 210)   kernel    1.00 /    1.00
+  m =  26: 24/24  24/24   (224 x 210)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 24, uniform 24
+
+n = 6, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =   8:  0/24   0/24   (392 x 462)   kernel   70.00 /   70.00
+  m =   9:  0/24   0/24   (420 x 462)   kernel   42.00 /   42.00
+  m =  10:  0/24   0/24   (448 x 462)   kernel   14.00 /   14.00
+  m =  11: 24/24  24/24   (476 x 462)   kernel    1.00 /    1.00
+  m =  12: 24/24  24/24   (504 x 462)   kernel    1.00 /    1.00
+  m =  13: 24/24  24/24   (532 x 462)   kernel    1.00 /    1.00
+  m =  14: 24/24  24/24   (560 x 462)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 11, uniform 11
+
+n = 7, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =  11:  0/24   0/24   (648 x 792)   kernel  144.00 /  144.00
+  m =  12:  0/24   0/24   (684 x 792)   kernel  108.00 /  108.00
+  m =  13:  0/24   0/24   (720 x 792)   kernel   72.00 /   72.00
+  m =  14:  0/24   0/24   (756 x 792)   kernel   36.00 /   36.00
+  m =  15: 24/24  24/24   (792 x 792)   kernel    1.00 /    1.00
+  m =  16: 24/24  24/24   (828 x 792)   kernel    1.00 /    1.00
+  m =  17: 24/24  24/24   (864 x 792)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 15, uniform 15
+
+n = 8, D = 5: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =  18:  0/24   0/24   (1170 x 1287)   kernel  117.00 /  117.00
+  m =  19:  0/24   0/24   (1215 x 1287)   kernel   72.00 /   72.00
+  m =  20:  0/24   0/24   (1260 x 1287)   kernel   27.00 /   27.00
+  m =  21: 24/24  24/24   (1305 x 1287)   kernel    1.00 /    1.00
+  m =  22: 24/24  24/24   (1350 x 1287)   kernel    1.00 /    1.00
+  m =  23: 24/24  24/24   (1395 x 1287)   kernel    1.00 /    1.00
+  m =  24: 24/24  24/24   (1440 x 1287)   kernel    1.00 /    1.00
+  m =  25: 24/24  24/24   (1485 x 1287)   kernel    1.00 /    1.00
+  m =  26: 24/24  24/24   (1530 x 1287)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 21, uniform 21
+
+n = 8, D = 6: success rate by m (Hankel / uniform), Macaulay matrix rows x columns, kernel dimension mean (Hankel / uniform)
+  m =   8:  0/24   0/24   (2640 x 3003)   kernel  483.00 /  483.00
+  m =   9:  0/24   0/24   (2805 x 3003)   kernel  334.00 /  334.00
+  m =  10:  0/24   0/24   (2970 x 3003)   kernel  186.00 /  186.00
+  m =  11:  0/24   0/24   (3135 x 3003)   kernel   39.00 /   39.00
+  m =  12: 24/24  24/24   (3300 x 3003)   kernel    1.00 /    1.00
+  m =  13: 24/24  24/24   (3465 x 3003)   kernel    1.00 /    1.00
+  m =  14: 24/24  24/24   (3630 x 3003)   kernel    1.00 /    1.00
+  smallest m with success rate >= 1/2: Hankel 12, uniform 12

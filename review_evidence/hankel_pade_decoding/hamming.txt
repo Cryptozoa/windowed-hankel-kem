@@ -1,0 +1,9 @@
+n = 640, m = 768, q = 4096; CBD_2 is nonzero with probability 0.625: about 480 wrong coordinates
+unique-decoding radius of an MDS code: (m - n)/2 = 64  (8.3%)
+Johnson radius: m (1 - sqrt(n/m)) = 66.9  (8.7%)
+list-decoding capacity radius: H_q(rho) = 1 - n/m gives rho = 0.1221  (93.7 coordinates); 1 - n/m = 0.1667
+expected codewords within distance  64 of a random word: 2^-454.5
+expected codewords within distance  70 of a random word: 2^-362.2
+expected codewords within distance 128 of a random word: 2^494.5
+expected codewords within distance 256 of a random word: 2^2236.1
+expected codewords within distance 480 of a random word: 2^4951.8

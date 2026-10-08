@@ -118,6 +118,7 @@ Every figure in the paper comes from a script in this repository, with its recor
 | Subring argument and decryption equations (Sections 4.3 and 5.3, Proposition 2) | `sage subrings.sage`; `sage decryption_equations.sage` | [`review_evidence/hankel_open_directions/`](review_evidence/hankel_open_directions/) |
 | Shifted dual functionals (Section 4.3, Table 2) | `sage free_vectors.sage`; `sage matzov_vectors.sage`; `python shift_check.py` | [`review_evidence/hankel_shift_structure/`](review_evidence/hankel_shift_structure/) |
 | Lattice reduction at reduced dimensions (Appendix E) | `./run_primal.sh`; `./run_geometry.sh ...` (see its README) | [`review_evidence/hankel_reduced_lattices/`](review_evidence/hankel_reduced_lattices/) |
+| Algebraic decoding (Section 4.3, Appendix E) | `python3 hamming.py`; `sage xl.sage` | [`review_evidence/hankel_pade_decoding/`](review_evidence/hankel_pade_decoding/) |
 | Category 3 and 5 sets (Appendix D) | the `.sage` and `.py` scripts listed in its README | [`review_evidence/hankel_higher_categories/`](review_evidence/hankel_higher_categories/) |
 
 The estimates use the [lattice estimator](https://github.com/malb/lattice-estimator) at commit `53da598` and SageMath 10.9; the functionals and the reduced-dimension experiments also need fpylll (0.6.4). Run each script from its evidence directory; the README there lists inputs, outputs and versions.
