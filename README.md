@@ -5,7 +5,7 @@ Windowed Hankel KEM is a lattice-based key-encapsulation mechanism built on trun
 > [!WARNING]
 > **Research code.** The instance lies outside the hypotheses of the known Middle-Product LWE reductions, so the scheme has **no security reduction**. Its security figures are lattice-estimator results that treat it as unstructured LWE. Attacks that exploit the Hankel structure have not been analyzed, and the scheme has received no third-party cryptanalysis. Do not use it in production.
 
-The accompanying paper is [`paper/hankel_kem_eprint.pdf`](paper/hankel_kem_eprint.pdf).
+The accompanying paper, [*Windowed Hankel LWE: A Structured-LWE Problem for Cryptanalysis, with a Compact KEM*](paper/hankel_kem_eprint.pdf), offers the underlying problem as a test case for cryptanalysis. Its Table 2 summarizes the status of every attack family considered, and Section 4.4 states what would count as a break. Reports of attacks, positive or negative, are welcome.
 
 ## Parameters and sizes
 
@@ -21,7 +21,7 @@ WH-640 is the set analyzed in the body of the paper. WH-936 and WH-1208 are deri
 
 ## Security summary
 
-All figures are log₂ costs from the lattice estimator, treating the scheme as unstructured LWE (paper, Section 5).
+All figures are log₂ costs from the lattice estimator, treating the scheme as unstructured LWE (paper, Section 7).
 
 | Attack | Core-SVP | MATZOV | Kyber-512 (Core-SVP / MATZOV) |
 | :--- | :---: | :---: | :---: |
@@ -102,6 +102,22 @@ Medians on an Apple M3 Max: 5,000 calls for the native KEM (`make bench`) and 2,
 | Python with NEON kernels (`hankel_kem_wrapper`), WH-640 | 70 µs | 110 µs | 150 µs | 340 µs |
 
 In the native KEM, about 8 µs of each WH-640 encapsulation goes to the Hankel products and about 6 µs to SHAKE-256. Records are in [`review_evidence/hankel_native_20261006T054758Z/`](review_evidence/hankel_native_20261006T054758Z/) (WH-640) and [`review_evidence/hankel_native_sets_20261007T164709Z/`](review_evidence/hankel_native_sets_20261007T164709Z/) (all sets).
+
+## Reproducing the paper
+
+Every figure in the paper comes from a script in this repository, with its recorded output next to it.
+
+| Paper | Command | Evidence |
+| :--- | :--- | :--- |
+| Implementation, KATs, constant-time audit, timing tests (Section 8) | `make test` | [`review_evidence/hankel_native_sets_20261007T164709Z/`](review_evidence/hankel_native_sets_20261007T164709Z/) |
+| Latencies (Section 8, Appendix D) | `make bench` | same directory, `bench_native.txt` |
+| Known-answer tests, all sets | `make kat` | `nist_analysis_kit/kat/test_vectors/` |
+| Generic attack estimates (Section 7, Table 7) | `LATTICE_ESTIMATOR=/path/to/lattice-estimator sage estimate_full.sage`, and the other `estimate_*.sage` scripts | [`review_evidence/hankel_paper_estimates_20261006T044216Z/`](review_evidence/hankel_paper_estimates_20261006T044216Z/) |
+| Parameter study and failure-rate bound (Section 6, Appendix A) | `sage estimate_param_grid.sage`; `python3 dfr_grid.py` | same directory |
+| Cyclic-embedding functionals (Section 4.3, Appendix C) | `sage functionals.sage full`; `sage functionals.sage case n W target trials seed` | [`review_evidence/hankel_embedding_functionals/`](review_evidence/hankel_embedding_functionals/) |
+| Category 3 and 5 sets (Appendix D) | the `.sage` and `.py` scripts listed in its README | [`review_evidence/hankel_higher_categories/`](review_evidence/hankel_higher_categories/) |
+
+The estimates use the [lattice estimator](https://github.com/malb/lattice-estimator) at commit `53da598` and SageMath 10.9 (the functionals also need fpylll). Run each script from its evidence directory; the README there lists inputs, outputs and versions.
 
 ## Layout
 
