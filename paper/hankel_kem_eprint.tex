@@ -58,7 +58,7 @@ Their Middle-Product LWE problem (MP-LWE) uses the same operation, but places th
 \begin{enumerate}
   \item A KEM built on windowed Hankel products, in which a 128-coordinate window carries a 256-bit message by 4-PAM modulation and the modulus $q = 2^{12}$ reduces all arithmetic to masking (Section~\ref{sec:scheme}).
   \item A definition of the underlying problem and an analysis of its structure: how it differs from MP-LWE, why published structure-exploiting attacks do not apply, an embedding into a cyclic ring, and the effect of the power-of-two modulus (Section~\ref{sec:problem}).
-  \item A parameter study, concrete estimates for all generic attack families, and an exact Chernoff bound on the decryption failure rate (Sections~\ref{sec:params} and~\ref{sec:security}).
+  \item A parameter study, concrete estimates for all generic attack families, and an exact Chernoff bound on the decryption failure rate (Sections~\ref{sec:params} and~\ref{sec:security}), with candidate parameters for NIST Categories~3 and~5 (Appendix~\ref{app:higher}).
   \item A constant-time C implementation that is bit-exact with the reference implementation, with a static audit of its compiled code and statistical timing tests (Section~\ref{sec:impl}).
 \end{enumerate}
 
@@ -344,6 +344,8 @@ $n$ & $q$ & noise & primal & dual hybrid & primal & dual hybrid & PK + CT \\
 
 \paragraph{An alternative.} The set $(n, q, \eta) = (640, 2^{11}, 1)$ is 208 bytes (8\%) smaller and has a slightly lower failure bound, $2^{-137.8}$, for a dual hybrid estimate 2.8 bits lower. Its secret, though, is ternary with $\Pr[s_j = 0] = 1/2$, the regime in which combinatorial and hybrid attacks on small secrets improve, and the estimator's meet-in-the-middle optimizer did not converge for it in every cost model. We keep $\CBD_2$ and leave this alternative to future work.
 
+\paragraph{Higher categories.} The same method yields parameters for NIST Categories~3 and~5, with $n = 936$ and $n = 1{,}208$, at the cost of one more bit per coefficient; Appendix~\ref{app:higher} gives the derivation, and the C implementation covers both sets.
+
 \paragraph{Comparison.} Table~\ref{tab:comparison} compares wire sizes with other LWE-based KEMs at the 128-bit level; for a like-for-like comparison, our figures exclude the 12-byte format headers. Ciphertexts are sent uncompressed. Rounding $u$ and $v$ to fewer bits, as ML-KEM does, would shrink them further, but would need a new failure analysis.
 
 \begin{table}[H]
@@ -434,7 +436,7 @@ The second is a set of fixed-versus-random Welch $t$-tests with about 4{,}000 ca
 \subsection{Performance}
 On an Apple M3 Max, with Apple clang 17 at \texttt{-O3}, the median latencies over 5{,}000 calls with fresh inputs are 14~$\mu$s for key generation, 17~$\mu$s for encapsulation and 20~$\mu$s for decapsulation, or 51~$\mu$s for a full handshake. An encapsulation spends about 8~$\mu$s in the two Hankel products and about 6~$\mu$s in SHAKE256, mostly expanding the public sequence. Faster Keccak would help, and so would subquadratic multiplication; without an NTT, the products stay quadratic in $n$. We do not compare timings with other schemes, which we did not measure under the same conditions.
 
-The scripts that produce every figure in this paper, with their raw outputs, accompany the implementation, which is available from the author.
+The implementation is available at \url{https://github.com/Cryptozoa/windowed-hankel-kem}, together with the scripts that produce every figure in this paper and their raw outputs.
 
 %=====================================================================
 \section{Limitations and Open Questions}\label{sec:limitations}
@@ -565,5 +567,68 @@ $n$ & $W$ & $m$ & instances per target & means & smallest & means & smallest \\
 The per-target means agree with those of uniform matrices to within about 2\%. The smallest Hankel ratio, $0.886$, lies within the spread of the individual instances: at the smallest size, Hankel and uniform matrices reach $0.888$ and $0.903$. We found no sign that Hankel structure shortens the functionals.
 
 The scripts and their outputs are in the accompanying evidence directory.
+
+%=====================================================================
+\section{Higher Security Categories}\label{app:higher}
+%=====================================================================
+This appendix derives candidate parameters for NIST Categories~3 and~5 by the method of Section~\ref{sec:params}. We size them as the Category~1 set is sized: the cheapest estimated attack should exceed that on the corresponding Kyber parameter set by at least 20 bits in both cost models, and the failure rate should be no larger than ML-KEM's. Under the estimator and models of Section~\ref{sec:security}, the cheapest attacks on Kyber-768 and Kyber-1024 cost $2^{174.3}$ and $2^{241.8}$ (Core-SVP) and $2^{196.4}$ and $2^{262.3}$ (MATZOV); FIPS~203 lists failure rates of $2^{-164.8}$ and $2^{-174.8}$ for ML-KEM-768 and ML-KEM-1024~\cite[Table~1]{fips203}. The message stays at 256 bits.
+
+\paragraph{The Category 1 recipe does not scale.} The decryption error has variance $2n + 1$, so the failure rate grows with $n$. With $q = 2^{12}$, $\CBD_2$ and 4-PAM, the Chernoff bound of Theorem~\ref{thm:dfr} exceeds $2^{-164.8}$ for every $n \ge 640$; at $n = 640$ it is already $2^{-134.1}$. Four modifications reach the targets:
+\begin{itemize}
+  \item[A.] $q = 2^{13}$, keeping $\CBD_2$ and 4-PAM, at the cost of one more bit per coefficient;
+  \item[B.] one bit per coordinate ($W = 256$), keeping $q = 2^{12}$ and $\CBD_2$;
+  \item[C.] $\CBD_1$ secret and noise, keeping $q = 2^{12}$ and 4-PAM;
+  \item[D.] $q = 2^{13}$ with $\CBD_3$ and one bit per coordinate.
+\end{itemize}
+Table~\ref{tab:families} gives the smallest $n$ that meets the targets in each family. Family~C is the smallest, but its secret is the sparse ternary one set aside in Section~\ref{sec:params}. Families~A and~B are within 102 bytes of each other at both levels. We choose family~A because it keeps the Category~1 scheme unchanged except for $q$, and because both of its lengths $L$ are prime with $X - 1$ as the only small factor of $X^L - 1$; for family~B at Category~5, $L = 2{,}511$ gives factors of degrees 2, 5, 6, 10 and 18.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{Category 3} & \multicolumn{2}{c}{Category 5} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Family & $n$ & PK + CT & $n$ & PK + CT \\
+\midrule
+A: $q = 2^{13}$, $\CBD_2$, 4-PAM & 936 & 3{,}722 B & 1{,}208 & 4{,}606 B \\
+B: $q = 2^{12}$, $\CBD_2$, 1 bit & 872 & 3{,}824 B & 1{,}128 & 4{,}592 B \\
+C: $q = 2^{12}$, $\CBD_1$, 4-PAM & 960 & 3{,}512 B & 1{,}280 & 4{,}472 B \\
+D: $q = 2^{13}$, $\CBD_3$, 1 bit & 896 & 4{,}216 B & 1{,}152 & 5{,}048 B \\
+\bottomrule
+\end{tabular}
+\caption{Smallest $n$ meeting the Category~3 and~5 targets, by family, with the combined size of public key and ciphertext including headers.}
+\label{tab:families}
+\end{table}
+
+\paragraph{Proposed sets.} Table~\ref{tab:higher} lists the family~A sets. In both, the dual hybrid attack remains the cheapest, the margin over Kyber is at least 21 bits in both models, and the failure rate is far below the target, which leaves room for compressing ciphertexts later. Merely matching Kyber, without the 20-bit margin, would require $n = 848$ and $n = 1{,}120$, at 3{,}436 and 4{,}320 bytes.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+& Category 3 & Category 5 \\
+\midrule
+$n$, $W$, $m = n + W$ & 936, 128, 1{,}064 & 1{,}208, 128, 1{,}336 \\
+$q$, distribution, encoding & $2^{13}$, $\CBD_2$, 4-PAM & $2^{13}$, $\CBD_2$, 4-PAM \\
+Dual hybrid, Core-SVP ($\beta$) & $2^{196.8}$ (674) & $2^{263.5}$ (902) \\
+Dual hybrid, MATZOV ($\beta$) & $2^{218.2}$ (665) & $2^{283.7}$ (899) \\
+Primal (uSVP), Core-SVP & $2^{205.9}$ & $2^{277.7}$ \\
+Failure rate (Chernoff bound) & $2^{-370.1}$ & $2^{-291.9}$ \\
+Public key / ciphertext & 1{,}773 B / 1{,}949 B & 2{,}215 B / 2{,}391 B \\
+PK + CT without headers (ML-KEM) & 3{,}698 B (2{,}272 B) & 4{,}582 B (3{,}136 B) \\
+$L = 2n + W - 1$ & 1{,}999 (prime) & 2{,}543 (prime) \\
+\bottomrule
+\end{tabular}
+\caption{Proposed parameters for Categories~3 and~5 (lattice estimator, commit \texttt{53da598}).}
+\label{tab:higher}
+\end{table}
+
+\paragraph{Ring structure.} The dimension $n$ of Windowed Hankel LWE can be any integer, and the factorization of $X^L - 1$ varies widely with it. For example, $n = 960$ in family~A gives $L = 2{,}047 = 2^{11} - 1$, for which $X^L - 1$ has 186 irreducible factors of degree~11. The proposed sets happen to fall on the favorable side: $L = 1{,}999$ and $L = 2{,}543$ are prime, and $2$ has order $333$ and $1{,}271$ modulo them, so $X - 1$ is the only factor of $X^L - 1$ of degree below $333$. Of the low-degree factors examined in Appendix~\ref{app:functionals}, only $X - 1$ remains. Repeating that check at the new sizes gives the same result: for five random sequences each, the lattices of functionals for the plain dual attack and for $X - 1$ have full rank modulo~$2$, hence the determinants of the corresponding dual-hybrid lattices, while isolating $s(1)$ requires guessing $7.0$ and $7.2$ bits against $2.0$ bits for a coordinate of $s$. Choosing $L$ prime with $2$ of large order is a free design rule for any further parameter set.
+
+\paragraph{Implementation.} Both sets are built from the same C code as the Category~1 set (Section~\ref{sec:impl}), compiled once per set. Since $2^{13}$ divides $2^{16}$, accumulating in 16-bit lanes stays exact, and the only changes are the packing, at 13 bits per coefficient and least significant bit first, and the 4-PAM scaling by $q/4$. To keep the sets apart, every derivation tag of Appendix~\ref{app:wire} is followed by a domain string, \texttt{\_wh936} or \texttt{\_wh1208}; the tags of the Category~1 set are unchanged. Each set has 15 known-answer vectors, generated by a parameterized Python reference, and the C code reproduces them exactly. It passes the same static branch audit and fixed-versus-random timing tests as the Category~1 code, with $|t| < 4.5$ in all six tests. On the machine of Section~\ref{sec:impl}, median latencies over 5{,}000 calls are 30, 31 and 37~$\mu$s for key generation, encapsulation and decapsulation at Category~3, and 40, 48 and 48~$\mu$s at Category~5, or about 100 and 135~$\mu$s for a full handshake.
+
+\paragraph{What scaling does not change.} These sets rest on the same assumption as the Category~1 set, and a larger $n$ adds no evidence for it. The open questions of Section~\ref{sec:limitations} apply unchanged, and they matter more, not less, at the levels intended for long-term security.
 
 \end{document}

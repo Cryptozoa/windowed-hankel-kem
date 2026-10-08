@@ -1,0 +1,458 @@
+./test_hankel_native
+[PASS] WH-640 native KEM: 15/15 KAT vectors (pk, sk, ct, ss, decapsulation), implicit rejection, 200 random round trips
+[PASS] WH-936 native KEM: 15/15 KAT vectors (pk, sk, ct, ss, decapsulation), implicit rejection, 200 random round trips
+[PASS] WH-1208 native KEM: 15/15 KAT vectors (pk, sk, ct, ss, decapsulation), implicit rejection, 200 random round trips
+[PASS] hash known answers (SHA-256, SHAKE-256, SHA-256 paths agree)
+python3 test_hankel_native_kem.py
+[PASS] 1. Native API reproduces all KAT vectors of WH-640, WH-936, WH-1208 (15 each; pk, sk, ct, ss, decapsulation)
+[PASS] 2. WH-640: native output equals the Python reference on 54 key pairs over seed lengths (0, 1, 16, 32, 48, 63, 64, 65, 96), entropy lengths (0, 1, 32, 100), 11 malformed ciphertexts each
+[PASS] 2. WH-936: native output equals the Python reference on 18 key pairs over seed lengths (0, 1, 16, 32, 48, 63, 64, 65, 96), entropy lengths (0, 1, 32, 100), 11 malformed ciphertexts each
+[PASS] 2. WH-1208: native output equals the Python reference on 18 key pairs over seed lengths (0, 1, 16, 32, 48, 63, 64, 65, 96), entropy lengths (0, 1, 32, 100), 11 malformed ciphertexts each
+[PASS] 3. Hankel product kernels of all sets match exact integer dot products (40 trials each, including arbitrary 16-bit inputs); all-zero-secret fix-up matches the reference
+[PASS] 4. Malformed public and secret keys raise ValueError in both implementations, all sets
+[PASS] 5. Static audit: 25 secret-handling functions over all sets (2962 instructions), 89 branches all on public values, no divisions, no calls
+[INFO] 6. WH-640 keygen   : fixed   14.1 us, random   14.1 us, Welch |t| = 2.13
+[INFO] 6. WH-640 encaps   : fixed   19.0 us, random   19.0 us, Welch |t| = 1.24
+[INFO] 6. WH-640 decaps   : fixed   19.5 us, random   19.5 us, Welch |t| = 0.43
+[INFO] 6. WH-936 keygen   : fixed   26.0 us, random   26.0 us, Welch |t| = 0.15
+[INFO] 6. WH-936 encaps   : fixed   34.0 us, random   34.0 us, Welch |t| = 0.79
+[INFO] 6. WH-936 decaps   : fixed   33.2 us, random   33.2 us, Welch |t| = 1.77
+[INFO] 6. WH-1208 keygen  : fixed   39.2 us, random   39.2 us, Welch |t| = 0.61
+[INFO] 6. WH-1208 encaps  : fixed   43.8 us, random   43.8 us, Welch |t| = 4.00
+[INFO] 6. WH-1208 decaps  : fixed   47.5 us, random   47.5 us, Welch |t| = 1.40
+[PASS] 6. No first-order timing dependence on secrets detected (|t| < 4.5) in any set; decapsulation takes the same time whether it accepts or rejects
+NATIVE KEM: ALL CHECKS PASSED
+python3 test_hankel_refactor.py
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.190s
+
+OK
+python3 test_hankel_kem_edge_cases.py
+test_asymmetric_voronoi_boundary (__main__.TestHankelKEMEdgeCases.test_asymmetric_voronoi_boundary)
+Verifies the exact asymmetric boundary of the branchless Voronoi decoder. ... ok
+test_ciphertext_underflow_rejection (__main__.TestHankelKEMEdgeCases.test_ciphertext_underflow_rejection)
+Verifies that a heavily truncated ciphertext buffer does not crash the Python ... ok
+test_zero_vector_mitigation (__main__.TestHankelKEMEdgeCases.test_zero_vector_mitigation)
+Simulates a catastrophic OS RNG failure where CBD sampling yields pure zero vectors. ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK
+python3 test_hankel_neon.py
+================================================================================
+   WINDOWED HANKEL LWE KEM: NATIVE ARM64 NEON VERIFICATION & BENCHMARK
+================================================================================
+
+[+] PART 1: Bit-Exact Functional Equivalence (Python vs Native NEON)...
+    [PASS] hankel_neon_forward_mul (768 dot products of length 640): 100% bit-exact match.
+    [PASS] hankel_neon_window_project (128 sliding projections): 100% bit-exact match.
+    [PASS] 4-PAM Encode & Branchless Voronoi Decoder: 100% bit-exact match.
+    [PASS] 12-bit SIMD Packing and Unpacking: 100% bit-exact match.
+    [PASS] Native byte selection and comparison: functional outputs match.
+
+[+] PART 2: Validating native execution against retained local KAT vectors...
+    Loaded 15 local KAT vectors from WINDOWED_HANKEL_640_RESEARCH_v2.rsp.
+    [PASS] All 15 local KAT vectors verified bit-exact with 100% fidelity.
+
+================================================================================
+   NATIVE ARM64 NEON VERIFICATION COMPLETE: ALL CHECKS PASSED.
+================================================================================
+{
+  "scope": "Local kernel and complete research-KEM handshake latency on fresh CSPRNG workloads; generation and output verification precede timing.",
+  "limits": "Small descriptive sample on one machine, without pinned-core or frequency-lock controls. No security, DFR, side-channel, or portable performance conclusion.",
+  "runtime": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:11:29) [Clang 20.1.8 ]",
+    "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "numpy": "2.3.5"
+  },
+  "parameters": {
+    "q": 4096,
+    "n": 640,
+    "window": 128,
+    "eta": 2
+  },
+  "available_backends": [
+    "reference",
+    "convolution",
+    "neon"
+  ],
+  "verified_outputs_equal": true,
+  "source_hashes": {
+    "benchmark_hankel_backends.py": "dc5a862e2b63eba82217a4e89b23d356e346ab9f249308042373b8ade8e11701",
+    "hankel_kem/__init__.py": "087f3c263354ef400cd346390bd5727d6970527096469b3c943ad08ac1e047ba",
+    "hankel_kem/backends.py": "087a7c2e6b8d1dbbf11f8ec8953fa88f2dc41d92e222a5e8a01a93c4638e39d6",
+    "hankel_kem/codec.py": "505b8a232c3898082d03815749b90466ec48514506d72dcd39437d12e973262c",
+    "hankel_kem/cpa.py": "30af60baa5ba5b02787102a320a2fc883508ea1c3ae6ac845cf349576b7dec27",
+    "hankel_kem/fo.py": "18c4abb481f9db0b2e81cb5135ffcd18cce3555750a50e3589f5220a7b212edd",
+    "hankel_kem/generic.py": "53ca2027e19dc9b593de6abad2bff9354a51572c62c733212adf5b7bf3b14f22",
+    "hankel_kem/native.py": "d5592e502fb9b47abe797f751c74c40b57dd466acfb3cd003349fe8aa57d8b70",
+    "hankel_kem/operators.py": "86790860a8eab15bef1f98a2f572a110cbe8b8f7cdd4ce3f2aa444c7185c24df",
+    "hankel_kem/params.py": "86388b4941998747b4a1b87b6848b776bd79cc4cf9968e22910dd68bc94850a1",
+    "hankel_kem/sampling.py": "6efd398e7cd7b4e95c1103eda8c2ae9489c7f9eeb852486e92ae632b6eb880d0",
+    "hankel_kem/wire.py": "a06505dd01fc4607bbd2c5c183bb54902272ba30d60f24fc812b7cdd23512eb4",
+    "hankel_kem_core.py": "e84023360777e6dc447f9535a509922531501bbb53e379004af60213db46041b",
+    "hankel_kem_wrapper.py": "a59f9c18c035f4b1cdb52cf29c34b36dd24ec3a86043a1e68d5d9bc486f97fbc",
+    "libhankel_kem_neon.dylib": "c96db9e3e4034d0ba39c8c61579210f19ecbb9e58d25f79c4d3051e8062b8579"
+  },
+  "sources_unchanged": true,
+  "workload": {
+    "sampling": "os.urandom; public sequences from SHAKE-256; CBD2 secret vectors; same input pool per backend",
+    "randomness_and_verification_outside_timing": true,
+    "requested_warmup": 3,
+    "kernel_pool_sha256": [
+      "6e4247820715c489137af9b135915ae972175a106ec2f59af5a6b5b2562c82f0",
+      "acea0db36799100439b647bb5c32e72addc608f4c54ff6f17c6fca08f00014ee",
+      "4d278e8d12f7645d137a89389308d71013e909cd789a84c4fb61e0065f083e5d",
+      "c76b5622790b941c4b1aead1b97bd3682d2e72a1dbc55cf0c50297efd27297cb",
+      "d07020b168a1aa7c254a9380ba4d9ba9d0ec6e2d74fd6f90389a7af0c52d3602",
+      "34c73eba93ed68f4ae525953579a7830cf6c0004e2dd600824a2da6263dab780",
+      "40223fe5045b1569cafede7696f4d62970965c132061260c9077ce9c0d42c6cc",
+      "e6584ba2d316d015c67938c6bd335a6de0b67f55b63da594a9a83851355c85a0",
+      "f73554c06b4a875fcb01c8d9535032bea9d225f82ba43482e265f51c4d5d9c10",
+      "7d3a5b30f174bd54514e966b95a99e0b3e10f6fb07ff3624455feb29645e35ce",
+      "d7dd440df521377797403c4a21d31803e958822bbfd323a92f7694ca1376105e",
+      "b5557ba92649b6e1b1e32d2bdaea24f27124f45fc36ff16f753c849e1351c37d"
+    ],
+    "handshake_fixtures": [
+      {
+        "keygen_seed_sha256": "90e0a37a3ec9b459f4ca62b5e307fb97c8b96703afa90933d0481bd64360ced6",
+        "encapsulation_entropy_sha256": "32144b4d2175a42d0091387bb8332ce36bf57053a4438987ec9ff287ca2278d9",
+        "wire_output_sha256": [
+          "3a810285190eab608b733df566e70ef9f1ef47e6e619cd13018f381ff5e8b798",
+          "e079239e3f25909ca69c29e185501c276207b7b577899fa3bc3aefe48209a990",
+          "02073aa364098f6ad6ec46b7a71718115125f8d36dee7a204073a40eb09812f8",
+          "5a795962132662273f7b49e71def1baa34aac294f95ef1f3cedcceaec2bdc41b",
+          "5a795962132662273f7b49e71def1baa34aac294f95ef1f3cedcceaec2bdc41b"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "ceb285c8ec044339e33b25d929030cef0c23eb7f6524d7c03f45a25eea56c025",
+        "encapsulation_entropy_sha256": "1d0ec842afe414ed48706cb5f8834bea78f118c1b364da3c7e73af7618cebddb",
+        "wire_output_sha256": [
+          "fe2eb45ce8411f185cb4240516fe7d3516e172e735ca9b0d27da1d89b72e7156",
+          "aaff8032ac4d69f51f2b8dac45d87bf06139b7ee9fc460587708766bf21f7e5f",
+          "e77702b041d15665ec8af2b2e896f167a612edb23f60438218a007189adb574c",
+          "fc4053c92d68269f37e479548b2d1b4f9b08c213ea1d3e74f7004105d56a2fab",
+          "fc4053c92d68269f37e479548b2d1b4f9b08c213ea1d3e74f7004105d56a2fab"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "3a240cb89a0bf4e1cdde40b7fa50a7707f5b32ca166badde58ae2bb0bb9d3028",
+        "encapsulation_entropy_sha256": "9fe7121808eb456ae9f84d00cdb311ef3f7575d96612a53fac003e82c5eeb239",
+        "wire_output_sha256": [
+          "48f8f7c0cfa98530941d6a0100c4c7c1adfefd7d73e0446355fb72e6d271786a",
+          "b9c74d524a3e654a91dc01209b7ece75c169c6282cba12d1462a1b086adabb53",
+          "70f581087efeb6eceb5b29019ac7f52bd3e406592c124d436b2fe193312227ff",
+          "5d7fdfdc1b5601ce9e4c9c752c582a146bb9d5e420a6ca43eb4c573870bb5a53",
+          "5d7fdfdc1b5601ce9e4c9c752c582a146bb9d5e420a6ca43eb4c573870bb5a53"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "b9f7184a2caa135ffe6955bc9c540ad4b68b743ad15debe162a3481207f9a10a",
+        "encapsulation_entropy_sha256": "11fa033b2272db95a0d67de44297da1bc8a10f7d038294b5f49707ca016e6b46",
+        "wire_output_sha256": [
+          "96819048a9c7f5ff0edef6e412b403c87d7760c32800b02aac61e32b4cf738f7",
+          "24d2bfd4dd93b72371b9b22ff5f748816cb332afc83ea6fe6a9806e6a87261c5",
+          "202dad4f7d610c7c4bf82037d60cdc0a459c8f2acbbf2e8d3b46fdccf50f9e06",
+          "b5a70ea4cf5c2cdc65161c8c607730c81210ba0ea27b250b689000d9dc364df1",
+          "b5a70ea4cf5c2cdc65161c8c607730c81210ba0ea27b250b689000d9dc364df1"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "2c71b5f9895d3be972f6d266ff7e940f18e841cbe26aa4d151cbdbd8068fdb51",
+        "encapsulation_entropy_sha256": "3c7b0c19001e2646053dc5cff4b31574bcd4e668428a469c673db68095f4c77b",
+        "wire_output_sha256": [
+          "5a5a0b3484fc1e9bdfe05e674211a5dcbd7aae7abf05eda9f8236e057c7fb582",
+          "79bfe792fbf6d30427adafc735eeeea497263dd22d1962a8a692ddc81a71d401",
+          "3ab440e18872f6c621cdddd1c94025c31d4e34b5fbebf666f0326696181ae3d6",
+          "40625326c6abb1214fecf6cc81e6922f511a029f6ceec1822f174fbb77d16815",
+          "40625326c6abb1214fecf6cc81e6922f511a029f6ceec1822f174fbb77d16815"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "67abb67d32957df3ddc3144241aa7b8983bedb96671c7bbeab20408bdaf33492",
+        "encapsulation_entropy_sha256": "fb2a3f38252920b222045101e7196f0d3f16b61849cdfe9820b3611493748516",
+        "wire_output_sha256": [
+          "a72284b45fbb692ddecdb00b0299378bc10cd299bbe0de7981bac289cd94baf7",
+          "5861e02445026a4f3f8acd66e6038a3ecaeedeea1cbc18e0edbdc77fd8b4896e",
+          "c542b551ece6a7c076b56e0633866861edad53a727d0fad8252311bff19b89ec",
+          "672ea545cd60e8f694e6b26ac67e14ee3cabb0088d187e2026e605603e2a6dae",
+          "672ea545cd60e8f694e6b26ac67e14ee3cabb0088d187e2026e605603e2a6dae"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "fa05999daf42d6c4e9d3ceb05d871908c4a58b8cfb9c8d71649ca8a1ddb437a1",
+        "encapsulation_entropy_sha256": "46935a5a017b8e15a22794a555b62323f0a2163a8ce838d62488799c8957de24",
+        "wire_output_sha256": [
+          "c0c5b256564f514bc37b80d6ebe8e605d6350b048faacb9c8d994d12fdb08345",
+          "4611777efb126ffbf92678ce0616e66563d8e5ddc8921fc7dd408074172c7941",
+          "eaab6dd059f085294e72e5a446b19edc5a3f96a0b5b21ee5ae94b92a98a565e2",
+          "7fe021cff56cfd86cc725c31b81899b8ba2b8105a0925be7ddb7bff38b4e486d",
+          "7fe021cff56cfd86cc725c31b81899b8ba2b8105a0925be7ddb7bff38b4e486d"
+        ]
+      },
+      {
+        "keygen_seed_sha256": "38b99760ac585d2a17201d4fa1cfb4661a3ca975ba732fcfd1cdaed4fb0d7312",
+        "encapsulation_entropy_sha256": "c9b3a82bff57c51d369d93e0ec1b45f6e962174e48fffbc54168184f11f99880",
+        "wire_output_sha256": [
+          "d3662a68a3d58868f5ec99f221b36ee8f209b6e7561d7639e6514aec32f329c5",
+          "ec46dceb5825d4fc094bd33804189f72726c8c4e6d2190e94bc27135d70a983b",
+          "cc355aa462e1dfdca5bb908301d17a2d5cc002ae9d2f7dd778b8c43474d29508",
+          "064bc4bce6ae7410f9f774723f1475a65686f833ca528862bfe6455f77c31043",
+          "064bc4bce6ae7410f9f774723f1475a65686f833ca528862bfe6455f77c31043"
+        ]
+      }
+    ]
+  },
+  "measurements": {
+    "reference": {
+      "forward": {
+        "median_us": 619.958,
+        "mean_us": 611.7593333333334,
+        "stddev_us": 20.839414211216848,
+        "p99_us": 638.672,
+        "operations_per_second": 1634.6297400175886,
+        "samples_ns": [
+          637292,
+          638792,
+          628416,
+          619958,
+          582250,
+          589417,
+          600708,
+          621584,
+          587417
+        ],
+        "repeats": 9,
+        "warmup": 3
+      },
+      "projection": {
+        "median_us": 98.833,
+        "mean_us": 103.12022222222222,
+        "stddev_us": 7.432993920169984,
+        "p99_us": 120.597,
+        "operations_per_second": 9697.41897806444,
+        "samples_ns": [
+          121667,
+          108292,
+          97875,
+          98000,
+          102666,
+          98375,
+          98833,
+          97708,
+          104666
+        ],
+        "repeats": 9,
+        "warmup": 3
+      },
+      "full_handshake": {
+        "median_us": 2192.417,
+        "mean_us": 2206.925,
+        "stddev_us": 33.50552135395001,
+        "p99_us": 2269.9803199999997,
+        "operations_per_second": 453.11915901084086,
+        "samples_ns": [
+          2272917,
+          2192417,
+          2188208,
+          2199500,
+          2181583
+        ],
+        "repeats": 5,
+        "warmup": 3
+      }
+    },
+    "convolution": {
+      "forward": {
+        "median_us": 277.542,
+        "mean_us": 279.8981111111111,
+        "stddev_us": 5.664509794313762,
+        "p99_us": 290.338,
+        "operations_per_second": 3572.7286476864792,
+        "samples_ns": [
+          278625,
+          288958,
+          274667,
+          277292,
+          281083,
+          273125,
+          277542,
+          290458,
+          277333
+        ],
+        "repeats": 9,
+        "warmup": 3
+      },
+      "projection": {
+        "median_us": 153.875,
+        "mean_us": 154.8842222222222,
+        "stddev_us": 1.7254266961973832,
+        "p99_us": 158.21444,
+        "operations_per_second": 6456.435559751441,
+        "samples_ns": [
+          155916,
+          153875,
+          157334,
+          153833,
+          153958,
+          153459,
+          158291,
+          153500,
+          153792
+        ],
+        "repeats": 9,
+        "warmup": 3
+      },
+      "full_handshake": {
+        "median_us": 1517.042,
+        "mean_us": 1520.2086000000002,
+        "stddev_us": 6.623797176846525,
+        "p99_us": 1532.38336,
+        "operations_per_second": 657.8044618350402,
+        "samples_ns": [
+          1532875,
+          1517042,
+          1515209,
+          1515333,
+          1520584
+        ],
+        "repeats": 5,
+        "warmup": 3
+      }
+    },
+    "neon": {
+      "forward": {
+        "median_us": 32.75,
+        "mean_us": 32.83811111111111,
+        "stddev_us": 0.6808608022927781,
+        "p99_us": 34.43528,
+        "operations_per_second": 30452.421475047624,
+        "samples_ns": [
+          34542,
+          32917,
+          32417,
+          32750,
+          32334,
+          32500,
+          33208,
+          32792,
+          32083
+        ],
+        "repeats": 9,
+        "warmup": 3
+      },
+      "projection": {
+        "median_us": 15.334,
+        "mean_us": 15.958444444444446,
+        "stddev_us": 1.9910874254543593,
+        "p99_us": 21.05,
+        "operations_per_second": 62662.74908442761,
+        "samples_ns": [
+          15875,
+          15334,
+          15542,
+          15334,
+          14875,
+          15125,
+          21500,
+          15458,
+          14583
+        ],
+        "repeats": 9,
+        "warmup": 3
+      },
+      "full_handshake": {
+        "median_us": 349.166,
+        "mean_us": 349.4416,
+        "stddev_us": 4.038367818809971,
+        "p99_us": 355.66564,
+        "operations_per_second": 2861.708508660675,
+        "samples_ns": [
+          351625,
+          355834,
+          349166,
+          346125,
+          344458
+        ],
+        "repeats": 5,
+        "warmup": 3
+      }
+    }
+  }
+}
+python3 test_hankel_kem_gauntlet.py
+================================================================================
+   WINDOWED HANKEL LWE KEM: IND-CCA2 AUDIT & VERIFICATION GAUNTLET
+================================================================================
+
+[+] SUITE 1: 4-PAM Codec Losslessness & Decision Boundary Stress...
+    [PASS] 500/500 random 32-byte messages encoded and decoded losslessly.
+    [PASS] Noise amplitude +/-100: EXACT MATCH
+    [PASS] Noise amplitude +/-200: EXACT MATCH
+    [PASS] Noise amplitude +/-300: EXACT MATCH
+    [PASS] Noise amplitude +/-400: EXACT MATCH
+    [PASS] Noise amplitude +/-500: EXACT MATCH
+    [PASS] Noise amplitude +/-511: EXACT MATCH
+    [PASS] Noise amplitude +/-512: BOUNDARY CORRUPTED (Expected)
+    [PASS] Noise amplitude +/-513: BOUNDARY CORRUPTED (Expected)
+    [PASS] Noise amplitude +/-600: BOUNDARY CORRUPTED (Expected)
+
+[+] SUITE 2: Canonical 12-Bit Packing Invariance & Range Defense...
+    [PASS] 12-bit packing round-trip exact across dimensions [128, 640, 768].
+    [PASS] Packing strictly rejected coefficient 4096 (>= 2^12).
+
+[+] SUITE 3: Serialization & Wire Footprint Bit-Exactness...
+    - Public Key Wire Size :  1196 Bytes (1.17 KB)
+    - Ciphertext Wire Size :  1356 Bytes (1.32 KB)
+    - Total Handshake Size :  2552 Bytes (2.49 KB)
+    - Secret Key Size      :  1868 Bytes (1.82 KB)
+    [PASS] Serialization headers, magic tags, and canonical 12-bit payloads verified.
+
+[+] SUITE 4: 500-Trial IND-CCA2 End-to-End Stress Test & Noise Distribution...
+    - IND-CCA2 Successful Handshakes: 500 / 500 (100.0%)
+    - Maximum Noise Observed        : |e| = 135 (Threshold T = 512)
+    - Empirical Mean / Std Noise   : mean = 28.58, std = 21.70 (Theory sigma ~ 35.8)
+    - Empirical Safety Margin      : 3.79x headroom remaining
+    - Average Handshake Latency    : 0.40 ms / cycle
+    [PASS] Strict zero-failure decapsulation verified across 500 trials.
+
+[+] SUITE 5: Active Adversarial Tampering & Implicit Rejection...
+    [PASS] Tampered ciphertext vector u correctly triggered implicit rejection.
+    [PASS] Tampered ciphertext payload v correctly triggered distinct implicit rejection.
+    [PASS] Malformed ciphertext magic correctly handled via constant-time rejection.
+
+[+] SUITE 6: Shift Autocorrelation & Stationarity Probe...
+    - Matrix Dimensions Probe     : 300 traces x 128 coordinates
+    - Empirical Matrix Rank       : 128 / 128 (Full Rank)
+    - Mean Cross-Correlation      : 0.0006 (Ideal: 0.0)
+    - Median Absolute Correlation : 0.0392
+    - Max Absolute Correlation    : 0.2269 (Expected random peak ~ 0.20-0.25)
+    [PASS] Shift coordinates exhibit full rank and statistical independence.
+
+[+] SUITE 7: Exact Chernoff DFR Verification...
+    - Error terms per coordinate : 1280 products + 1 e2 term, sigma = 35.79
+    - Threshold                  : 512 = 14.31 sigma
+    - Chernoff, one coordinate   : log2 Pr[e_dec >= 512] <= -142.1
+    - DFR (two tails, W = 128)   : log2(DFR) <= -134.1
+    [PASS] Chernoff bound reproduces DFR <= 2^-134.1.
+
+================================================================================
+   ALL 7 GAUNTLET SUITES PASSED STRICTLY WITH ZERO ERRORS.
+================================================================================
+python3 nist_analysis_kit/kat/PQCvalidateKAT_hankel.py
+[*] Validating 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2
+    file: <repo>/nist_analysis_kit/kat/test_vectors/WINDOWED_HANKEL_640_RESEARCH_v2.rsp
+    [+] Verified KAT vector 5/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 10/15 [Bit-Exact + Implicit Reject Verified]
+    [+] Verified KAT vector 15/15 [Bit-Exact + Implicit Reject Verified]
+
+[PASS] All 15 local KAT vectors for Windowed-Hankel-LWE-640 research profile v2 match!
+python3 nist_analysis_kit/kat/PQCgenKAT_hankel_sets.py validate
+[PASS] WINDOWED_HANKEL_936_v1 (reference): 15/15 vectors bit-exact
+[PASS] WINDOWED_HANKEL_936_v1 (native): 15/15 vectors bit-exact
+[PASS] WINDOWED_HANKEL_1208_v1 (reference): 15/15 vectors bit-exact
+[PASS] WINDOWED_HANKEL_1208_v1 (native): 15/15 vectors bit-exact
+make test exit 0

@@ -1,0 +1,17 @@
+Repeated fixed-vs-random Welch t-tests (tvla_repeat.py; 4,000 calls per class, 12 repetitions each).
+
+1. Inputs of the random class drawn with os.urandom immediately before each timed call (as test 6
+   did before this change): biased toward fixed < random.
+WH-1208 keygen -2.58 -1.68 +3.28 -6.97 -0.93 -4.40 -5.56 -6.56 +0.33 -1.73 -7.17 +1.67
+WH-640 encaps  +1.11 -1.45 -1.58 -1.72 -1.84 -0.26 +2.06 -2.56 -4.11 -3.49 -8.80 -2.30
+
+2. Same tests with all random inputs drawn before timing: centered, max |t| = 3.21.
+WH-1208 keygen +1.81 -0.50 -1.72 +0.15 +2.32 -0.08 -0.23 +0.84 +3.21 -0.03 -0.36 +1.95
+WH-640 encaps  -1.41 +0.94 +0.37 +0.70 +3.12 +0.36 +2.54 -1.18 -2.70 -2.30 -2.12 +0.76
+
+3. Follow-up after a |t| = 4.00 for WH-1208 encaps in make_test.txt (inputs drawn before timing):
+WH-1208 encaps +0.47 +0.11 +1.16 -0.07 -0.82 -1.60 +2.09 -0.27 -1.59 -1.41 +0.44 +1.12
+WH-936 encaps  +0.10 +1.29 -1.45 -2.65 -3.42 +0.94 +1.43 -1.50 -0.42 -0.89 +0.14 -1.15
+
+Conclusion: the bias in (1) came from the harness (a system call just before the timed call in one
+class only), not from the implementation; test 6 now draws every input before timing.

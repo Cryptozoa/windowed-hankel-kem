@@ -1,0 +1,10 @@
+Cat3 n=936 usvp         CoreSVP beta 705 rop 2^205.9   | MATZOV beta 705 rop 2^227.9
+Cat3 n=936 bdd          CoreSVP beta 704 rop 2^206.6   | MATZOV beta 688 rop 2^223.9
+Cat3 n=936 dual         CoreSVP beta 728 rop 2^212.6   | MATZOV beta 736 rop 2^237.6
+Cat3 n=936 dual_hybrid  CoreSVP beta 674 rop 2^196.8   | MATZOV beta 665 rop 2^218.2
+Cat3 n=936 coded_bkw    rop 2^276.3
+Cat5 n=1208 usvp         CoreSVP beta 951 rop 2^277.7   | MATZOV beta 951 rop 2^297.0
+Cat5 n=1208 bdd          CoreSVP beta 951 rop 2^278.7   | MATZOV beta 933 rop 2^293.0
+Cat5 n=1208 dual         CoreSVP beta 981 rop 2^286.5   | MATZOV beta 996 rop 2^310.7
+Cat5 n=1208 dual_hybrid  CoreSVP beta 902 rop 2^263.5   | MATZOV beta 899 rop 2^283.7
+Cat5 n=1208 coded_bkw    rop 2^354.5

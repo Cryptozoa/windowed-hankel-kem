@@ -50,6 +50,30 @@ int hankel_kem_enc_derand(uint8_t *ct, uint8_t *ss, const uint8_t *pk,
  */
 int hankel_kem_dec(uint8_t *ss, const uint8_t *ct, size_t ct_len, const uint8_t *sk);
 
+/*
+ * Candidate Category 3 and 5 sets (paper, Appendix D): q = 2^13, CBD_2, W = 128, with n = 936 and
+ * n = 1208. Same API and semantics as above, under the prefixes hankel936_ and hankel1208_; every
+ * derivation tag carries the set's domain string ("_wh936", "_wh1208").
+ */
+#define HANKEL936_KEM_PUBLICKEYBYTES 1773
+#define HANKEL936_KEM_SECRETKEYBYTES 2741
+#define HANKEL936_KEM_CIPHERTEXTBYTES 1949
+#define HANKEL1208_KEM_PUBLICKEYBYTES 2215
+#define HANKEL1208_KEM_SECRETKEYBYTES 3455
+#define HANKEL1208_KEM_CIPHERTEXTBYTES 2391
+
+int hankel936_kem_keypair(uint8_t *pk, uint8_t *sk);
+int hankel936_kem_keypair_derand(uint8_t *pk, uint8_t *sk, const uint8_t *seed, size_t seed_len);
+int hankel936_kem_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+int hankel936_kem_enc_derand(uint8_t *ct, uint8_t *ss, const uint8_t *pk, const uint8_t *entropy, size_t entropy_len);
+int hankel936_kem_dec(uint8_t *ss, const uint8_t *ct, size_t ct_len, const uint8_t *sk);
+
+int hankel1208_kem_keypair(uint8_t *pk, uint8_t *sk);
+int hankel1208_kem_keypair_derand(uint8_t *pk, uint8_t *sk, const uint8_t *seed, size_t seed_len);
+int hankel1208_kem_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+int hankel1208_kem_enc_derand(uint8_t *ct, uint8_t *ss, const uint8_t *pk, const uint8_t *entropy, size_t entropy_len);
+int hankel1208_kem_dec(uint8_t *ss, const uint8_t *ct, size_t ct_len, const uint8_t *sk);
+
 #ifdef __cplusplus
 }
 #endif

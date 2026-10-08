@@ -1,0 +1,16 @@
+A n=840 q=2^13 eta=2 bits=2 | min CoreSVP 173.2 MATZOV 195.6 | DFR 2^-408.0 | pk 1617 ct 1793 total 3410
+A n=848 q=2^13 eta=2 bits=2 | min CoreSVP 175.5 MATZOV 197.5 | DFR 2^-404.5 | pk 1630 ct 1806 total 3436
+A n=856 q=2^13 eta=2 bits=2 | min CoreSVP 177.5 MATZOV 199.7 | DFR 2^-401.2 | pk 1643 ct 1819 total 3462
+A n=864 q=2^13 eta=2 bits=2 | min CoreSVP 179.6 MATZOV 201.8 | DFR 2^-397.8 | pk 1656 ct 1832 total 3488
+A n=872 q=2^13 eta=2 bits=2 | min CoreSVP 181.1 MATZOV 203.4 | DFR 2^-394.6 | pk 1669 ct 1845 total 3514
+A n=880 q=2^13 eta=2 bits=2 | min CoreSVP 182.7 MATZOV 205.1 | DFR 2^-391.3 | pk 1682 ct 1858 total 3540
+A n=888 q=2^13 eta=2 bits=2 | min CoreSVP 184.7 MATZOV 206.9 | DFR 2^-388.2 | pk 1695 ct 1871 total 3566
+A n=896 q=2^13 eta=2 bits=2 | min CoreSVP 186.4 MATZOV 208.6 | DFR 2^-385.1 | pk 1708 ct 1884 total 3592
+A n=904 q=2^13 eta=2 bits=2 | min CoreSVP 188.4 MATZOV 210.4 | DFR 2^-382.0 | pk 1721 ct 1897 total 3618
+A n=912 q=2^13 eta=2 bits=2 | min CoreSVP 190.4 MATZOV 212.2 | DFR 2^-378.9 | pk 1734 ct 1910 total 3644
+A n=920 q=2^13 eta=2 bits=2 | min CoreSVP 192.7 MATZOV 214.4 | DFR 2^-376.0 | pk 1747 ct 1923 total 3670
+A n=928 q=2^13 eta=2 bits=2 | min CoreSVP 194.8 MATZOV 216.3 | DFR 2^-373.0 | pk 1760 ct 1936 total 3696
+A n=936 q=2^13 eta=2 bits=2 | min CoreSVP 196.8 MATZOV 218.2 | DFR 2^-370.1 | pk 1773 ct 1949 total 3722
+A n=944 q=2^13 eta=2 bits=2 | min CoreSVP 198.9 MATZOV 220.9 | DFR 2^-367.3 | pk 1786 ct 1962 total 3748
+A n=952 q=2^13 eta=2 bits=2 | min CoreSVP 200.9 MATZOV 222.3 | DFR 2^-364.4 | pk 1799 ct 1975 total 3774
+A n=960 q=2^13 eta=2 bits=2 | min CoreSVP 202.3 MATZOV 224.1 | DFR 2^-361.7 | pk 1812 ct 1988 total 3800

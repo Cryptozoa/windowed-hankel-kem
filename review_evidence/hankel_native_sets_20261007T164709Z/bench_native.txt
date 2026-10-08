@@ -1,0 +1,36 @@
+Apple M3 Max
+Apple clang version 17.0.0 (clang-1700.6.4.2)
+
+WH-640 (pk 1196 B, ct 1356 B)
+  keygen     median    14.3 us   p90    15.2 us
+  encaps     median    17.5 us   p90    21.2 us
+  decaps     median    20.2 us   p90    24.6 us
+  handshake  median    52.6 us   p90    59.0 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+WH-936 (pk 1773 B, ct 1949 B)
+  keygen     median    31.0 us   p90    37.0 us
+  encaps     median    35.6 us   p90    39.0 us
+  decaps     median    42.1 us   p90    47.3 us
+  handshake  median    98.3 us   p90   106.8 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+WH-1208 (pk 2215 B, ct 2391 B)
+  keygen     median    39.6 us   p90    45.6 us
+  encaps     median    47.2 us   p90    52.0 us
+  decaps     median    47.0 us   p90    48.3 us
+  handshake  median   133.1 us   p90   139.9 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+
+Three further runs (medians in us; ./bench_hankel_native 5000 <set>, sets run in separate processes):
+WH-640   keygen 14.2  encaps 17.0  decaps 19.7  handshake 49.6
+WH-936   keygen 29.9  encaps 30.2  decaps 36.6  handshake 95.5
+WH-1208  keygen 39.5  encaps 48.0  decaps 47.0  handshake 132.1
+WH-640   keygen 13.8  encaps 17.0  decaps 19.8  handshake 49.7
+WH-936   keygen 30.0  encaps 31.0  decaps 36.6  handshake 95.5
+WH-1208  keygen 40.3  encaps 49.1  decaps 48.8  handshake 137.7
+WH-640   keygen 14.2  encaps 17.4  decaps 20.2  handshake 51.8
+WH-936   keygen 30.6  encaps 31.0  decaps 38.0  handshake 99.6
+WH-1208  keygen 39.8  encaps 48.8  decaps 47.9  handshake 137.9
+
+WH-640 regression check (same session, back to back, 5000 calls): the committed build (HEAD c06af22)
+and this build agree within noise (handshake 49.3-51.5 us vs 49.6-49.8 us) after restoring the
+dedicated 12-bit packer; with only the generic bit packer the handshake was 55.6 us.

@@ -16,14 +16,14 @@ NATIVE = hankel_kem_native.c hankel_hash.c
 
 all: $(LIB)
 
-$(LIB): $(SRC) $(HDRS)
+$(LIB): $(SRC) $(HDRS) hankel_kem_native_impl.h
 	$(CC) $(CFLAGS) $(ARCH) -dynamiclib -o $@ $(SRC)
 
 # Standalone C test of the native KEM (KATs, rejection, hashes); no Python required
-test_hankel_native: test_hankel_native.c $(NATIVE) hankel_kem_native.h hankel_hash.h
+test_hankel_native: test_hankel_native.c $(NATIVE) hankel_kem_native.h hankel_kem_native_impl.h hankel_hash.h
 	$(CC) $(CFLAGS) $(ARCH) -o $@ test_hankel_native.c $(NATIVE)
 
-bench_hankel_native: bench_hankel_native.c $(NATIVE) hankel_kem_native.h
+bench_hankel_native: bench_hankel_native.c $(NATIVE) hankel_kem_native.h hankel_kem_native_impl.h
 	$(CC) $(CFLAGS) $(ARCH) -o $@ bench_hankel_native.c $(NATIVE)
 
 # Native KEM (C and Python-level), unit, edge-case, NEON-equivalence and stress tests, then the KATs
@@ -35,13 +35,15 @@ test: $(LIB) test_hankel_native
 	$(PYTHON) test_hankel_neon.py
 	$(PYTHON) test_hankel_kem_gauntlet.py
 	$(PYTHON) nist_analysis_kit/kat/PQCvalidateKAT_hankel.py
+	$(PYTHON) nist_analysis_kit/kat/PQCgenKAT_hankel_sets.py validate
 
-# Validate the current KAT file (RESEARCH_v2). The historical NIST1 file predates the e2
-# term and is expected to fail; see the note in the validator.
+# Validate the current KAT files (RESEARCH_v2, WINDOWED_HANKEL_936_v1 and _1208_v1). The historical
+# NIST1 file predates the e2 term and is expected to fail; see the note in the validator.
 kat: $(LIB)
 	$(PYTHON) nist_analysis_kit/kat/PQCvalidateKAT_hankel.py
+	$(PYTHON) nist_analysis_kit/kat/PQCgenKAT_hankel_sets.py validate
 
-# Native KEM latency (median and p90 over 5,000 calls)
+# Native KEM latency for every parameter set (median and p90 over 5,000 calls)
 bench: bench_hankel_native
 	./bench_hankel_native 5000
 

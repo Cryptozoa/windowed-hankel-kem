@@ -1,0 +1,6 @@
+n=936 m=1064 L=1999: prime; degrees of the irreducible factors of X^L-1 besides X-1: [333]
+  plain k=0: full rank mod 2 in 5/5; log2 det 12168; GH 21953 (q = 8192); bits to guess: 0.0 vs 0.0 for k coordinates of s
+  X-1   k=1: full rank mod 2 in 5/5; log2 det 12155; GH 21768 (q = 8192); bits to guess: 7.0 vs 2.0 for k coordinates of s
+n=1208 m=1336 L=2543: prime; degrees of the irreducible factors of X^L-1 besides X-1: [1271]
+  plain k=0: full rank mod 2 in 5/5; log2 det 15704; GH 30653 (q = 8192); bits to guess: 0.0 vs 0.0 for k coordinates of s
+  X-1   k=1: full rank mod 2 in 5/5; log2 det 15691; GH 30447 (q = 8192); bits to guess: 7.2 vs 2.0 for k coordinates of s

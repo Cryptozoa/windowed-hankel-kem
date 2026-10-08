@@ -1,0 +1,3 @@
+Kyber 512: CoreSVP usvp 118.6 dual_hybrid 115.5 | MATZOV usvp 143.8 dual_hybrid 139.7
+Kyber 768: CoreSVP usvp 182.2 dual_hybrid 174.3 | MATZOV usvp 204.9 dual_hybrid 196.4
+Kyber 1024: CoreSVP usvp 255.2 dual_hybrid 241.8 | MATZOV usvp 275.1 dual_hybrid 262.3
