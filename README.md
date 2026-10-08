@@ -115,6 +115,7 @@ Every figure in the paper comes from a script in this repository, with its recor
 | Generic attack estimates (Section 7, Table 7) | `LATTICE_ESTIMATOR=/path/to/lattice-estimator sage estimate_full.sage`, and the other `estimate_*.sage` scripts | [`review_evidence/hankel_paper_estimates_20261006T044216Z/`](review_evidence/hankel_paper_estimates_20261006T044216Z/) |
 | Parameter study and failure-rate bound (Section 6, Appendix A) | `sage estimate_param_grid.sage`; `python3 dfr_grid.py` | same directory |
 | Cyclic-embedding functionals (Section 4.3, Appendix C) | `sage functionals.sage full`; `sage functionals.sage case n W target trials seed` | [`review_evidence/hankel_embedding_functionals/`](review_evidence/hankel_embedding_functionals/) |
+| Subring argument and decryption equations (Sections 4.3 and 5.3, Proposition 2) | `sage subrings.sage`; `sage decryption_equations.sage` | [`review_evidence/hankel_open_directions/`](review_evidence/hankel_open_directions/) |
 | Category 3 and 5 sets (Appendix D) | the `.sage` and `.py` scripts listed in its README | [`review_evidence/hankel_higher_categories/`](review_evidence/hankel_higher_categories/) |
 
 The estimates use the [lattice estimator](https://github.com/malb/lattice-estimator) at commit `53da598` and SageMath 10.9 (the functionals also need fpylll). Run each script from its evidence directory; the README there lists inputs, outputs and versions.

@@ -1,0 +1,15 @@
+Sage SageMath version 10.9, Release Date: 2026-05-04
+n = 640, m = 768, q = 4096, L = 1407 = 3 * 7 * 67
+Phi_1     degree    1:   1 factors of degree [1]
+Phi_3     degree    2:   1 factors of degree [2]
+Phi_7     degree    6:   2 factors of degree [3]
+Phi_21    degree   12:   2 factors of degree [6]
+Phi_67    degree   66:   1 factors of degree [66]
+Phi_201   degree  132:   2 factors of degree [66]
+Phi_469   degree  396:   6 factors of degree [66]
+Phi_1407  degree  792:  12 factors of degree [66]
+(1) 27 irreducible factors, product equals X^1407 - 1 mod 4096; largest degree 66 <= n - 1 = 639
+(2) window of a(X) s~(X) mod (X^L - 1) equals H_m(a) s on 3 random instances
+(3) for all 27 factors, u -> u mod g has full rank modulo 2 (onto Z_q^k)
+Conclusion: modulo any single factor, the withheld coefficients mask the equation completely;
+eliminating them from the full ring relation leaves exactly the m window equations b = H s + e.

@@ -1,0 +1,15 @@
+/var/folders/j7/f_2xp41n7g71km4tb1h7twr80000gn/T/sage_xt5p1ldb/decryption_equations1x4n0qo5.sage.py:29: DeprecationWarning: Use sage.version.version instead.
+See https://github.com/sagemath/sage/issues/39015 for details.
+  print("Sage", version())
+Sage SageMath version 10.9, Release Date: 2026-05-04
+LWEParameters(n=640, q=1024, Xs=D(σ=1.00), Xe=D(σ=35.79), m=+Infinity, tag='WH640-decryption-equations')
+q/sigma = 28.6 (public key: 4096/1 = 4096)
+primal uSVP [Core-SVP]             rop    2^324.1  beta 1110 d 1111
+primal uSVP [MATZOV]               rop    2^331.3  beta 1110 d 1111
+primal BDD [Core-SVP]              rop    2^324.7  beta 1108 d 1108
+primal BDD [MATZOV]                rop    2^331.9  beta 1108 d 1108
+dual [Core-SVP]                    rop    2^344.3  beta 1179 m 452 d 1092
+dual [MATZOV]                      rop    2^365.8  beta 1232 m 471 d 1111
+dual hybrid [Core-SVP]             rop    2^301.6  beta 1032 m 640 zeta 30
+dual hybrid [MATZOV]               rop    2^315.8  beta 1026 m 640 zeta 40
+coded-BKW                          rop    2^254.1  m 8.835079067344617e+72
