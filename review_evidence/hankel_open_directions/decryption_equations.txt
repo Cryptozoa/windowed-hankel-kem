@@ -1,6 +1,3 @@
-/var/folders/j7/f_2xp41n7g71km4tb1h7twr80000gn/T/sage_xt5p1ldb/decryption_equations1x4n0qo5.sage.py:29: DeprecationWarning: Use sage.version.version instead.
-See https://github.com/sagemath/sage/issues/39015 for details.
-  print("Sage", version())
 Sage SageMath version 10.9, Release Date: 2026-05-04
 LWEParameters(n=640, q=1024, Xs=D(σ=1.00), Xe=D(σ=35.79), m=+Infinity, tag='WH640-decryption-equations')
 q/sigma = 28.6 (public key: 4096/1 = 4096)

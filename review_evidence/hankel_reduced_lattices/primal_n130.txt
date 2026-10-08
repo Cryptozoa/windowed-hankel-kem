@@ -1,0 +1,52 @@
+# n=130 m=143 (of at most 156) q=4096 CBD_2  d=274  predicted beta (2016 estimate) 40
+uniform  seed 130000401 success_beta 41 time 211.9s
+hankel   seed 130000396 success_beta 42 time 224.6s
+hankel   seed 130000402 success_beta 44 time 254.7s
+hankel   seed 130000392 success_beta 45 time 275.0s
+hankel   seed 130000394 success_beta 45 time 276.5s
+hankel   seed 130000400 success_beta 45 time 277.4s
+hankel   seed 130000390 success_beta 46 time 333.5s
+uniform  seed 130000397 success_beta 46 time 333.6s
+uniform  seed 130000395 success_beta 46 time 338.7s
+hankel   seed 130000398 success_beta 47 time 431.4s
+uniform  seed 130000403 success_beta 47 time 433.9s
+uniform  seed 130000391 success_beta 47 time 434.2s
+hankel   seed 130000404 success_beta 45 time 281.9s
+hankel   seed 130000406 success_beta 43 time 245.1s
+uniform  seed 130000399 success_beta 48 time 532.7s
+uniform  seed 130000407 success_beta 46 time 344.8s
+hankel   seed 130000410 success_beta 45 time 288.8s
+uniform  seed 130000393 success_beta 49 time 635.7s
+uniform  seed 130000413 success_beta 41 time 222.1s
+uniform  seed 130000411 success_beta 46 time 349.3s
+uniform  seed 130000415 success_beta 43 time 253.9s
+uniform  seed 130000417 success_beta 39 time 195.3s
+uniform  seed 130000405 success_beta 48 time 544.8s
+hankel   seed 130000414 success_beta 46 time 355.2s
+hankel   seed 130000418 success_beta 44 time 271.7s
+hankel   seed 130000408 success_beta 48 time 549.1s
+uniform  seed 130000409 success_beta 48 time 548.4s
+hankel   seed 130000416 success_beta 46 time 355.8s
+hankel   seed 130000412 success_beta 48 time 547.4s
+uniform  seed 130000419 success_beta 45 time 287.4s
+uniform  seed 130000425 success_beta 41 time 229.7s
+hankel   seed 130000420 success_beta 46 time 354.9s
+hankel   seed 130000422 success_beta 46 time 354.2s
+uniform  seed 130000431 success_beta 38 time 188.2s
+hankel   seed 130000430 success_beta 44 time 271.9s
+uniform  seed 130000423 success_beta 47 time 453.7s
+hankel   seed 130000424 success_beta 47 time 454.0s
+hankel   seed 130000434 success_beta 45 time 284.4s
+hankel   seed 130000426 success_beta 47 time 444.6s
+uniform  seed 130000427 success_beta 47 time 441.7s
+hankel   seed 130000428 success_beta 47 time 436.1s
+uniform  seed 130000429 success_beta 47 time 425.2s
+hankel   seed 130000436 success_beta 44 time 252.4s
+uniform  seed 130000421 success_beta 49 time 636.8s
+hankel   seed 130000432 success_beta 48 time 500.3s
+uniform  seed 130000435 success_beta 48 time 486.8s
+uniform  seed 130000433 success_beta 49 time 585.1s
+uniform  seed 130000437 success_beta 48 time 470.5s
+# hankel   solved 24/24  mean beta 45.54  median 45.5  sd 1.59  min 42  max 48
+# uniform  solved 24/24  mean beta 45.58  median 47.0  sd 3.27  min 38  max 49
+# Mann-Whitney U, Hankel vs uniform success beta: p = 0.215; mean difference -0.04

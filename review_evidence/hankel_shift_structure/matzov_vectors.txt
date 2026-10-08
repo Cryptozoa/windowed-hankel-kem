@@ -1,0 +1,23 @@
+         rop: ≈2^160.3
+         red: ≈2^159.8
+       guess: ≈2^158.4
+           β:      459
+           p:        5
+           ζ:       20
+           t:       40
+          β':      459
+           N: ≈2^94.9
+           m:      640
+  N: 3.67839595256993e28
+  beta: 459
+  beta_: 459
+  guess: 1.0617378e52*e^(-10)
+  m: 640
+  p: 5
+  problem: LWEParameters(n=640, q=4096, Xs=D(σ=1.00), Xe=D(σ=1.00), m=768, tag='WH640')
+  red: 1.27698479935111e48
+  rop: 1.0617378e52*e^(-10) + 1.27698479935111e48
+  t: 40
+  zeta: 20
+log2 N = 94.89
+one sieve call in dimension beta' = 459 yields about 2^95.24 vectors

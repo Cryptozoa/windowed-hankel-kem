@@ -1,0 +1,2 @@
+fwd: 228 reduced basis vectors; shifted constraints hold for 228/228; the dropped constraint also holds for 0/228
+bwd: 171 reduced basis vectors; shifted constraints hold for 171/171; the dropped constraint also holds for 0/171

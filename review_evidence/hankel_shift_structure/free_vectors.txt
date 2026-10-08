@@ -1,0 +1,10 @@
+MATZOV   T =    1: rop 2^160.27 (change +0.00)  beta 459  zeta 20  t 40  log2 N 94.9
+MATZOV   T =    2: rop 2^160.07 (change -0.20)  beta 458  zeta 20  t 40  log2 N 96.0
+MATZOV   T =    8: rop 2^159.99 (change -0.27)  beta 457  zeta 20  t 40  log2 N 97.1
+MATZOV   T =   64: rop 2^159.78 (change -0.49)  beta 455  zeta 20  t 40  log2 N 99.4
+MATZOV   T =  640: rop 2^159.38 (change -0.89)  beta 457  zeta 10  t 50  log2 N 104.1
+Core-SVP T =    1: rop 2^137.10 (change +0.00)  beta 468  zeta 10  t 40  log2 N 96.4
+Core-SVP T =    2: rop 2^136.91 (change -0.19)  beta 467  zeta 10  t 40  log2 N 97.5
+Core-SVP T =    8: rop 2^136.76 (change -0.34)  beta 466  zeta 10  t 40  log2 N 98.6
+Core-SVP T =   64: rop 2^136.61 (change -0.49)  beta 465  zeta 0  t 50  log2 N 101.6
+Core-SVP T =  640: rop 2^136.07 (change -1.03)  beta 466  zeta 0  t 50  log2 N 105.6

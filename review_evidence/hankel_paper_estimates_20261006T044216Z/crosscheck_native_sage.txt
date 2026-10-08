@@ -1,6 +1,3 @@
-/var/folders/j7/f_2xp41n7g71km4tb1h7twr80000gn/T/sage_q6udnctb/crosscheck_native_sageqi1kxtth.sage.py:25: DeprecationWarning: Use sage.version.version instead.
-See https://github.com/sagemath/sage/issues/39015 for details.
-  print("Sage", version())
 Sage SageMath version 10.9, Release Date: 2026-05-04
 WH640 usvp CoreSVP :: rop 2^142.5 beta 488
 WH640 usvp MATZOV :: rop 2^166.8 beta 488
