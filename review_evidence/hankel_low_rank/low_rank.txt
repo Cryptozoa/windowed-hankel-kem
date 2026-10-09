@@ -1,0 +1,10 @@
+n = 640, m = 768, L = 1407
+key 0: rank of H_m(a) mod 2 = 640; linear complexity over GF(2): a mod 2 704 of 1407, b mod 2 384 of 768
+key 1: rank of H_m(a) mod 2 = 640; linear complexity over GF(2): a mod 2 703 of 1407, b mod 2 385 of 768
+key 2: rank of H_m(a) mod 2 = 640; linear complexity over GF(2): a mod 2 704 of 1407, b mod 2 384 of 768
+key 3: rank of H_m(a) mod 2 = 640; linear complexity over GF(2): a mod 2 704 of 1407, b mod 2 384 of 768
+key 4: rank of H_m(a) mod 2 = 640; linear complexity over GF(2): a mod 2 704 of 1407, b mod 2 383 of 768
+LFSR contrast: linear complexity of a 63, rank of H_m(a) mod 2 = 63
+entropy per coefficient: CBD_2 2.031, CBD_3 2.333, discrete Gaussian sigma 2.8 3.533 bits
+secret entropy: Windowed Hankel 640 x CBD_2 = 1300 bits; ML-KEM-512 512 x CBD_3 = 1195 bits; FrodoKEM-640, one column of S, 640 x Gaussian(2.8) = 2261 bits
+values defining the public matrix: Windowed Hankel 1,407 (768 x 640); ML-KEM-512 2 x 2 x 256 = 1,024 (512 x 512); FrodoKEM-640 640 x 640 = 409,600
