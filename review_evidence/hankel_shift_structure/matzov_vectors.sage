@@ -1,5 +1,5 @@
 # Does the MATZOV dual-hybrid optimum for WH-640 need more short vectors than one sieve call yields?
-# Shifted functionals could at best multiply the supply of short vectors (paper, Section 4.4); that only
+# Shifted functionals could at best multiply the supply of short vectors (paper, Section 4.3 and Table 2); that only
 # saves work if the required number N exceeds the sieve's output 2^(0.2075 beta'), so that the
 # estimator charges for repeated sieving.
 import os, sys

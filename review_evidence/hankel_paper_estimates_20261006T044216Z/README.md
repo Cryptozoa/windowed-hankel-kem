@@ -29,7 +29,7 @@ Python-orchestrated implementation.
   on a native arm64 SageMath 10.9 (conda-forge) **without** the shim. All figures agree with the runs
   above.
 - `dfr_grid.py` -> `dfr_grid.txt`: Chernoff DFR bound for combinations of q, eta and bits per
-  coordinate (paper Table 4); its last line reproduces the 2^-134.1 bound of Theorem 1.
+  coordinate (paper Table 4); its last line reproduces the 2^-134.1 bound of Theorem 3.
 
 Run from this directory, e.g. `LATTICE_ESTIMATOR=~/Documents/lattice-estimator sage estimate_full.sage`.
 

@@ -1,4 +1,4 @@
-# Upper bound on what the shift structure can buy a dual attack (paper, Section 4.4).
+# Upper bound on what the shift structure can buy a dual attack (paper, Section 4.3 and Table 2).
 #
 # A short functional phi whose last t entries vanish has t shifts of the same length that are valid
 # functionals for constraint sets shifted by one each (S phi satisfies the constraints J - 1). At best,

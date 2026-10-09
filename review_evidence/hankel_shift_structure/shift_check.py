@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Check of the shift relation behind the bound in free_vectors.sage (paper, Section 4.4).
+Check of the shift relation behind the bound in free_vectors.sage (paper, Section 4.3 and Table 2).
 
 For a Hankel matrix H = H_m(a) and J = [0, n - k), take short vectors phi of the dual lattice
 Lambda_J = {phi : (H^T phi)_j = 0 mod q for j in J} (BKZ-20 reduced basis). For phi with phi_{m-1} = 0, the

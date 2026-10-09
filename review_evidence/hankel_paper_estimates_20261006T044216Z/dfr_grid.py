@@ -1,4 +1,4 @@
-"""Paper Table 3 and Appendix A: Chernoff DFR bound for (q, eta, bits per coordinate) with n = 640."""
+"""Paper Table 4 and Appendix A: Chernoff DFR bound for (q, eta, bits per coordinate) with n = 640."""
 import math
 def cbd(eta):
     return {v: math.comb(2*eta, v+eta) / 4**eta for v in range(-eta, eta+1)}

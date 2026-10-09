@@ -1,6 +1,6 @@
 # Run from this directory:  LATTICE_ESTIMATOR=/path/to/lattice-estimator sage estimate_param_grid.sage
 # Estimator commit used: 53da5982597709ba0fdf94ea37a84d822310fd84 (malb/lattice-estimator, 2026-08-19)
-# Paper Table 4: primal and dual hybrid costs and sizes for parameter alternatives.
+# Paper Table 5: primal and dual hybrid costs and sizes for parameter alternatives.
 import os, sys
 sys.path.insert(0, os.path.expanduser("~/Documents/lattice-estimator"))
 sys.path.insert(0, os.getcwd())
