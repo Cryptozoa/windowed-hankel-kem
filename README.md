@@ -7,6 +7,8 @@ Windowed Hankel KEM is a lattice-based key-encapsulation mechanism built on trun
 
 The accompanying paper, [*Windowed Hankel LWE: A Structured-LWE Problem for Cryptanalysis, with a Compact KEM*](paper/hankel_kem_eprint.pdf), offers the underlying problem as a test case for cryptanalysis. Its Table 2 summarizes the status of every attack family considered, and Section 4.4 states what would count as a break. Reports of attacks, positive or negative, are welcome.
 
+**Challenge instances.** [`challenges/whlwe_v1/`](challenges/whlwe_v1/) holds 26 instances of the problem, from n = 64 to the KEM's public-key shape at n = 640, each with a uniform-matrix twin and a hash commitment to its secret, plus a solution checker and a baseline solver.
+
 ## Parameters and sizes
 
 | Set | Target | n | Window W | q | Secret / error | Message | Public key | Ciphertext | Secret key |
@@ -111,6 +113,7 @@ Every figure in the paper comes from a script in this repository, with its recor
 | :--- | :--- | :--- |
 | Implementation, KATs, constant-time audit, timing tests (Section 8) | `make test` | [`review_evidence/hankel_native_sets_20261007T164709Z/`](review_evidence/hankel_native_sets_20261007T164709Z/) |
 | Latencies (Section 8, Appendix D) | `make bench` | same directory, `bench_native.txt` |
+| Decapsulation accept-versus-reject timing (Section 8) | `python3 review_evidence/hankel_decaps_timing/decaps_timing.py` | [`review_evidence/hankel_decaps_timing/`](review_evidence/hankel_decaps_timing/) |
 | Known-answer tests, all sets | `make kat` | `nist_analysis_kit/kat/test_vectors/` |
 | Generic attack estimates (Section 7, Table 7) | `LATTICE_ESTIMATOR=/path/to/lattice-estimator sage estimate_full.sage`, and the other `estimate_*.sage` scripts | [`review_evidence/hankel_paper_estimates_20261006T044216Z/`](review_evidence/hankel_paper_estimates_20261006T044216Z/) |
 | Parameter study and failure-rate bound (Section 6, Appendix A) | `sage estimate_param_grid.sage`; `python3 dfr_grid.py` | same directory |
@@ -135,6 +138,7 @@ The estimates use the [lattice estimator](https://github.com/malb/lattice-estima
 | `test_hankel_native_kem.py`, `ct_branch_audit.py` | Native/reference equivalence, static audit, timing tests |
 | `hankel_kem_neon.c`, `.h` | ARMv8 NEON kernels used by the Python backends |
 | `nist_analysis_kit/kat/` | KAT generator, validator and fixtures |
+| `challenges/whlwe_v1/` | Challenge instances, solution checker, baseline solver and estimates |
 | `review_evidence/` | Refactor equivalence evidence, the paper's estimate and timing evidence, and the higher-category derivation |
 | `paper/` | Paper source, bibliography and PDF |
 

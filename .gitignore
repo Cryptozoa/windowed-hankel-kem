@@ -28,3 +28,7 @@ bench_hankel_native
 
 # Third-party papers used while writing (not redistributed)
 paper/literature/
+
+# Challenge master seeds must never be committed (they live outside the repository)
+*master-seed*
+*.master.hex

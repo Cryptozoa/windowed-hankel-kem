@@ -1,0 +1,240 @@
+{
+ "estimator_commit": "53da5982597709ba0fdf94ea37a84d822310fd84",
+ "note": "log2 cost (block size); the estimator reports no block size below 40",
+ "estimates": {
+  "64": {
+   "usvp_core_svp": {
+    "log2_cost": 11.7,
+    "beta": 40
+   },
+   "usvp_matzov": {
+    "log2_cost": 38.6,
+    "beta": 40
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 12.4,
+    "beta": 41
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 40.4,
+    "beta": 40
+   }
+  },
+  "96": {
+   "usvp_core_svp": {
+    "log2_cost": 11.7,
+    "beta": 40
+   },
+   "usvp_matzov": {
+    "log2_cost": 39.8,
+    "beta": 40
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 13.0,
+    "beta": 41
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 41.6,
+    "beta": 41
+   }
+  },
+  "128": {
+   "usvp_core_svp": {
+    "log2_cost": 11.7,
+    "beta": 40
+   },
+   "usvp_matzov": {
+    "log2_cost": 40.8,
+    "beta": 40
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 17.4,
+    "beta": 55
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 41.9,
+    "beta": 40
+   }
+  },
+  "160": {
+   "usvp_core_svp": {
+    "log2_cost": 19.6,
+    "beta": 67
+   },
+   "usvp_matzov": {
+    "log2_cost": 75.6,
+    "beta": 193
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 23.7,
+    "beta": 79
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 49.9,
+    "beta": 67
+   }
+  },
+  "192": {
+   "usvp_core_svp": {
+    "log2_cost": 27.4,
+    "beta": 94
+   },
+   "usvp_matzov": {
+    "log2_cost": 86.4,
+    "beta": 232
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 30.5,
+    "beta": 103
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 57.6,
+    "beta": 92
+   }
+  },
+  "224": {
+   "usvp_core_svp": {
+    "log2_cost": 35.0,
+    "beta": 120
+   },
+   "usvp_matzov": {
+    "log2_cost": 64.0,
+    "beta": 120
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 37.6,
+    "beta": 127
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 63.6,
+    "beta": 114
+   }
+  },
+  "256": {
+   "usvp_core_svp": {
+    "log2_cost": 42.9,
+    "beta": 147
+   },
+   "usvp_matzov": {
+    "log2_cost": 71.5,
+    "beta": 147
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 45.1,
+    "beta": 154
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 70.3,
+    "beta": 139
+   }
+  },
+  "320": {
+   "usvp_core_svp": {
+    "log2_cost": 58.7,
+    "beta": 201
+   },
+   "usvp_matzov": {
+    "log2_cost": 86.6,
+    "beta": 201
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 59.5,
+    "beta": 202
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 84.9,
+    "beta": 191
+   }
+  },
+  "384": {
+   "usvp_core_svp": {
+    "log2_cost": 75.0,
+    "beta": 257
+   },
+   "usvp_matzov": {
+    "log2_cost": 102.2,
+    "beta": 257
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 74.5,
+    "beta": 255
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 99.6,
+    "beta": 244
+   }
+  },
+  "448": {
+   "usvp_core_svp": {
+    "log2_cost": 91.4,
+    "beta": 313
+   },
+   "usvp_matzov": {
+    "log2_cost": 117.9,
+    "beta": 313
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 89.9,
+    "beta": 306
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 114.5,
+    "beta": 296
+   }
+  },
+  "512": {
+   "usvp_core_svp": {
+    "log2_cost": 108.3,
+    "beta": 371
+   },
+   "usvp_matzov": {
+    "log2_cost": 134.1,
+    "beta": 371
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 105.4,
+    "beta": 361
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 129.6,
+    "beta": 351
+   }
+  },
+  "576": {
+   "usvp_core_svp": {
+    "log2_cost": 125.3,
+    "beta": 429
+   },
+   "usvp_matzov": {
+    "log2_cost": 150.3,
+    "beta": 429
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 121.2,
+    "beta": 414
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 145.1,
+    "beta": 405
+   }
+  },
+  "640": {
+   "usvp_core_svp": {
+    "log2_cost": 142.5,
+    "beta": 488
+   },
+   "usvp_matzov": {
+    "log2_cost": 166.8,
+    "beta": 488
+   },
+   "dual_hybrid_core_svp": {
+    "log2_cost": 137.1,
+    "beta": 468
+   },
+   "dual_hybrid_matzov": {
+    "log2_cost": 160.3,
+    "beta": 459
+   }
+  }
+ }
+}

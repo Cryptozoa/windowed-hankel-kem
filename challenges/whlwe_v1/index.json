@@ -1,0 +1,52 @@
+{
+ "challenge": "WHLWE-challenge-v1",
+ "q": 4096,
+ "sizes": [
+  64,
+  96,
+  128,
+  160,
+  192,
+  224,
+  256,
+  320,
+  384,
+  448,
+  512,
+  576,
+  640
+ ],
+ "kinds": [
+  "hankel",
+  "uniform"
+ ],
+ "master_commitment": "3ea2f818a1734b3e63fa1927779b692ccf591fdab17efa242851a09ec9f030fa",
+ "instances": [
+  "whlwe-v1-n0064-hankel",
+  "whlwe-v1-n0064-uniform",
+  "whlwe-v1-n0096-hankel",
+  "whlwe-v1-n0096-uniform",
+  "whlwe-v1-n0128-hankel",
+  "whlwe-v1-n0128-uniform",
+  "whlwe-v1-n0160-hankel",
+  "whlwe-v1-n0160-uniform",
+  "whlwe-v1-n0192-hankel",
+  "whlwe-v1-n0192-uniform",
+  "whlwe-v1-n0224-hankel",
+  "whlwe-v1-n0224-uniform",
+  "whlwe-v1-n0256-hankel",
+  "whlwe-v1-n0256-uniform",
+  "whlwe-v1-n0320-hankel",
+  "whlwe-v1-n0320-uniform",
+  "whlwe-v1-n0384-hankel",
+  "whlwe-v1-n0384-uniform",
+  "whlwe-v1-n0448-hankel",
+  "whlwe-v1-n0448-uniform",
+  "whlwe-v1-n0512-hankel",
+  "whlwe-v1-n0512-uniform",
+  "whlwe-v1-n0576-hankel",
+  "whlwe-v1-n0576-uniform",
+  "whlwe-v1-n0640-hankel",
+  "whlwe-v1-n0640-uniform"
+ ]
+}
