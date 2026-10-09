@@ -145,4 +145,4 @@ The estimates use the [lattice estimator](https://github.com/malb/lattice-estima
 
 ## License
 
-Dual-licensed under Apache-2.0 or MIT, at your option. See [`LICENSE`](LICENSE).
+Copyright 2026 Marcos Mendoza III. Licensed under the Apache License, Version 2.0; see [`LICENSE`](LICENSE).
