@@ -24,3 +24,21 @@ whether Hankel structure makes `Lambda_g` contain unusually short vectors.
   (56, 15)` (lattice dimension `m = 45, 58, 71`) are chosen so that `21 | L` and all six target factors
   divide `X^L - 1`; 20 instances per case for the first two sizes, 5 for the third. `cases/jobs.txt`
   lists the cases and `small_size.txt` collects the results.
+
+## Biased functionals (`biased.sage` -> `biased.txt`)
+
+Functionals with `H_m(a)^T phi = R_g^T c + w`, `w` short, give
+`phi^T b = c^T (s~ mod g) + w^T s + phi^T e`. The pairs `(phi, w)` form the lattice
+`{ (phi, w) : E_g (H^T phi - w) = 0 mod q }` of dimension `m + n` and determinant `q^(n-k)`
+(`E_g` has kernel `{R_g^T c}` and contains an identity block).
+
+- `sage biased.sage full`: at n = 640, the biased lattice's Gaussian heuristic is below that of the
+  dual-hybrid lattice that guesses `k` coordinates (same determinant, dimension `m + n - k`) by at most
+  0.02 bits (sextic factors), while the guess `s~ mod g` costs 4.7 to 58.8 bits more.
+- `sage biased.sage small`: the lattice contains trivial vectors `(0, R_g^T c)` (`phi = 0`, no
+  information), which for `X - 1` and `Phi_3` are far shorter than any useful vector. The script projects
+  them away (orthogonally to the `k` vectors `(0, R_g^T e_t)`) and compares the projected lattice with its
+  own Gaussian heuristic: exact SVP at `(n, W) = (24, 16)` (dimension 64), BKZ-40 first vector at
+  `(32, 21)` and `(40, 5)` (dimension 85), 20 Hankel and 20 uniform instances per target. Mean ratios
+  differ by at most 0.015 (exact) and 0.018 (BKZ-40), in both directions; smallest p = 0.086 over 21
+  comparisons. The script uses 14 worker processes ("fork" start method) and took about 16 minutes.

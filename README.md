@@ -117,7 +117,7 @@ Every figure in the paper comes from a script in this repository, with its recor
 | Known-answer tests, all sets | `make kat` | `nist_analysis_kit/kat/test_vectors/` |
 | Generic attack estimates (Section 7, Table 7) | `LATTICE_ESTIMATOR=/path/to/lattice-estimator sage estimate_full.sage`, and the other `estimate_*.sage` scripts | [`review_evidence/hankel_paper_estimates_20261006T044216Z/`](review_evidence/hankel_paper_estimates_20261006T044216Z/) |
 | Parameter study and failure-rate bound (Section 6, Appendix A) | `sage estimate_param_grid.sage`; `python3 dfr_grid.py` | same directory |
-| Cyclic-embedding functionals (Section 4.3, Appendix C) | `sage functionals.sage full`; `sage functionals.sage case n W target trials seed` | [`review_evidence/hankel_embedding_functionals/`](review_evidence/hankel_embedding_functionals/) |
+| Cyclic-embedding functionals, exact and biased (Section 4.3, Appendix C) | `sage functionals.sage full`; `sage functionals.sage case n W target trials seed`; `sage biased.sage` | [`review_evidence/hankel_embedding_functionals/`](review_evidence/hankel_embedding_functionals/) |
 | Subring argument and decryption equations (Sections 4.3 and 5.3, Proposition 2) | `sage subrings.sage`; `sage decryption_equations.sage` | [`review_evidence/hankel_open_directions/`](review_evidence/hankel_open_directions/) |
 | Shifted dual functionals (Section 4.3, Table 2) | `sage free_vectors.sage`; `sage matzov_vectors.sage`; `python shift_check.py` | [`review_evidence/hankel_shift_structure/`](review_evidence/hankel_shift_structure/) |
 | Lattice reduction at reduced dimensions (Appendix E) | `./run_primal.sh`; `./run_geometry.sh ...` (see its README) | [`review_evidence/hankel_reduced_lattices/`](review_evidence/hankel_reduced_lattices/) |
