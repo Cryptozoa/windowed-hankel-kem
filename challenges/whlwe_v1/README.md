@@ -68,8 +68,8 @@ Hankel and uniform matrices (from about 20 at n = 100 to about 46 at n = 130).
 
 ## Reporting
 
-Open an issue in this repository with the instance name, the output of `verify.py`, and enough about
-the method to reproduce it: the algorithm, its parameters and the cost. Results that compare a Hankel
+Open an issue in this repository, or write to marcos.mendoza@tuta.com, with the instance name, the
+output of `verify.py`, and enough about the method to reproduce it: the algorithm, its parameters and the cost. Results that compare a Hankel
 instance with its uniform twin are the most useful, and so are negative results: a structural attack
 that does no better than `baseline.py` is worth knowing about too. Solved instances will be listed here.
 
