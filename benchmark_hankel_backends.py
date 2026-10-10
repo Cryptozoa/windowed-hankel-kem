@@ -67,7 +67,7 @@ def source_hashes():
         package = root / directory
         if package.is_dir():
             files.update(package.rglob("*.py"))
-    library = root / "libhankel_kem_neon.dylib"
+    library = root / ("libhankel_kem_neon." + ("dylib" if sys.platform == "darwin" else "so"))
     if library.exists():
         files.add(library)
     return {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()

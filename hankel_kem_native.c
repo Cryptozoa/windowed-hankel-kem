@@ -21,6 +21,11 @@
  * audit in ct_branch_audit.py, as can hk_keccakf1600.
  */
 
+/* getentropy() is outside C99; glibc declares it only on request. Must precede every include. */
+#if !defined(__APPLE__) && !defined(_DEFAULT_SOURCE)
+#define _DEFAULT_SOURCE
+#endif
+
 #include "hankel_kem_native.h"
 #include "hankel_hash.h"
 

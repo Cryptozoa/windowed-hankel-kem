@@ -25,7 +25,8 @@ from hankel_kem_wrapper import (
 )
 
 # Load C library
-lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "libhankel_kem_neon.dylib")
+lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        "libhankel_kem_neon." + ("dylib" if sys.platform == "darwin" else "so"))
 if not os.path.exists(lib_path):
     raise FileNotFoundError(f"Native shared library not found: {lib_path}")
 

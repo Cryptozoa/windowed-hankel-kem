@@ -46,16 +46,16 @@ The derivation is in [`review_evidence/hankel_higher_categories/`](review_eviden
 
 ## Building and testing
 
-You need macOS on Apple Silicon and Python 3.9+ with NumPy. Without the native library, the Python layer falls back to its pure-Python backends. The native KEM itself is plain C99 with NEON and SHA-256 instructions where available, and portable fallbacks otherwise.
+You need a C99 compiler and Python 3.9+ with NumPy. The build has been tested on macOS with Apple Silicon (Apple clang 17) and, in Docker containers, on Debian Linux for ARM64 and x86-64 (GCC 14); see [`review_evidence/hankel_linux_builds_20261010/`](review_evidence/hankel_linux_builds_20261010/). Without the native library, the Python layer falls back to its pure-Python backends. The native KEM itself is plain C99 with NEON and SHA-256 instructions where available, and portable fallbacks otherwise.
 
 ```bash
 make
 make test
 ```
 
-`make` builds `libhankel_kem_neon.dylib`. `make test` runs every suite:
+`make` builds `libhankel_kem_neon.dylib` on macOS and `libhankel_kem_neon.so` on Linux. `make test` runs every suite:
 - the native KEM in C, for every set: hash known answers, all KAT vectors, and implicit rejection;
-- the native KEM from Python, for every set: byte-exact equivalence with the reference, the static constant-time audit, and fixed-versus-random timing tests;
+- the native KEM from Python, for every set: byte-exact equivalence with the reference, the static constant-time audit (macOS on Apple Silicon only; skipped elsewhere), and fixed-versus-random timing tests;
 - the refactor and edge-case unit tests;
 - NEON/Python bit-exactness;
 - the stress gauntlet: 500 IND-CCA exchanges, tampering and implicit rejection, and an exact recomputation of the DFR bound;
@@ -94,7 +94,7 @@ These are the WH-640 functions. WH-936 and WH-1208 have the same API under the p
 
 ## Performance
 
-Medians on an Apple M3 Max: 5,000 calls for the native KEM (`make bench`) and 2,000 for the Python path:
+Medians on an Apple M3 Max with Apple clang: 5,000 calls for the native KEM (`make bench`) and 2,000 for the Python path. The Linux build uses generic compiler flags and is slower (about 132 µs per WH-640 handshake on ARM64 Linux with GCC):
 
 | Implementation | Key generation | Encapsulation | Decapsulation | Handshake |
 | :--- | :---: | :---: | :---: | :---: |

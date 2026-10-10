@@ -18,6 +18,7 @@ hankel_kem/generic.py, KAT files WINDOWED_HANKEL_{936,1208}_v1).
 
 import ctypes
 import os
+import platform
 import sys
 import time
 
@@ -180,6 +181,10 @@ AUDIT_TARGETS = [("_hk_keccakf1600", ("x0",))] + [
 
 
 def test_5_static_audit():
+    if sys.platform != "darwin" or platform.machine() != "arm64":
+        print("[SKIP] 5. Static audit: needs otool and an ARM64 Mach-O library (macOS on Apple Silicon); "
+              "the recorded results are in review_evidence/hankel_native_sets_20261007T164709Z/")
+        return
     total_insns = total_branches = 0
     for sym, public_args in AUDIT_TARGETS:
         n, counts, findings = audit(str(NATIVE_LIBRARY_PATH), sym, public_args, ())

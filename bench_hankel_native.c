@@ -6,6 +6,11 @@
  * Usage: bench_hankel_native [iterations [set]]   (default 5000, all sets; set = 640, 936, 1208)
  */
 
+/* clock_gettime() is POSIX, not C99; glibc declares it only on request. Must precede every include. */
+#if !defined(__APPLE__) && !defined(_POSIX_C_SOURCE)
+#define _POSIX_C_SOURCE 199309L
+#endif
+
 #include "hankel_kem_native.h"
 
 #include <stdio.h>

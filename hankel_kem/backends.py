@@ -6,6 +6,7 @@ fallback after an explicitly selected backend fails.
 """
 
 import ctypes
+import sys
 from contextlib import contextmanager
 from contextvars import ContextVar
 from pathlib import Path
@@ -126,7 +127,9 @@ class NeonBackend(ReferenceBackend):
         return bytes(out)
 
 
-NATIVE_LIBRARY_PATH = Path(__file__).resolve().parents[1] / "libhankel_kem_neon.dylib"
+# The shared library built by `make`: a .dylib on macOS, a .so elsewhere.
+NATIVE_LIBRARY_NAME = "libhankel_kem_neon." + ("dylib" if sys.platform == "darwin" else "so")
+NATIVE_LIBRARY_PATH = Path(__file__).resolve().parents[1] / NATIVE_LIBRARY_NAME
 NATIVE_LIBRARY = None
 NATIVE_LOAD_ERROR = None
 _BACKENDS = {"reference": ReferenceBackend(), "convolution": ConvolutionBackend()}
