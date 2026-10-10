@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, the challenge instances or the Windowed Hankel LWE problem, please cite the paper below."
+type: software
+title: "Windowed Hankel KEM: implementation, challenge instances and evidence for Windowed Hankel LWE"
+version: "0.2"
+authors:
+  - family-names: "Mendoza"
+    given-names: "Marcos"
+    name-suffix: "III"
+    affiliation: "Independent Researcher"
+    email: "marcos.mendoza@tuta.com"
+    orcid: "https://orcid.org/0009-0001-7723-4505"
+repository-code: "https://github.com/Cryptozoa/windowed-hankel-kem"
+license: Apache-2.0
+keywords:
+  - post-quantum cryptography
+  - learning with errors
+  - structured LWE
+  - middle-product LWE
+  - Hankel matrices
+  - cryptanalysis
+  - key encapsulation
+abstract: >-
+  Reference and constant-time native implementations of Windowed Hankel KEM, challenge
+  instances of the Windowed Hankel LWE problem, and the scripts and recorded outputs behind
+  every figure of the accompanying paper. Research code: the hardness of Windowed Hankel LWE
+  is an assumption, and the KEM is not for production use.
+preferred-citation:
+  type: article
+  status: preprint
+  title: "Windowed Hankel LWE: A Structured-LWE Problem for Cryptanalysis, with a Compact KEM"
+  authors:
+    - family-names: "Mendoza"
+      given-names: "Marcos"
+      name-suffix: "III"
+      affiliation: "Independent Researcher"
+      orcid: "https://orcid.org/0009-0001-7723-4505"
+  year: 2026
+  url: "https://github.com/Cryptozoa/windowed-hankel-kem"
