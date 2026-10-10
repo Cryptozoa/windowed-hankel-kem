@@ -573,7 +573,7 @@ Two further limitations are practical. Our implementation multiplies in $O(nm)$ 
 Windowed Hankel LWE publishes a single long sequence and keeps the secret short. This gives up the MP-LWE reductions, and in exchange an LWE-based KEM needs only 2.5~KB per exchange, without reducing products modulo any polynomial. If the structure gives an attacker nothing, generic attacks cost at least 20 bits more than against Kyber-512; this is a conditional baseline, not an established security level. The published structural attacks do not apply as published. For the most natural new one, through the hidden cyclic embedding, and for its subrings, biased and shifted functionals, algebraic decoding and experiments at reduced dimensions, we found no advantage under the models and experiments examined. The structure has yet to face sustained independent cryptanalysis. We hope that the precise statement of the problem, the attack summary of Table~\ref{tab:checklist}, the criteria of Section~\ref{sec:checklist} and the challenge instances make that analysis easier to undertake.
 
 \section*{Acknowledgments}
-We thank two colleagues for detailed comments on an earlier draft, which shaped the analysis of Sections~\ref{sec:mplwe} and~\ref{sec:structure}. Portions of the analysis, the implementation and the manuscript were prepared with the assistance of Claude (Anthropic), an AI model. The author takes full responsibility for the content.
+We thank several colleagues for detailed comments on earlier drafts, which shaped the analysis of Sections~\ref{sec:mplwe}--\ref{sec:checklist} and the security argument of Section~\ref{sec:kem-security}. Portions of the analysis, the implementation and the manuscript were prepared with the assistance of Claude (Anthropic), an AI model. The author takes full responsibility for the content.
 
 \bibliographystyle{plain}
 \bibliography{hankel_references}
@@ -757,7 +757,7 @@ $L = 2n + W - 1$ & 1{,}999 (prime) & 2{,}543 (prime) \\
 %=====================================================================
 \section{Experiments at Reduced Dimensions}\label{app:reduced}
 %=====================================================================
-This appendix applies the last criterion of Section~\ref{sec:checklist}. If lattice reduction or algebraic solving could exploit the Hankel structure, Hankel instances would fall at smaller block sizes, reduce to shorter vectors, or be solved from fewer samples than uniform instances of the same shape. We use $q = 4096$, $\CBD_2$ secret and error, and BKZ~2.0 in fpylll~0.6.4 with its default strategies.
+This appendix applies the last criterion of Section~\ref{sec:checklist}. If lattice reduction or algebraic solving could exploit the Hankel structure, Hankel instances would fall at smaller block sizes, reduce to shorter vectors, or be solved from fewer samples than uniform instances of the same shape. We use $q = 4096$, $\CBD_2$ secret and error, and BKZ~2.0~\cite{chen2011bkz} in fpylll~0.6.4 with its default strategies.
 
 \paragraph{Primal attack.} For each $n$ we draw instances $b = As + e$ in which $A$ is either $H_m(a)$ or uniform, with the same $m$, and run progressive BKZ on the embedding lattice, two tours per block size, until a basis vector equals $\pm(-e, s, -1)$. We choose $m$ to minimize the block size predicted by the 2016 estimate. Every instance was solved (Table~\ref{tab:reduced}). The differences are below one unit of block size, change sign with $n$ and are not significant; the observed block sizes exceed the predictions equally for both kinds.
 
