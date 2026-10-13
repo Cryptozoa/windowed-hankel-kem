@@ -122,6 +122,7 @@ Every figure in the paper comes from a script in this repository, with its recor
 | Shifted dual functionals (Section 4.3, Table 2) | `sage free_vectors.sage`; `sage matzov_vectors.sage`; `python shift_check.py` | [`review_evidence/hankel_shift_structure/`](review_evidence/hankel_shift_structure/) |
 | Lattice reduction at reduced dimensions (Appendix E) | `./run_primal.sh`; `./run_geometry.sh ...` (see its README) | [`review_evidence/hankel_reduced_lattices/`](review_evidence/hankel_reduced_lattices/) |
 | Low-rank Hankel methods and degrees of freedom (Sections 4.2 and 4.3) | `python3 review_evidence/hankel_low_rank/low_rank.py` | [`review_evidence/hankel_low_rank/`](review_evidence/hankel_low_rank/) |
+| Kung's realization and ERA with modal coherence (Section 4.3) | `python3 review_evidence/hankel_era_realization/era.py` | [`review_evidence/hankel_era_realization/`](review_evidence/hankel_era_realization/) |
 | Algebraic decoding (Section 4.3, Appendix E) | `python3 hamming.py`; `sage xl.sage` | [`review_evidence/hankel_pade_decoding/`](review_evidence/hankel_pade_decoding/) |
 | Category 3 and 5 sets (Appendix D) | the `.sage` and `.py` scripts listed in its README | [`review_evidence/hankel_higher_categories/`](review_evidence/hankel_higher_categories/) |
 

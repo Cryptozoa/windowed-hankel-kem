@@ -1,0 +1,29 @@
+n = 640, m = 768, L = 1407, q = 4096; 20 keys; ERA order 20, Hankel 384 x 384
+key  0: wraps std 7.70 in [-24, 23], 4.94 bits | H_m(a) real rank 640, gap 1.027 at 4 (uniform 1.023 at 585), all 1.138 at 638 (uniform 1.075 at 638) | ERA gap b 1.029 (uniform 1.087), MAC>0.9 b  4 (uniform 10)
+key  1: wraps std 7.30 in [-22, 21], 4.88 bits | H_m(a) real rank 640, gap 1.085 at 10 (uniform 1.030 at 596), all 1.198 at 636 (uniform 1.055 at 637) | ERA gap b 1.079 (uniform 1.043), MAC>0.9 b 12 (uniform  6)
+key  2: wraps std 6.87 in [-20, 22], 4.77 bits | H_m(a) real rank 640, gap 1.089 at 6 (uniform 1.021 at 579), all 1.089 at 6 (uniform 1.098 at 638) | ERA gap b 1.094 (uniform 1.136), MAC>0.9 b  4 (uniform 10)
+key  3: wraps std 7.12 in [-25, 21], 4.84 bits | H_m(a) real rank 640, gap 1.062 at 4 (uniform 1.020 at 597), all 1.343 at 636 (uniform 1.081 at 635) | ERA gap b 1.067 (uniform 1.067), MAC>0.9 b 10 (uniform  2)
+key  4: wraps std 7.24 in [-23, 22], 4.86 bits | H_m(a) real rank 640, gap 1.110 at 4 (uniform 1.019 at 591), all 1.110 at 4 (uniform 1.064 at 639) | ERA gap b 1.081 (uniform 1.075), MAC>0.9 b 10 (uniform  6)
+key  5: wraps std 7.28 in [-27, 26], 4.86 bits | H_m(a) real rank 640, gap 1.058 at 4 (uniform 1.027 at 585), all 1.294 at 639 (uniform 1.057 at 636) | ERA gap b 1.219 (uniform 1.043), MAC>0.9 b  2 (uniform  4)
+key  6: wraps std 7.44 in [-23, 26], 4.91 bits | H_m(a) real rank 640, gap 1.057 at 20 (uniform 1.022 at 570), all 1.075 at 630 (uniform 1.085 at 639) | ERA gap b 1.066 (uniform 1.103), MAC>0.9 b  8 (uniform  6)
+key  7: wraps std 6.88 in [-19, 20], 4.78 bits | H_m(a) real rank 640, gap 1.060 at 2 (uniform 1.020 at 597), all 1.081 at 639 (uniform 1.055 at 639) | ERA gap b 1.103 (uniform 1.062), MAC>0.9 b  8 (uniform 10)
+key  8: wraps std 7.47 in [-20, 28], 4.90 bits | H_m(a) real rank 640, gap 1.028 at 4 (uniform 1.021 at 574), all 2.111 at 638 (uniform 1.076 at 635) | ERA gap b 1.060 (uniform 1.152), MAC>0.9 b  6 (uniform 10)
+key  9: wraps std 7.39 in [-24, 23], 4.89 bits | H_m(a) real rank 640, gap 1.118 at 2 (uniform 1.020 at 524), all 1.984 at 639 (uniform 1.098 at 639) | ERA gap b 1.217 (uniform 1.120), MAC>0.9 b  8 (uniform  4)
+key 10: wraps std 6.88 in [-22, 23], 4.79 bits | H_m(a) real rank 640, gap 1.039 at 30 (uniform 1.022 at 597), all 1.276 at 638 (uniform 1.085 at 638) | ERA gap b 1.035 (uniform 1.040), MAC>0.9 b 10 (uniform  9)
+key 11: wraps std 7.18 in [-23, 24], 4.84 bits | H_m(a) real rank 640, gap 1.078 at 10 (uniform 1.025 at 599), all 1.211 at 636 (uniform 1.100 at 638) | ERA gap b 1.069 (uniform 1.074), MAC>0.9 b 10 (uniform  8)
+key 12: wraps std 7.60 in [-23, 22], 4.93 bits | H_m(a) real rank 640, gap 1.395 at 2 (uniform 1.023 at 588), all 1.395 at 2 (uniform 1.096 at 638) | ERA gap b 1.158 (uniform 1.064), MAC>0.9 b  0 (uniform  8)
+key 13: wraps std 7.32 in [-21, 22], 4.87 bits | H_m(a) real rank 640, gap 1.047 at 10 (uniform 1.023 at 596), all 1.883 at 638 (uniform 1.061 at 630) | ERA gap b 1.026 (uniform 1.053), MAC>0.9 b  6 (uniform 14)
+key 14: wraps std 7.55 in [-29, 20], 4.91 bits | H_m(a) real rank 640, gap 1.052 at 2 (uniform 1.027 at 583), all 1.193 at 636 (uniform 1.059 at 638) | ERA gap b 1.057 (uniform 1.071), MAC>0.9 b  6 (uniform 12)
+key 15: wraps std 7.42 in [-23, 22], 4.90 bits | H_m(a) real rank 640, gap 1.031 at 9 (uniform 1.021 at 595), all 1.136 at 636 (uniform 1.071 at 639) | ERA gap b 1.066 (uniform 1.023), MAC>0.9 b 10 (uniform  6)
+key 16: wraps std 6.82 in [-19, 20], 4.78 bits | H_m(a) real rank 640, gap 1.149 at 2 (uniform 1.018 at 572), all 1.258 at 636 (uniform 1.081 at 639) | ERA gap b 1.290 (uniform 1.067), MAC>0.9 b  8 (uniform 12)
+key 17: wraps std 7.94 in [-24, 24], 4.97 bits | H_m(a) real rank 640, gap 1.205 at 2 (uniform 1.023 at 575), all 1.205 at 2 (uniform 1.090 at 638) | ERA gap b 1.122 (uniform 1.065), MAC>0.9 b  8 (uniform  2)
+key 18: wraps std 7.07 in [-25, 20], 4.83 bits | H_m(a) real rank 640, gap 1.093 at 2 (uniform 1.019 at 584), all 1.228 at 638 (uniform 1.065 at 638) | ERA gap b 1.153 (uniform 1.104), MAC>0.9 b  4 (uniform 14)
+key 19: wraps std 7.84 in [-25, 23], 4.93 bits | H_m(a) real rank 640, gap 1.206 at 2 (uniform 1.021 at 598), all 1.206 at 2 (uniform 1.063 at 633) | ERA gap b 1.066 (uniform 1.085), MAC>0.9 b  4 (uniform 10)
+
+Summary over the keys (ranges; Mann-Whitney p for KEM against uniform):
+  wrap counts: std 6.824-7.943, extremes -29 to 28, entropy 4.77-4.97 bits per equation, 3665-3820 bits over 768 equations (secret: 1,300 bits)
+  H_m(a), real: rank 640-640 of 640; largest consecutive ratio over singular values 2-600 1.027-1.395 at positions 2-30 (uniform matrix 1.018-1.030, p = 0.000); share of the squared norm in the top 10 singular values 0.058-0.082 (uniform 0.053-0.054); over all 1.075-2.111 (uniform 1.055-1.100, p = 0.000), at positions 2-639 (uniform 630-639); smallest / second singular value 0.024-0.068 (uniform 0.045-0.052)
+  ERA on b: largest consecutive ratio 1.026-1.290 (uniform sequence 1.023-1.152, p = 0.441); modes with MAC > 0.9 of 20: 0-12, mean 6.9 (uniform 2-14, mean 8.2, p = 0.284); median MAC p = 0.156
+
+Contrast, order-64 recurrence mod q: rank of H_m(a) mod 2 64; real rank 640 of 640, largest consecutive ratio 1.175; ERA gap 1.089, MAC > 0.9: 8 of 20
+Contrast, five damped modes + 10% noise: ERA gap 10.787 after singular value 10, MAC > 0.9: 10 of 10
