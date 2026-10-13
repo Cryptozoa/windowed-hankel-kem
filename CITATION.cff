@@ -10,6 +10,14 @@ authors:
     affiliation: "Independent Researcher"
     email: "marcos.mendoza@tuta.com"
     orcid: "https://orcid.org/0009-0001-7723-4505"
+doi: "10.5281/zenodo.23347680"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23347680"
+    description: "Zenodo archive, all versions"
+  - type: doi
+    value: "10.5281/zenodo.23347681"
+    description: "Zenodo archive, version 0.2"
 repository-code: "https://github.com/Cryptozoa/windowed-hankel-kem"
 license: Apache-2.0
 keywords:
