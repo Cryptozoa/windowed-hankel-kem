@@ -9,7 +9,7 @@ The accompanying paper, [*Windowed Hankel LWE: A Structured-LWE Problem for Cryp
 
 **Preprint.** The paper is on Zenodo: [10.5281/zenodo.23402944](https://doi.org/10.5281/zenodo.23402944) for all versions, and [10.5281/zenodo.23402945](https://doi.org/10.5281/zenodo.23402945) for v1.
 
-**Archive.** Each code release is archived on Zenodo: [10.5281/zenodo.23347680](https://doi.org/10.5281/zenodo.23347680) for all versions, and [10.5281/zenodo.23347681](https://doi.org/10.5281/zenodo.23347681) for v0.2.
+**Archive.** Each code release is archived on Zenodo: [10.5281/zenodo.23347680](https://doi.org/10.5281/zenodo.23347680) for all versions, [10.5281/zenodo.23421851](https://doi.org/10.5281/zenodo.23421851) for v0.3, and [10.5281/zenodo.23347681](https://doi.org/10.5281/zenodo.23347681) for v0.2.
 
 **Challenge instances.** [`challenges/whlwe_v1/`](challenges/whlwe_v1/) holds 26 instances of the problem, from n = 64 to the KEM's public-key shape at n = 640, each with a uniform-matrix twin and a hash commitment to its secret, plus a solution checker and a baseline solver.
 
