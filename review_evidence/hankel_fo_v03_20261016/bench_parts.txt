@@ -1,0 +1,8 @@
+# bench_parts, 2026-10-16T15:13Z, Apple M3 Max, Apple clang version 21.0.0 (clang-2100.3.34.2)
+WH-640 encapsulation, parts (Apple clang, -O3)
+  Hankel product u = H_768(a) r + e1             median   7.06 us
+  Hankel product K = H_128(b) r                  median   1.14 us
+  SHAKE256: public sequence (2814 bytes out)     median   3.63 us
+  SHAKE256: CPA coins (1536 bytes out)           median   2.09 us
+  SHAKE256: G(M) (32 bytes in, 32 out)           median   0.24 us
+  SHAKE256: H(M, ct) (1388 bytes in, 32 out)     median   4.57 us

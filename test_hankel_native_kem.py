@@ -2,8 +2,8 @@
 """Tests of the native Windowed Hankel KEM (hankel_kem_native.c) against the Python references.
 
 Every test runs for each parameter set: WH-640 (reference hankel_kem/fo.py, KAT file
-RESEARCH_v2) and the candidate Category 3 and 5 sets WH-936 and WH-1208 (reference
-hankel_kem/generic.py, KAT files WINDOWED_HANKEL_{936,1208}_v1).
+RESEARCH_v3) and the candidate Category 3 and 5 sets WH-936 and WH-1208 (reference
+hankel_kem/generic.py, KAT files WINDOWED_HANKEL_{936,1208}_v2).
 
 1. KATs: all vectors through the native API.
 2. Equivalence with the reference on random inputs: every seed-length branch of key

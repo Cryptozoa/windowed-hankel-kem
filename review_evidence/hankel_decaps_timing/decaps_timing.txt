@@ -1,12 +1,13 @@
-== run 1
-WH-640   accept vs reject: |t| = 0.46, medians 19.62 / 19.62 us (difference +0 ns); control |t| = 0.71
-WH-936   accept vs reject: |t| = 0.20, medians 33.67 / 33.67 us (difference +0 ns); control |t| = 1.10
-WH-1208  accept vs reject: |t| = 1.48, medians 48.29 / 48.29 us (difference +0 ns); control |t| = 0.50
-== run 2
-WH-640   accept vs reject: |t| = 2.13, medians 19.58 / 19.58 us (difference +0 ns); control |t| = 0.64
-WH-936   accept vs reject: |t| = 2.17, medians 33.79 / 33.75 us (difference +41 ns); control |t| = 1.21
-WH-1208  accept vs reject: |t| = 0.63, medians 48.29 / 48.29 us (difference +0 ns); control |t| = 1.42
-== run 3
-WH-640   accept vs reject: |t| = 0.61, medians 19.58 / 19.58 us (difference +0 ns); control |t| = 0.86
-WH-936   accept vs reject: |t| = 2.42, medians 33.67 / 33.67 us (difference +0 ns); control |t| = 1.73
-WH-1208  accept vs reject: |t| = 1.07, medians 48.29 / 48.29 us (difference +0 ns); control |t| = 1.20
+# python3 review_evidence/hankel_decaps_timing/decaps_timing.py, three runs, 2026-10-16, v0.3 (exact FO transform), Apple M3 Max, Apple clang version 21.0.0 (clang-2100.3.34.2), idle machine
+# run 1
+WH-640   accept vs reject: |t| = 0.53, medians 22.75 / 22.79 us (difference -41 ns); control |t| = 0.23
+WH-936   accept vs reject: |t| = 0.99, medians 38.58 / 38.58 us (difference +0 ns); control |t| = 0.44
+WH-1208  accept vs reject: |t| = 0.82, medians 54.71 / 54.71 us (difference +0 ns); control |t| = 1.53
+# run 2
+WH-640   accept vs reject: |t| = 0.86, medians 22.71 / 22.71 us (difference +0 ns); control |t| = 1.77
+WH-936   accept vs reject: |t| = 2.06, medians 38.46 / 38.46 us (difference +0 ns); control |t| = 1.46
+WH-1208  accept vs reject: |t| = 0.36, medians 54.38 / 54.38 us (difference +0 ns); control |t| = 0.76
+# run 3
+WH-640   accept vs reject: |t| = 0.58, medians 22.79 / 22.79 us (difference +0 ns); control |t| = 0.25
+WH-936   accept vs reject: |t| = 0.43, medians 38.38 / 38.38 us (difference +0 ns); control |t| = 0.44
+WH-1208  accept vs reject: |t| = 0.14, medians 55.46 / 55.33 us (difference +124 ns); control |t| = 1.84

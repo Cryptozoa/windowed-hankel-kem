@@ -107,13 +107,30 @@ def log2_gh(d, logdet2):
 
 
 def guess_entropy(g, n):
-    """Entropy of s~ mod g for s ~ CBD_2^n (Gaussian approximation), capped at 12 bits per coefficient."""
+    """Entropy (bits) of s~ mod g for s ~ CBD_2^n, capped at 12 bits per coefficient.
+
+    g divides Phi_d for an odd d dividing L, so s~ mod g is a function of s~ mod Phi_d, whose coefficients
+    are small integers: X^i mod Phi_d over Z is periodic with small entries. We use a Gaussian with the
+    covariance R R^T of that integer reduction (unit variance per coordinate of s). This bounds the entropy
+    of s~ mod g from above; for the factors of X^1407 - 1 the reduction modulo g is nearly injective on the
+    support (entropy_check.sage), so the bound is close. Using R_g directly, with its large 2-adic
+    entries, overstates the entropy for the cubic and sextic factors (earlier versions did so).
+    """
     if g is None:
         return 0.0
     k = g.degree()
-    R = reduction_matrix(g, n)
-    Rc = matrix(RDF, k, n, lambda t, j: ZZ(R[t, j]) - q if ZZ(R[t, j]) > q // 2 else ZZ(R[t, j]))
-    h = 0.5 * (k * log2(2 * pi * E) + log2(abs((Rc * Rc.transpose()).det())))
+    ZX0 = PolynomialRing(ZZ, "Z")
+    d = next(d for d in range(1, 5000, 2) if (ZqX(cyclotomic_polynomial(d).change_ring(Zq)) % g) == 0)
+    phi = ZX0(cyclotomic_polynomial(d))
+    kp, p, Zv = phi.degree(), ZX0(1), ZX0.gen()
+    R = matrix(ZZ, kp, n)
+    for deg in range(n):
+        co = p.list() + [0] * (kp - len(p.list()))
+        for t in range(kp):
+            R[t, n - 1 - deg] = co[t]
+        p = (p * Zv) % phi
+    Rr = R.change_ring(RDF)
+    h = 0.5 * (kp * log2(2 * pi * E) + log2(abs((Rr * Rr.transpose()).det())))
     return min(h, LOGQ * k)
 
 
@@ -134,9 +151,12 @@ def trivial_vectors(g, n, m):
     return [vector(ZZ, [0] * m + [cen(R[t, j]) for j in range(n)]) for t in range(g.degree())]
 
 
-def projected_shortest(rows, triv, exact=True):
+def projected_shortest(rows, triv, exact=True, m_phi=0):
     """Shortest vector (exact, or the first vector after BKZ-40) of the projection of the lattice
-    orthogonally to the trivial vectors; returns (length, log2 of the projected determinant, rank)."""
+    orthogonally to the trivial vectors; returns (length, log2 of the projected determinant, rank, and
+    whether the vector found has a nonzero functional part phi, i.e. is not a trivial vector (0, w)). The
+    projection acts only on the w coordinates, so phi is that of the lattice vector. The determinant is
+    det(Lambda) / sqrt(det(G)), the covolume of the quotient by the trivial vectors' span."""
     B = matrix(QQ, rows)
     d = B.nrows()
     logdet = log(abs(matrix(ZZ, rows).det()), 2)
@@ -160,7 +180,7 @@ def projected_shortest(rows, triv, exact=True):
     if r > 40:
         BKZReduction(A)(BKZ.EasyParam(40, max_loops=4 if exact else 8))
     v = SVP.shortest_vector(A) if exact else list(A[0])
-    return float(sqrt(sum(x * x for x in v))) / float(scale), float(logdet), r
+    return float(sqrt(sum(x * x for x in v))) / float(scale), float(logdet), r, any(v[i] != 0 for i in range(m_phi))
 
 
 def full_size():
@@ -186,8 +206,8 @@ def job(args):
         HT = matrix(Zq, n, m, lambda j, i: a[i + j])
     else:
         HT = random_matrix(Zq, n, m)
-    length, logdet, rank = projected_shortest(biased_lattice(HT, g), trivial_vectors(g, n, m), exact)
-    return n, W, ti, kind, length / 2 ** log2_gh(rank, logdet)
+    length, logdet, rank, nontriv = projected_shortest(biased_lattice(HT, g), trivial_vectors(g, n, m), exact, m)
+    return n, W, ti, kind, length / 2 ** log2_gh(rank, logdet), nontriv
 
 
 def small(sizes=((24, 16, True), (32, 21, False), (40, 5, False))):
@@ -198,10 +218,11 @@ def small(sizes=((24, 16, True), (32, 21, False), (40, 5, False))):
                 assert (ZqX(Y ** L - 1) % g) == 0
     jobs = [(n, W, ti, kind, 10 ** 7 * n + 10 ** 5 * ti + 2 * t + (kind == "uniform"), exact)
             for n, W, exact in sizes for ti in range(len(TARGETS)) for t in range(TRIALS) for kind in ("hankel", "uniform")]
-    res = {}
+    res, nontrivial = {}, []
     with mp.get_context("fork").Pool(14) as pool:
-        for n, W, ti, kind, r in pool.imap_unordered(job, jobs, chunksize=2):
+        for n, W, ti, kind, r, nontriv in pool.imap_unordered(job, jobs, chunksize=2):
             res.setdefault((n, W, ti, kind), []).append(r)
+            nontrivial.append(nontriv)
     print(f"# Reduced sizes: lambda_1 / GH of the biased lattice with the trivial vectors projected away, "
           f"{TRIALS} instances per kind and target", flush=True)
     print("  n   W   m    d  measure   target    k |  Hankel mean   min |  uniform mean   min |  Mann-Whitney p", flush=True)
@@ -213,6 +234,7 @@ def small(sizes=((24, 16, True), (32, 21, False), (40, 5, False))):
             p = mannwhitneyu(h, u, alternative="two-sided").pvalue
             print(f"{n:3d} {W:3d} {m:3d} {m + n:4d}  {'exact  ' if exact else 'BKZ-40 '}  {name:8s} {k:2d} |  {sum(h) / len(h):.3f}  {min(h):.3f} |"
                   f"  {sum(u) / len(u):.3f}  {min(u):.3f} |  {p:.3f}", flush=True)
+    print(f"# vectors found with a nonzero functional part phi: {sum(nontrivial)} of {len(nontrivial)}", flush=True)
 
 
 mode = sys.argv[1] if len(sys.argv) > 1 else "all"

@@ -170,11 +170,32 @@ HK_KERNEL void HK_FN(kernel_decode)(uint8_t *msg, const uint16_t *v, const uint1
     }
 }
 
-/* k_sel = (ct == ct2) ? k_bar : s_reject, in constant time. */
-HK_KERNEL void HK_FN(kernel_verify_select)(uint8_t *k_sel, const uint8_t *ct, const uint8_t *ct2,
-                                           const uint8_t *k_bar, const uint8_t *s_reject) {
+/* x_sel = (ct == ct2) ? msg : s_reject, in constant time: the input to H in decapsulation. */
+HK_KERNEL void HK_FN(kernel_verify_select)(uint8_t *x_sel, const uint8_t *ct, const uint8_t *ct2,
+                                           const uint8_t *msg, const uint8_t *s_reject) {
     uint32_t ok = hk_ct_equal_mask(ct, ct2, HK_CTB);
-    hk_ct_select(k_sel, k_bar, s_reject, 32, ok);
+    hk_ct_select(x_sel, msg, s_reject, 32, ok);
+}
+
+/* The two random oracles of the Fujisaki-Okamoto transform FO^{notbot} = U^{notbot} o T
+ * (Hofheinz, Hoevelmanns and Kiltz, TCC 2017):
+ *   G(M)     = SHAKE256(M || "_hankel_fo_G" || dom, 32)        coins of the CPA encryption
+ *   H(X, ct) = SHAKE256(X || ct || "_hankel_fo_H" || dom, 32)  shared key, X = M or the rejection seed */
+static void HK_FN(fo_G)(uint8_t coins[32], const uint8_t msg[32]) {
+    static const char tag[] = "_hankel_fo_G" HK_DOM;
+    hk_shake256_2(coins, 32, msg, 32, (const uint8_t *)tag, sizeof(tag) - 1);
+}
+
+static void HK_FN(fo_H)(uint8_t ss[32], const uint8_t x[32], const uint8_t *ct, size_t ct_len) {
+    static const char tag[] = "_hankel_fo_H" HK_DOM;
+    hk_shake256_ctx ctx;
+    hk_shake256_init(&ctx);
+    hk_shake256_absorb(&ctx, x, 32);
+    hk_shake256_absorb(&ctx, ct, ct_len);
+    hk_shake256_absorb(&ctx, (const uint8_t *)tag, sizeof(tag) - 1);
+    hk_shake256_finalize(&ctx);
+    hk_shake256_squeeze(&ctx, ss, 32);
+    hk_zeroize(&ctx, sizeof(ctx));
 }
 
 /* Public-key header check (public data). */
@@ -281,21 +302,19 @@ int HK_FN(kem_keypair)(uint8_t *pk, uint8_t *sk) {
 }
 
 static int HK_FN(enc_msg)(uint8_t *ct, uint8_t *ss, const uint8_t *pk, const uint8_t msg[32]) {
-    uint8_t h_pk[32], kc[64], h_ct[32];
+    uint8_t coins[32];
     uint16_t a[HK_A_LEN], b[HK_M];
 
     if (HK_FN(check_pk)(pk) != 0) return -1;
-    hk_sha256(h_pk, pk, HK_PKB);
-    hk_shake256_2(kc, 64, msg, 32, h_pk, 32); /* (K_bar, coins) */
+    HK_FN(fo_G)(coins, msg);                      /* T: coins = G(M) */
 
     HK_FN(expand_a)(a, pk + HK_HDR);
     hk_unpack_bits(b, pk + HK_HDR + HK_SEED, HK_M, HK_LOGQ);
-    HK_FN(cpa_enc)(ct, a, b, msg, kc + 32);
+    HK_FN(cpa_enc)(ct, a, b, msg, coins);
 
-    hk_sha256(h_ct, ct, HK_CTB);
-    hk_shake256_2(ss, 32, kc, 32, h_ct, 32);
+    HK_FN(fo_H)(ss, msg, ct, HK_CTB);             /* U: K = H(M, ct) */
 
-    hk_zeroize(kc, sizeof(kc));
+    hk_zeroize(coins, sizeof(coins));
     return 0;
 }
 
@@ -320,17 +339,16 @@ int HK_FN(kem_enc)(uint8_t *ct, uint8_t *ss, const uint8_t *pk) {
 int HK_FN(kem_dec)(uint8_t *ss, const uint8_t *ct, size_t ct_len, const uint8_t *sk) {
     const uint8_t *s_reject = sk + HK_N;
     const uint8_t *pk = sk + HK_N + 32;
-    uint8_t h_pk[32], h_ct[32], msg[32], kc[64], k_sel[32];
+    uint8_t msg[32], coins[32], x_sel[32];
     uint8_t ct2[HK_CTB];
     int16_t s[HK_N];
     uint16_t a[HK_A_LEN], b[HK_M], u[HK_M], v[HK_W], k[HK_W];
 
     if (HK_FN(check_pk)(pk) != 0) return -1;
-    hk_sha256(h_ct, ct, ct_len);
 
     /* A ciphertext of the wrong length can never match a re-encryption (public condition). */
     if (ct_len != HK_CTB) {
-        hk_shake256_2(ss, 32, s_reject, 32, h_ct, 32);
+        HK_FN(fo_H)(ss, s_reject, ct, ct_len);    /* K = H(s_reject, ct) */
         return 0;
     }
 
@@ -342,20 +360,20 @@ int HK_FN(kem_dec)(uint8_t *ss, const uint8_t *ct, size_t ct_len, const uint8_t 
     HK_FN(kernel_decode)(msg, v, k);
 
     /* Re-encryption check (Fujisaki-Okamoto). The header is part of the comparison. */
-    hk_sha256(h_pk, pk, HK_PKB);
-    hk_shake256_2(kc, 64, msg, 32, h_pk, 32);
+    HK_FN(fo_G)(coins, msg);
     HK_FN(expand_a)(a, pk + HK_HDR);
     hk_unpack_bits(b, pk + HK_HDR + HK_SEED, HK_M, HK_LOGQ);
-    HK_FN(cpa_enc)(ct2, a, b, msg, kc + 32);
+    HK_FN(cpa_enc)(ct2, a, b, msg, coins);
 
-    HK_FN(kernel_verify_select)(k_sel, ct, ct2, kc, s_reject);
-    hk_shake256_2(ss, 32, k_sel, 32, h_ct, 32);
+    /* Implicit rejection: K = H(M', ct) if ct re-encrypts, else H(s_reject, ct); one call to H. */
+    HK_FN(kernel_verify_select)(x_sel, ct, ct2, msg, s_reject);
+    HK_FN(fo_H)(ss, x_sel, ct, HK_CTB);
 
     hk_zeroize(s, sizeof(s));
     hk_zeroize(k, sizeof(k));
     hk_zeroize(msg, sizeof(msg));
-    hk_zeroize(kc, sizeof(kc));
-    hk_zeroize(k_sel, sizeof(k_sel));
+    hk_zeroize(coins, sizeof(coins));
+    hk_zeroize(x_sel, sizeof(x_sel));
     hk_zeroize(ct2, sizeof(ct2));
     return 0;
 }

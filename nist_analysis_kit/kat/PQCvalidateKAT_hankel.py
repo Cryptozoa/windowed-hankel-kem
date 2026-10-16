@@ -12,7 +12,7 @@ These custom fixtures do not establish NIST compliance or security strength.
 Usage:
     python3 nist_analysis_kit/kat/PQCvalidateKAT_hankel.py [rsp_file ...]
 
-With no arguments the current research fixtures (RESEARCH_v2) are validated. Each file given on
+With no arguments the current research fixtures (RESEARCH_v3) are validated. Each file given on
 the command line is validated in turn; the exit status is non-zero if any file fails.
 """
 
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../.
 
 from hankel_kem_wrapper import hankel_kem_keygen, hankel_kem_encaps, hankel_kem_decaps
 
-DEFAULT_RSP_PATH = os.path.join(os.path.dirname(__file__), "test_vectors", "WINDOWED_HANKEL_640_RESEARCH_v2.rsp")
+DEFAULT_RSP_PATH = os.path.join(os.path.dirname(__file__), "test_vectors", "WINDOWED_HANKEL_640_RESEARCH_v3.rsp")
 
 # Fixture files retained for provenance that the current implementation is not expected to reproduce.
 HISTORICAL_FIXTURES = {
@@ -32,6 +32,11 @@ HISTORICAL_FIXTURES = {
         "historical fixture generated before the e2 error term was added to v = K_bob + Encode(m) + e2; "
         "its ciphertexts and shared secrets are expected to differ from the current implementation "
         "(keys still match). Retained for provenance only."
+    ),
+    "WINDOWED_HANKEL_640_RESEARCH_v2.rsp": (
+        "fixture of v0.2, whose Kyber-style transform derived the coins and a pre-key from SHAKE256(M || SHA-256(pk)) "
+        "and the key from SHAKE256(pre-key || SHA-256(ct)); v0.3 uses FO^notbot exactly (coins G(M), key H(M, ct)), "
+        "so ciphertexts and shared secrets differ (keys still match). Retained for provenance only."
     ),
 }
 

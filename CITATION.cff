@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, the challenge instances or the Windowed Hankel LWE problem, please cite the paper below."
 type: software
 title: "Windowed Hankel KEM: implementation, challenge instances and evidence for Windowed Hankel LWE"
-version: "0.2"
+version: "0.3"
 authors:
   - family-names: "Mendoza"
     given-names: "Marcos"

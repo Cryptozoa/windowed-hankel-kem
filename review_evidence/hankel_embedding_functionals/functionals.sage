@@ -122,15 +122,30 @@ def log2_gh(m, logdet2):
     return (lgamma(m / 2 + 1) / m - 0.5 * log(pi)) / log(2.0) + logdet2 / m
 
 def guess_entropy(g, n):
-    """Approximate entropy (bits) of s~ mod g for s ~ CBD_2^n: Gaussian with covariance R R^T
-    (centered representatives of R_g, unit variance per coordinate), capped at 12 bits per coordinate."""
+    """Entropy (bits) of s~ mod g for s ~ CBD_2^n, capped at 12 bits per coefficient.
+
+    g divides Phi_d for an odd d dividing L, so s~ mod g is a function of s~ mod Phi_d, whose coefficients
+    are small integers: X^i mod Phi_d over Z is periodic with small entries. We use a Gaussian with the
+    covariance R R^T of that integer reduction (unit variance per coordinate of s). This bounds the entropy
+    of s~ mod g from above; for the factors of X^1407 - 1 the reduction modulo g is nearly injective on the
+    support (entropy_check.sage), so the bound is close. Using R_g directly, with its large 2-adic
+    entries, overstates the entropy for the cubic and sextic factors (earlier versions did so).
+    """
     if g is None:
         return 0.0
     k = g.degree()
-    R = reduction_matrix(g, n)
-    Rc = matrix(RDF, k, n, lambda t, j: ZZ(R[t, j]) - q if ZZ(R[t, j]) > q // 2 else ZZ(R[t, j]))
-    S = Rc * Rc.transpose()
-    h = 0.5 * (k * log2(2 * pi * E) + log2(abs(S.det())))
+    ZX0 = PolynomialRing(ZZ, "Z")
+    d = next(d for d in range(1, 5000, 2) if (ZqX(cyclotomic_polynomial(d).change_ring(Zq)) % g) == 0)
+    phi = ZX0(cyclotomic_polynomial(d))
+    kp, p, Zv = phi.degree(), ZX0(1), ZX0.gen()
+    R = matrix(ZZ, kp, n)
+    for deg in range(n):
+        co = p.list() + [0] * (kp - len(p.list()))
+        for t in range(kp):
+            R[t, n - 1 - deg] = co[t]
+        p = (p * Zv) % phi
+    Rr = R.change_ring(RDF)
+    h = 0.5 * (kp * log2(2 * pi * E) + log2(abs((Rr * Rr.transpose()).det())))
     return min(h, LOGQ * k)
 
 def advantage_log2(length, sigma=1.0):

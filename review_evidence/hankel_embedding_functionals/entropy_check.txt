@@ -1,0 +1,8 @@
+# sage entropy_check.sage, 2026-10-16
+d = 3: H(s~ mod Phi_3) over Z ~ 12.6 bits (degree 2); H(s~ mod X^3-1) ~ 17.7 bits; 3 raw coordinates: 6.1 bits
+d = 7: H(s~ mod Phi_7) over Z ~ 33.2 bits (degree 6); H(s~ mod X^7-1) ~ 37.1 bits; 7 raw coordinates: 14.2 bits
+   factor 0 (degree 3): kernel lattice of the mod-q map has lambda_1 ~ 77.9, against y's per-coordinate sd 13.5; Gaussian cap 33.2 bits; Monte Carlo collision entropy H_2 ~ 31.9 bits from 4194304 samples
+   factor 1 (degree 3): kernel lattice of the mod-q map has lambda_1 ~ 77.9, against y's per-coordinate sd 13.5; Gaussian cap 33.2 bits; Monte Carlo collision entropy H_2 ~ 31.9 bits from 4194304 samples
+d = 21: H(s~ mod Phi_21) over Z ~ 61.7 bits (degree 12); H(s~ mod X^21-1) ~ 94.7 bits; 21 raw coordinates: 42.7 bits
+   factor 0 (degree 6): kernel lattice of the mod-q map has lambda_1 ~ 78.0, against y's per-coordinate sd 13.5; Gaussian cap 61.7 bits
+   factor 1 (degree 6): kernel lattice of the mod-q map has lambda_1 ~ 78.0, against y's per-coordinate sd 13.5; Gaussian cap 61.7 bits

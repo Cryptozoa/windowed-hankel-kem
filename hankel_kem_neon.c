@@ -143,6 +143,7 @@ void hankel_neon_encode_4pam(
     uint16_t *out_m,
     int w_len
 ) {
+    (void)w_len; /* the layout is fixed: 32 bytes give W = 128 symbols */
     /* Each byte yields 4 symbols of 2 bits each. 32 bytes * 4 = 128 symbols. */
     for (int i = 0; i < 32; i++) {
         uint8_t byte = msg_32b[i];

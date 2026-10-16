@@ -41,8 +41,8 @@ def generate_kat_hankel(num_vectors: int = 15, output_dir: str = None):
         output_dir = os.path.join(os.path.dirname(__file__), "test_vectors")
     os.makedirs(output_dir, exist_ok=True)
 
-    file_prefix = "WINDOWED_HANKEL_640_RESEARCH_v2"
-    alg_name = "Windowed-Hankel-LWE-640 research profile v2"
+    file_prefix = "WINDOWED_HANKEL_640_RESEARCH_v3"
+    alg_name = "Windowed-Hankel-LWE-640 research profile v3 (FO^notbot transform)"
 
     req_path = os.path.join(output_dir, f"{file_prefix}.req")
     rsp_path = os.path.join(output_dir, f"{file_prefix}.rsp")

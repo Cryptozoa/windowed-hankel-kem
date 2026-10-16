@@ -1,0 +1,6 @@
+# python3 review_evidence/hankel_paper_estimates_20261006T044216Z/time_ops.py neon, 2026-10-16, v0.3, Apple M3 Max
+backend=neon runs=2000 python=3.13.9 numpy=2.3.5 arm64
+keygen     median     69.0 us   p90     71.4 us
+encaps     median    114.5 us   p90    119.8 us
+decaps     median    152.6 us   p90    161.2 us
+handshake  median    344.5 us   p90    385.4 us

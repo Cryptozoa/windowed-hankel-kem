@@ -1,0 +1,25 @@
+# bench_liboqs 5000 and bench_hankel_native 5000 640, run back to back, 2026-10-16T15:36Z, Apple M3 Max, Apple clang version 21.0.0 (clang-2100.3.34.2); liboqs 0.16.0 (source archive sha256 162d5b510518ee5f285f82fa1f16402a885176e818bf1b1a4c3c91c9a2f01eae), minimal Release build, OQS_DIST_BUILD=OFF, no OpenSSL
+ML-KEM-512 (pk 800 B, ct 768 B)
+  keygen     median     5.5 us   p90     6.9 us
+  encaps     median     6.2 us   p90     7.5 us
+  decaps     median     7.7 us   p90     9.6 us
+  handshake  median    19.5 us   p90    23.2 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+FrodoKEM-640-AES (pk 9616 B, ct 9752 B)
+  keygen     median   203.1 us   p90   213.5 us
+  encaps     median   275.2 us   p90   277.7 us
+  decaps     median   262.9 us   p90   274.0 us
+  handshake  median   740.3 us   p90   784.2 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+FrodoKEM-640-SHAKE (pk 9616 B, ct 9752 B)
+  keygen     median   980.0 us   p90  1037.4 us
+  encaps     median  1145.9 us   p90  1185.1 us
+  decaps     median  1118.2 us   p90  1156.4 us
+  handshake  median  3268.8 us   p90  3384.9 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+WH-640 (pk 1196 B, ct 1356 B)
+  keygen     median    14.2 us   p90    17.3 us
+  encaps     median    20.1 us   p90    24.5 us
+  decaps     median    22.9 us   p90    27.8 us
+  handshake  median    60.1 us   p90    66.5 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)

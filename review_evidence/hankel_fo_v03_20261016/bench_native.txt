@@ -1,0 +1,19 @@
+# ./bench_hankel_native 5000, 2026-10-16T15:10Z, Apple M3 Max, Apple clang version 21.0.0 (clang-2100.3.34.2)
+WH-640 (pk 1196 B, ct 1356 B)
+  keygen     median    13.9 us   p90    15.2 us
+  encaps     median    20.0 us   p90    21.3 us
+  decaps     median    22.9 us   p90    26.4 us
+  handshake  median    57.0 us   p90    63.4 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+WH-936 (pk 1773 B, ct 1949 B)
+  keygen     median    30.3 us   p90    35.2 us
+  encaps     median    35.2 us   p90    40.3 us
+  decaps     median    42.4 us   p90    48.0 us
+  handshake  median   110.5 us   p90   116.2 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)
+WH-1208 (pk 2215 B, ct 2391 B)
+  keygen     median    39.8 us   p90    44.0 us
+  encaps     median    54.2 us   p90    55.0 us
+  decaps     median    53.9 us   p90    54.0 us
+  handshake  median   147.6 us   p90   149.2 us
+  (5000 iterations after 500 warm-up calls; all handshakes agreed)

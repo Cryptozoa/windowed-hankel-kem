@@ -1,4 +1,7 @@
-"""Existing Fujisaki-Okamoto composition and functional implicit rejection.
+"""Fujisaki-Okamoto transform FO^{notbot} = U^{notbot} o T with implicit rejection (WH-640).
+
+G(M) = SHAKE256(M || "_hankel_fo_G", 32) gives the coins of the CPA encryption and
+H(X, ct) = SHAKE256(X || ct || "_hankel_fo_H", 32) the shared key, with X = M or the rejection seed.
 
 The Python byte-selection helper is a functional reference; no interpreter
 constant-time guarantee is made here. Wire bytes and derivation tags are legacy.
@@ -36,6 +39,16 @@ def constant_time_compare(a: bytes, b: bytes) -> bool:
     return hmac.compare_digest(a, b)
 
 
+def fo_g(m: bytes) -> bytes:
+    """G(M) = SHAKE256(M || "_hankel_fo_G", 32): the coins of the CPA encryption."""
+    return hashlib.shake_256(m + b"_hankel_fo_G").digest(32)
+
+
+def fo_h(x: bytes, ct_bytes: bytes) -> bytes:
+    """H(X, ct) = SHAKE256(X || ct || "_hankel_fo_H", 32): the shared key."""
+    return hashlib.shake_256(x + ct_bytes + b"_hankel_fo_H").digest(32)
+
+
 def hankel_kem_keygen(seed: Optional[bytes] = None, *, backend=None) -> Tuple[bytes, bytes]:
     """
     Fujisaki-Okamoto composition KeyGen:
@@ -65,46 +78,35 @@ def hankel_kem_keygen(seed: Optional[bytes] = None, *, backend=None) -> Tuple[by
 
 def hankel_kem_encaps(pk_bytes: bytes, entropy: Optional[bytes] = None, *, backend=None) -> Tuple[bytes, bytes]:
     """
-    Fujisaki-Okamoto composition Encapsulation:
+    Fujisaki-Okamoto encapsulation:
     1. Deserializes public key.
     2. Samples uniform random 32-byte message m.
-    3. Hashes m || H(pk) via SHAKE-256 to derive (K_bar, coins).
+    3. coins = G(m).
     4. Deterministically encrypts CPA ciphertext (u, v) using coins.
-    5. Final shared key: SS = SHAKE-256(K_bar || H(ct)).
+    5. Shared key: SS = H(m, ct).
     Returns: (ciphertext_bytes, shared_key_32_bytes).
     """
     pk = deserialize_public_key(pk_bytes)
-    h_pk = hashlib.sha256(pk_bytes).digest()
 
     if entropy is None:
         m = os.urandom(32)
     else:
         m = hashlib.shake_256(entropy + b"_hankel_encaps_entropy").digest(32)
 
-    # Derivation of (K_bar, coins)
-    k_and_coins = hashlib.shake_256(m + h_pk).digest(64)
-    k_bar = k_and_coins[:32]
-    coins = k_and_coins[32:64]
-
+    coins = fo_g(m)
     u, v = hankel_kem_cpa_encaps(pk.seed_a, pk.b, m, coins, n=pk.n, w_len=pk.w_len, backend=backend)
     ct_bytes = serialize_ciphertext(u, v, n=pk.n, w_len=pk.w_len, q=pk.q)
-
-    # Shared secret binding: SS = SHAKE-256(K_bar || SHA256(ct))
-    h_ct = hashlib.sha256(ct_bytes).digest()
-    shared_key = hashlib.shake_256(k_bar + h_ct).digest(32)
-
-    return ct_bytes, shared_key
+    return ct_bytes, fo_h(m, ct_bytes)
 
 
 def hankel_kem_decaps(ct_bytes: bytes, sk_bytes: bytes, *, backend=None) -> bytes:
     """
-    Fujisaki-Okamoto composition Decapsulation with implicit rejection:
+    Fujisaki-Okamoto decapsulation with implicit rejection:
     1. Parses s, s_reject, and pk from sk_bytes.
     2. Recovers m' = CPA-Decaps(s, ct).
-    3. Re-encrypts ct' = CPA-Encaps(pk, m'; coins').
+    3. Re-encrypts ct' = CPA-Encaps(pk, m'; G(m')).
     4. Compare ct == ct' via hmac.compare_digest.
-    5. If match: SS = SHAKE-256(K_bar' || H(ct)).
-       If mismatch: SS = SHAKE-256(s_reject || H(ct)).
+    5. If match: SS = H(m', ct); if mismatch: SS = H(s_reject, ct).
     """
     expected_s_len = N
     expected_reject_len = 32
@@ -117,7 +119,6 @@ def hankel_kem_decaps(ct_bytes: bytes, sk_bytes: bytes, *, backend=None) -> byte
 
     s = np.frombuffer(s_raw, dtype=np.int8).astype(np.int64)
     pk = deserialize_public_key(pk_bytes)
-    h_pk = hashlib.sha256(pk_bytes).digest()
 
     # Normalize ciphertext length for candidate parsing without unpack exceptions
     expected_u_bytes = ((pk.n + pk.w_len) * 3) // 2
@@ -151,19 +152,13 @@ def hankel_kem_decaps(ct_bytes: bytes, sk_bytes: bytes, *, backend=None) -> byte
     m_recovered = hankel_kem_cpa_decaps(s, u, v, n=pk.n, w_len=pk.w_len, backend=backend)
 
     # Re-encryption (Fujisaki-Okamoto check)
-    k_and_coins = hashlib.shake_256(m_recovered + h_pk).digest(64)
-    k_bar_cand = k_and_coins[:32]
-    coins_cand = k_and_coins[32:64]
-
+    coins_cand = fo_g(m_recovered)
     u_prime, v_prime = hankel_kem_cpa_encaps(pk.seed_a, pk.b, m_recovered, coins_cand, n=pk.n, w_len=pk.w_len, backend=backend)
     ct_prime = serialize_ciphertext(u_prime, v_prime, n=pk.n, w_len=pk.w_len, q=pk.q)
 
     # Ciphertext comparison
     is_valid = constant_time_compare(ct_bytes, ct_prime) and valid_parse
 
-    # Functional selection: K_bar_cand if is_valid else s_reject
-    k_selected = constant_time_select(is_valid, k_bar_cand, s_reject)
-
-    # Final binding
-    h_ct = hashlib.sha256(ct_bytes).digest()
-    return hashlib.shake_256(k_selected + h_ct).digest(32)
+    # Functional selection of the input to H: m' if is_valid else s_reject
+    x_selected = constant_time_select(is_valid, m_recovered, s_reject)
+    return fo_h(x_selected, ct_bytes)

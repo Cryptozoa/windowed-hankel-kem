@@ -49,8 +49,8 @@ test: $(LIB) test_hankel_native
 	$(PYTHON) nist_analysis_kit/kat/PQCvalidateKAT_hankel.py
 	$(PYTHON) nist_analysis_kit/kat/PQCgenKAT_hankel_sets.py validate
 
-# Validate the current KAT files (RESEARCH_v2, WINDOWED_HANKEL_936_v1 and _1208_v1). The historical
-# NIST1 file predates the e2 term and is expected to fail; see the note in the validator.
+# Validate the current KAT files (RESEARCH_v3, WINDOWED_HANKEL_936_v2 and _1208_v2). The historical
+# NIST1 and RESEARCH_v2 files predate the e2 term and the exact FO transform; see the validator.
 kat: $(LIB)
 	$(PYTHON) nist_analysis_kit/kat/PQCvalidateKAT_hankel.py
 	$(PYTHON) nist_analysis_kit/kat/PQCgenKAT_hankel_sets.py validate

@@ -2,11 +2,11 @@
 """
 Known-answer tests for the candidate Category 3 and 5 sets, WH-936 and WH-1208 (paper, Appendix D).
 
-Same format and deterministic SHAKE-256 DRBG construction as WINDOWED_HANKEL_640_RESEARCH_v2 (custom
+Same format and deterministic SHAKE-256 DRBG construction as WINDOWED_HANKEL_640_RESEARCH_v3 (custom
 fixtures, not NIST DRBG vectors), with the set name in the DRBG seed. Vectors are produced by the
 parameterized reference hankel_kem/generic.py: keygen(seed[:32]), encaps(pk, entropy).
 
-  python3 PQCgenKAT_hankel_sets.py generate   writes WINDOWED_HANKEL_{936,1208}_v1.{req,rsp}
+  python3 PQCgenKAT_hankel_sets.py generate   writes WINDOWED_HANKEL_{936,1208}_v2.{req,rsp}
                                               (refuses to overwrite existing files)
   python3 PQCgenKAT_hankel_sets.py validate   checks every vector against the generic reference
                                               and, when built, the native implementation
@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../.
 from hankel_kem import generic as g  # noqa: E402
 
 OUT_DIR = os.path.join(os.path.dirname(__file__), "test_vectors")
-SETS = {"WH-936": "WINDOWED_HANKEL_936_v1", "WH-1208": "WINDOWED_HANKEL_1208_v1"}
+SETS = {"WH-936": "WINDOWED_HANKEL_936_v2", "WH-1208": "WINDOWED_HANKEL_1208_v2"}
 NUM_VECTORS = 15
 
 

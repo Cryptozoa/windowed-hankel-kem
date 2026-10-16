@@ -16,27 +16,28 @@ import hankel_kem_wrapper as wire
 from hankel_kem import backends as backend_registry
 
 
-# Frozen before refactoring, in
-# review_evidence/hankel_architecture_e2080e22fe2d/results.json.
+# Frozen before refactoring, in review_evidence/hankel_architecture_e2080e22fe2d/results.json, and
+# updated for the exact FO^{notbot} transform (v0.3): the public- and secret-key hashes are unchanged,
+# the ciphertext and shared-key hashes are the new reference outputs.
 BASELINE_HASHES = (
     "adfdce809d44f88c008eb4742c67865e3a42fbc2c4bc38f0978ff5c01e65b262",
     "8742d45b51a96a48770a913eed6b058631ad87df3207a675a23ae126182e2848",
-    "bbcee91c1c019a35bcc885c858b4240eb9d320627870405da30b692e83d3b53c",
-    "acdbb43381e956f1d6456bfbcaee4af60c82107ca4c76ef207bb205d5ce869de",
-    "acdbb43381e956f1d6456bfbcaee4af60c82107ca4c76ef207bb205d5ce869de",
+    "2774ed9e3fdb1f3206c7a2e6012388e917e46c45319a42134d57a06e3d73efec",
+    "8acda18b2ef04355d530a5c6e2439a3dd3e882148afa1651f0ae449d9eaf4afb",
+    "8acda18b2ef04355d530a5c6e2439a3dd3e882148afa1651f0ae449d9eaf4afb",
 )
 BASELINE_LENGTHS = (1196, 1868, 1356, 32, 32)
 EXTRA_BASELINE_HASHES = (
     ("7eb81cb922fb045616f70577f93e95743e5bd9c971337f20fd035a4f2b558b0b",
      "35d5c59181623e0178399fac128551ade688f7ba85e3d9c568d139e11c63ccde",
-     "cc8459bd8e43ca3ab3b7b4ca298d07396a2d1b2c15251af1a286d08ba7ae726b",
-     "2026421290d1f89fab32f725afd7a7d150e025c7541d0fa084cfc3fdf98b4b0c",
-     "2026421290d1f89fab32f725afd7a7d150e025c7541d0fa084cfc3fdf98b4b0c"),
+     "03b09b495a87f96b44bf2006d35efa0e0db4b1d00ee54a015160714249652848",
+     "67bd71f6e99402793c92c9b5cd4e8cbcb4c39e85ab67c11349817b6cf5f2e2cb",
+     "67bd71f6e99402793c92c9b5cd4e8cbcb4c39e85ab67c11349817b6cf5f2e2cb"),
     ("3c613c1291450035191fc7ca0b766a1c9dacfc2819284e2a2e479c05d63369fc",
      "a18ea71652254828922002758a359313c683a4c6db3bc2c7d6ec4d700e681eae",
-     "d6d6b89a57217f1fda8445324224984bf84e0bf613551e60fb526c5b16d9b206",
-     "ad4b479ff3fa63ec03156db73a2d9a87c3af1d5ad21652f4e17f668703bb2cf9",
-     "ad4b479ff3fa63ec03156db73a2d9a87c3af1d5ad21652f4e17f668703bb2cf9"),
+     "e16ea8d5df0c133b52e86587d5ec6f4d677d06a8ecef3baac088a4dc5805c128",
+     "97e70cfaddb2ca802213b26be4bc328fa3f830099c9aacc1929eb54d59df61ab",
+     "97e70cfaddb2ca802213b26be4bc328fa3f830099c9aacc1929eb54d59df61ab"),
 )
 
 
@@ -85,8 +86,8 @@ class TestHankelRefactor(unittest.TestCase):
 
     def test_several_deterministic_wire_fixtures_agree(self):
         fixtures = ((b"A" * 64, b"B" * 32), (bytes(reversed(range(64))), b"\x00" * 32))
-        # These extra hashes were independently obtained with the pristine old
-        # core/wrapper snapshot above, with its _C_LIB disabled in an isolated process.
+        # These extra hashes were first obtained with the pristine old core/wrapper snapshot above, with its
+        # _C_LIB disabled in an isolated process; the ciphertext and key entries are now those of v0.3.
         for (seed, entropy), frozen_hashes in zip(fixtures, EXTRA_BASELINE_HASHES):
             expected = handshake("reference", seed, entropy)
             self.assertEqual(tuple(hashlib.sha256(x).hexdigest() for x in expected), frozen_hashes)
@@ -178,7 +179,7 @@ class TestHankelRefactor(unittest.TestCase):
         cases = (bytes(changed), bytes(reserved), ct[:19], ct + b"\x00", b"")
         reject_seed = sk[core.N:core.N + 32]
         for malformed in cases:
-            expected = hashlib.shake_256(reject_seed + hashlib.sha256(malformed).digest()).digest(32)
+            expected = hashlib.shake_256(reject_seed + malformed + b"_hankel_fo_H").digest(32)  # H(z, ct)
             self.assertNotEqual(expected, sender)
             for backend in concrete_backends():
                 with self.subTest(length=len(malformed), backend=backend):

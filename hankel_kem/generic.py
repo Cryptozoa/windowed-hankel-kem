@@ -185,12 +185,24 @@ def _parse_pk(p: Profile, pk: bytes):
     return pk[HEADER_BYTES: HEADER_BYTES + SEED_BYTES], unpack_bits(pk[HEADER_BYTES + SEED_BYTES:], p.m, p.log_q)
 
 
+# The Fujisaki-Okamoto transform FO^{notbot} = U^{notbot} o T of Hofheinz, Hoevelmanns and Kiltz
+# (TCC 2017), with its two random oracles instantiated by domain-separated SHAKE256:
+#   G(M) = SHAKE256(M || "_hankel_fo_G" || dom, 32), the coins of the CPA encryption;
+#   H(X, ct) = SHAKE256(X || ct || "_hankel_fo_H" || dom, 32), the shared key, with X = M or z.
+
+def fo_g(p: Profile, msg: bytes) -> bytes:
+    return shake(msg + _tag(p, b"_hankel_fo_G"), 32)
+
+
+def fo_h(p: Profile, x: bytes, ct: bytes) -> bytes:
+    return shake(x + ct + _tag(p, b"_hankel_fo_H"), 32)
+
+
 def encaps(p: Profile, pk: bytes, entropy: Optional[bytes] = None) -> Tuple[bytes, bytes]:
     seed_a, b = _parse_pk(p, pk)
     msg = os.urandom(32) if entropy is None else shake(entropy + _tag(p, b"_hankel_encaps_entropy"), 32)
-    kc = shake(msg + hashlib.sha256(pk).digest(), 64)
-    ct = cpa_encrypt(p, seed_a, b, msg, kc[32:])
-    return ct, shake(kc[:32] + hashlib.sha256(ct).digest(), 32)
+    ct = cpa_encrypt(p, seed_a, b, msg, fo_g(p, msg))
+    return ct, fo_h(p, msg, ct)
 
 
 def decaps(p: Profile, ct: bytes, sk: bytes) -> bytes:
@@ -199,10 +211,8 @@ def decaps(p: Profile, ct: bytes, sk: bytes) -> bytes:
     s = np.frombuffer(sk[: p.n], dtype=np.int8).astype(np.int64)
     z, pk = sk[p.n: p.n + 32], sk[p.n + 32:]
     seed_a, b = _parse_pk(p, pk)
-    h_ct = hashlib.sha256(ct).digest()
     if len(ct) != p.ct_bytes:
-        return shake(z + h_ct, 32)  # can never equal a re-encryption
+        return fo_h(p, z, ct)  # can never equal a re-encryption
     msg = cpa_decrypt(p, s, ct)
-    kc = shake(msg + hashlib.sha256(pk).digest(), 64)
-    ok = cpa_encrypt(p, seed_a, b, msg, kc[32:]) == ct
-    return shake((kc[:32] if ok else z) + h_ct, 32)
+    ok = cpa_encrypt(p, seed_a, b, msg, fo_g(p, msg)) == ct
+    return fo_h(p, msg if ok else z, ct)

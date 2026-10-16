@@ -66,15 +66,23 @@ static void test_hashes(void) {
     }
 }
 
-static void expected_reject(uint8_t ss[32], const uint8_t *sk, size_t n, const uint8_t *ct, size_t ct_len) {
-    uint8_t h_ct[32];
-    hk_sha256(h_ct, ct, ct_len);
-    hk_shake256_2(ss, 32, sk + n, 32, h_ct, 32);
+/* Implicit rejection: K = H(z, ct) = SHAKE256(z || ct || "_hankel_fo_H" || dom, 32). */
+static void expected_reject(uint8_t ss[32], const uint8_t *sk, size_t n, const uint8_t *ct, size_t ct_len,
+                            const char *dom) {
+    static const char label[] = "_hankel_fo_H";
+    hk_shake256_ctx ctx;
+    hk_shake256_init(&ctx);
+    hk_shake256_absorb(&ctx, sk + n, 32);
+    hk_shake256_absorb(&ctx, ct, ct_len);
+    hk_shake256_absorb(&ctx, (const uint8_t *)label, sizeof(label) - 1);
+    hk_shake256_absorb(&ctx, (const uint8_t *)dom, strlen(dom));
+    hk_shake256_finalize(&ctx);
+    hk_shake256_squeeze(&ctx, ss, 32);
 }
 
 /* One parameter set: its API, sizes and KAT file. */
 typedef struct {
-    const char *name, *rsp;
+    const char *name, *rsp, *dom;
     size_t n, pk_bytes, sk_bytes, ct_bytes;
     int (*keypair)(uint8_t *, uint8_t *);
     int (*keypair_derand)(uint8_t *, uint8_t *, const uint8_t *, size_t);
@@ -84,15 +92,15 @@ typedef struct {
 } kem_set;
 
 #define KAT_DIR "nist_analysis_kit/kat/test_vectors/"
-#define SET(label, file, n, P, U)                                                                \
-    {label, KAT_DIR file, n, U##_KEM_PUBLICKEYBYTES, U##_KEM_SECRETKEYBYTES,                    \
+#define SET(label, file, dom, n, P, U)                                                           \
+    {label, KAT_DIR file, dom, n, U##_KEM_PUBLICKEYBYTES, U##_KEM_SECRETKEYBYTES,               \
      U##_KEM_CIPHERTEXTBYTES, P##kem_keypair, P##kem_keypair_derand, P##kem_enc,                 \
      P##kem_enc_derand, P##kem_dec}
 
 static const kem_set SETS[] = {
-    SET("WH-640", "WINDOWED_HANKEL_640_RESEARCH_v2.rsp", 640, hankel_, HANKEL),
-    SET("WH-936", "WINDOWED_HANKEL_936_v1.rsp", 936, hankel936_, HANKEL936),
-    SET("WH-1208", "WINDOWED_HANKEL_1208_v1.rsp", 1208, hankel1208_, HANKEL1208),
+    SET("WH-640", "WINDOWED_HANKEL_640_RESEARCH_v3.rsp", "", 640, hankel_, HANKEL),
+    SET("WH-936", "WINDOWED_HANKEL_936_v2.rsp", "_wh936", 936, hankel936_, HANKEL936),
+    SET("WH-1208", "WINDOWED_HANKEL_1208_v2.rsp", "_wh1208", 1208, hankel1208_, HANKEL1208),
 };
 
 #define MAX_PK HANKEL1208_KEM_PUBLICKEYBYTES
@@ -146,17 +154,17 @@ static int test_set(const kem_set *k, const char *path) {
         for (int t = 0; t < 3; t++) {
             ct[flips[t]] ^= 0x10;
             k->dec(ss_dec, ct, CTB, sk);
-            expected_reject(ss_rej, sk, k->n, ct, CTB);
+            expected_reject(ss_rej, sk, k->n, ct, CTB, k->dom);
             check(memcmp(ss_dec, ss_rej, 32) == 0 && memcmp(ss_dec, ss_exp, 32) != 0,
                   "tampered ciphertext not rejected", count);
             ct[flips[t]] ^= 0x10;
         }
         k->dec(ss_dec, ct, CTB - 1, sk);
-        expected_reject(ss_rej, sk, k->n, ct, CTB - 1);
+        expected_reject(ss_rej, sk, k->n, ct, CTB - 1, k->dom);
         check(memcmp(ss_dec, ss_rej, 32) == 0, "truncated ciphertext not rejected", count);
         ct[CTB] = 0;
         k->dec(ss_dec, ct, CTB + 1, sk);
-        expected_reject(ss_rej, sk, k->n, ct, CTB + 1);
+        expected_reject(ss_rej, sk, k->n, ct, CTB + 1, k->dom);
         check(memcmp(ss_dec, ss_rej, 32) == 0, "extended ciphertext not rejected", count);
     }
     fclose(f);
