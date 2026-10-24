@@ -1,6 +1,6 @@
 {
   "title": "Windowed Hankel KEM: implementation, challenge instances and evidence for Windowed Hankel LWE",
-  "version": "0.3",
+  "version": "0.4",
   "upload_type": "software",
   "access_right": "open",
   "license": "apache-2.0",
