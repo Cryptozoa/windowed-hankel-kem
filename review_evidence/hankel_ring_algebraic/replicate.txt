@@ -1,0 +1,6 @@
+# python3 replicate.py, 2026-10-24T07:16Z
+Q=4096 n=4 m=16: mean solutions 1.043 vs 1.035 | unique 0.969 vs 0.969, diff +0.000, 95% CI [-0.021, +0.021], TOST margin 0.018
+Q=4096 n=6 m=16: mean solutions 1.068 vs 1.100 | unique 0.936 vs 0.916, diff +0.020, 95% CI [-0.013, +0.052], TOST margin 0.046
+Q=16 n=6 m=16: mean solutions 1.098 vs 1.086 | unique 0.910 vs 0.924, diff -0.014, 95% CI [-0.047, +0.020], TOST margin 0.042
+Q=4096 n=6 m=14: mean solutions 1.201 vs 1.178 | unique 0.857 vs 0.877, diff -0.020, 95% CI [-0.061, +0.022], TOST margin 0.054
+Q=4096 n=6 m=18: mean solutions 1.066 vs 1.084 | unique 0.941 vs 0.936, diff +0.006, 95% CI [-0.024, +0.035], TOST margin 0.031

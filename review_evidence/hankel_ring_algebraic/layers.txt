@@ -1,0 +1,10 @@
+# python3 layers.py, 2026-10-24T07:14Z
+Information budget of the reduction modulo 2^j
+  mod  2: H(e mod 2^j) = 1.0000 bits; I(s; b mod 2^j | a) <=     0.0 bits; H(s mod 2^j) =   640.0 bits  [0: 1/2, 1: 1/2]
+  mod  4: H(e mod 2^j) = 1.9056 bits; I(s; b mod 2^j | a) <=    72.5 bits; H(s mod 2^j) =  1219.6 bits  [0: 3/8, 1: 1/4, 2: 1/8, 3: 1/4]
+  mod  8: H(e mod 2^j) = 2.0306 bits; I(s; b mod 2^j | a) <=   744.5 bits; H(s mod 2^j) =  1299.6 bits  
+  mod 16: H(e mod 2^j) = 2.0306 bits; I(s; b mod 2^j | a) <=  1512.5 bits; H(s mod 2^j) =  1299.6 bits  
+  mod 32: H(e mod 2^j) = 2.0306 bits; I(s; b mod 2^j | a) <=  2280.5 bits; H(s mod 2^j) =  1299.6 bits  
+Roots of prod_{c=-eta}^{eta} (t - c) modulo 4096
+  eta = 1: 5 roots (support 3): [0, 1, 2047, 2049, 4095]
+  eta = 2: 24 roots (support 5): [0, 1, 2, 510, 514, 1022, 1024, 1026, 1534, 1538, 2046, 2047, 2048, 2049, 2050, 2558, 2562, 3070, 3072, 3074, 3582, 3586, 4094, 4095]

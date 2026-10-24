@@ -1,0 +1,4 @@
+# sage projections.sage (lattice-estimator 53da598, rough), 2026-10-24T07:14Z
+mod 16: usvp 2^382.8, dual_hybrid 2^inf
+mod 32: usvp 2^316.5, dual_hybrid 2^inf
+mod 4096: usvp 2^142.5, dual_hybrid 2^137.1

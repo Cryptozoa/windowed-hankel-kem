@@ -130,6 +130,7 @@ Every figure in the paper comes from a script in this repository, with its recor
 | Low-rank Hankel methods and degrees of freedom (Sections 4.2 and 4.3) | `python3 review_evidence/hankel_low_rank/low_rank.py` | [`review_evidence/hankel_low_rank/`](review_evidence/hankel_low_rank/) |
 | Kung's realization and ERA with modal coherence (Section 4.3) | `python3 review_evidence/hankel_era_realization/era.py` | [`review_evidence/hankel_era_realization/`](review_evidence/hankel_era_realization/) |
 | Algebraic decoding (Section 4.3, Appendix E) | `python3 hamming.py`; `sage xl.sage` | [`review_evidence/hankel_pade_decoding/`](review_evidence/hankel_pade_decoding/) |
+| 2-adic layers and Arora-Ge systems over Z/16 and Z/4096 (Section 4.3, Appendix E) | `python3 layers.py`; `python3 solution_counts.py`; `python3 replicate.py`; `sage projections.sage` | [`review_evidence/hankel_ring_algebraic/`](review_evidence/hankel_ring_algebraic/) |
 | Category 3 and 5 sets (Appendix D) | the `.sage` and `.py` scripts listed in its README | [`review_evidence/hankel_higher_categories/`](review_evidence/hankel_higher_categories/) |
 
 The estimates use the [lattice estimator](https://github.com/malb/lattice-estimator) at commit `53da598` and SageMath 10.9; the functionals and the reduced-dimension experiments also need fpylll (0.6.4). Run each script from its evidence directory; the README there lists inputs, outputs and versions.
