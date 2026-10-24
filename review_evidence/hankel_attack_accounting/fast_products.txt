@@ -1,0 +1,5 @@
+# sage fast_products.sage (lattice-estimator 53da598), 2026-10-24T07:25Z
+Core-SVP (ADPS16): rop: ≈2^137.1, red: ≈2^136.7, guess: ≈2^135.2, β: 468, p: 5, ζ: 10, t: 40, β': 468, N: ≈2^96.4, m: 640
+  one-time products of the N dual vectors with the 50 guessed columns: N m (zeta + t) = 2^111.4, against 2^137.1 in total
+MATZOV: rop: ≈2^160.3, red: ≈2^159.8, guess: ≈2^158.4, β: 459, p: 5, ζ: 20, t: 40, β': 459, N: ≈2^94.9, m: 640
+  one-time products of the N dual vectors with the 60 guessed columns: N m (zeta + t) = 2^110.1, against 2^160.3 in total
